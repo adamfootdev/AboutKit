@@ -11,13 +11,13 @@ The views have been localised into a few other languages too. The button colors 
 1. [Requirements](#requirements)
 2. [Integration](#integration)
 3. [Usage](#usage)
-- [AKApp](#akapp)
-- [AKDeveloper](#akdeveloper)
-- [AKFeatureItem](#akfeatureitem)
-- [AKOtherApp](#akotherapp)
-- [About Example](#about-example)
-- [Features List Example](#features-list-example)
-- [Welcome Example](#welcome-example)
+    - [AKApp](#akapp)
+    - [AKDeveloper](#akdeveloper)
+    - [AKFeatureItem](#akfeatureitem)
+    - [AKOtherApp](#akotherapp)
+    - [About Example](#about-example)
+    - [Features List Example](#features-list-example)
+    - [Welcome Example](#welcome-example)
 
 ## Requirements
 
