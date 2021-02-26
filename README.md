@@ -1,6 +1,6 @@
 # AboutKit
 
-![Feature Graphic](https://raw.github.com/AdamFootDev/AboutKit/main/Assets/feature_graphic.png)
+![Feature Graphic](https://raw.github.com/AdamFootDev/AboutKit/main/Assets/feature_graphic.png?raw=true)
 
 ![Platform](https://img.shields.io/badge/platforms-iOS%2014.0-F28D00.svg)
 
