@@ -1,0 +1,34 @@
+/* GENERAL STRINGS */
+
+"Continue" = "Continua";
+
+
+
+/* ABOUT STRINGS */
+
+"Email" = "E-mail";
+"Twitter (@%@)" = "Twitter (@%@)";
+"Website" = "Website";
+"Share App" = "Partajază Aplicație";
+"Write Review" = "Scrie un Review";
+"Privacy Policy" = "Termeni și Condiții";
+
+"View %@ in the App Store" = "Vizualizați %@ în App Store";
+
+"Other Apps" = "Alte Aplicații de la Dezvoltator";
+"%@ App Icon" = "%@ Iconiță Aplicație";
+"VIEW" = "VIZUALIZAȚI";
+"View All" = "Vizualizați Toate";
+
+"Check out %@ on the App Store!" = "Verificați %@ în App Store!";
+
+
+
+/* NAVIGATION STRINGS */
+"About" = "Despre";
+"Done" = "Gata";
+
+
+
+/* WELCOME STRINGS */
+"Welcome to" = "Bun venit pe";

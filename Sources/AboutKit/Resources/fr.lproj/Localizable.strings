@@ -1,0 +1,34 @@
+/* GENERAL STRINGS */
+
+"Continue" = "Continuez";
+
+
+
+/* ABOUT STRINGS */
+
+"Email" = "E-mail";
+"Twitter (@%@)" = "Twitter (@%@)";
+"Website" = "Site Web";
+"Share App" = "Partager l’app";
+"Write Review" = "Écrire un Commentaire";
+"Privacy Policy" = "Politique de Confidentialité";
+
+"View %@ in the App Store" = "Voir %@ dans l'App Store";
+
+"Other Apps" = "Autres Apps";
+"%@ App Icon" = "%@ Icône d’app";
+"VIEW" = "VOIR";
+"View All" = "Voir Toutes";
+
+"Check out %@ on the App Store!" = "Découvrez %@ sur l'App Store!";
+
+
+
+/* NAVIGATION STRINGS */
+"About" = "À propos";
+"Done" = "Valider";
+
+
+
+/* WELCOME STRINGS */
+"Welcome to" = "Bienvenue sur";
