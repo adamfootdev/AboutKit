@@ -1,7 +1,6 @@
 # AboutKit
 
 ![Feature Graphic](https://github.com/AdamFootDev/AboutKit/blob/main/Assets/feature-graphic.png?raw=true)
-
 ![Platform](https://img.shields.io/badge/platforms-iOS%2014.0-F28D00.svg)
 
 AboutKit provides developers with the ability to add an About, Features List or Welcome screen to an app. All of the screens are built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
