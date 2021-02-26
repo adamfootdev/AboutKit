@@ -44,24 +44,28 @@ public struct AboutAppView: View {
                     Label(LocalizedStrings.email, systemImage: "envelope")
                 }
                 
-                if let appHandle = app.twitterHandle {
+                if let appHandle = app.twitterHandle,
+                   let url = URL(string: "https://twitter.com/\(appHandle)") {
                     let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), appHandle)
 
-                    Link(destination: URL(string: "https://twitter.com/\(appHandle)")!) {
+                    Link(destination: url) {
                         Label(title, systemImage: "at")
                     }
                 }
 
-                if let developerHandle = app.developer.twitterHandle {
+                if let developerHandle = app.developer.twitterHandle,
+                   let url = URL(string: "https://twitter.com/\(developerHandle)") {
                     let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), developerHandle)
 
-                    Link(destination: URL(string: "https://twitter.com/\(developerHandle)")!) {
+                    Link(destination: url) {
                         Label(title, systemImage: "at")
                     }
                 }
-                
-                Link(destination: URL(string: app.websiteURL)!) {
-                    Label(LocalizedStrings.website, systemImage: "safari")
+
+                if let websiteURL = URL(string: app.websiteURL) {
+                    Link(destination: websiteURL) {
+                        Label(LocalizedStrings.website, systemImage: "safari")
+                    }
                 }
             }
             
@@ -77,9 +81,10 @@ public struct AboutAppView: View {
                 }
             }
             
-            if let privacyPolicyURL = app.privacyPolicyURL {
+            if let privacyPolicyURLString = app.privacyPolicyURL,
+               let privacyPolicyURL = URL(string: privacyPolicyURLString) {
                 Section {
-                    Link(destination: URL(string: privacyPolicyURL)!) {
+                    Link(destination: privacyPolicyURL) {
                         Label(LocalizedStrings.privacyPolicy, systemImage: "lock.fill")
                     }
                 }
