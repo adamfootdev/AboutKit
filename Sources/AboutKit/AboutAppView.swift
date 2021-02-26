@@ -44,18 +44,18 @@ public struct AboutAppView: View {
                     Label(LocalizedStrings.email, systemImage: "envelope")
                 }
                 
-                if let developerHandle = app.developer.twitterHandle {
-                    let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), developerHandle)
-
-                    Link(destination: URL(string: "https://twitter.com/\(developerHandle)")!) {
-                        Label(title, systemImage: "at")
-                    }
-                }
-                
                 if let appHandle = app.twitterHandle {
                     let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), appHandle)
 
                     Link(destination: URL(string: "https://twitter.com/\(appHandle)")!) {
+                        Label(title, systemImage: "at")
+                    }
+                }
+
+                if let developerHandle = app.developer.twitterHandle {
+                    let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), developerHandle)
+
+                    Link(destination: URL(string: "https://twitter.com/\(developerHandle)")!) {
                         Label(title, systemImage: "at")
                     }
                 }

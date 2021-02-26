@@ -15,9 +15,9 @@ struct FeatureItemRowView: View {
             Image(systemName: item.systemImage)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 35, height: 35)
+                .frame(width: 30, height: 30)
                 .foregroundColor(item.imageTint)
-                .padding(.trailing, 10)
+                .padding(.trailing, 15)
             
             VStack(alignment: .leading) {
                 Text(item.title)

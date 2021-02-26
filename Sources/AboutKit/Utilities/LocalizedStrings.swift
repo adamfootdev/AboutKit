@@ -19,7 +19,7 @@ enum LocalizedStrings {
 
     static let otherApps = NSLocalizedString("Other Apps", bundle: .module, comment: "")
     static let view = NSLocalizedString("VIEW", bundle: .module, comment: "")
-    static let viewAll = NSLocalizedString("View All", bundle: .module, comment: "")
+    static let viewAll = NSLocalizedString("View All Apps", bundle: .module, comment: "")
 
     static let done = NSLocalizedString("Done", bundle: .module, comment: "")
     static let about = NSLocalizedString("About", bundle: .module, comment: "")
