@@ -62,7 +62,7 @@ final class AppIconNetworkManager {
         let appIcon: String
         
         enum CodingKeys: String, CodingKey {
-            case appIcon = "artworkURL512"
+            case appIcon = "artworkUrl512"
         }
     }
 }
