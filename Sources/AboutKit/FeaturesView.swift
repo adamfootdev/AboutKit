@@ -27,7 +27,11 @@ public struct FeaturesView: View {
     ///   e.g. What's New, What's New in App or Welcome to App.
     ///   - featureItems: An array of featured items to display in a scrollable list.
     ///   - onContinueAction: An optional completion block to perform when the Continue button is tapped.
-    public init(title: String, featureItems: [AKFeatureItem], onContinueAction: (() -> Void)?) {
+    public init(
+        title: String,
+        featureItems: [AKFeatureItem],
+        onContinueAction: (() -> Void)? = nil
+    ) {
         self.title = title
         self.featureItems = featureItems
         self.onContinueAction = onContinueAction
@@ -64,7 +68,14 @@ struct FeaturesView_Previews: PreviewProvider {
     static var previews: some View {
         FeaturesView(
             title: "What's New",
-            featureItems: [AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example]
+            featureItems: [
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example
+            ]
         ) {
             print("Done")
         }

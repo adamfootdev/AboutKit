@@ -11,53 +11,78 @@ struct OtherAppRowView: View {
     let otherApp: AKOtherApp
     @State private var appIconURL: String?
 
-    private var viewLabel: Text {
-        Text(String(format: NSLocalizedString("View %@ in the App Store", bundle: .module, comment: ""), otherApp.name))
+    private var appIcon: some View {
+        ZStack {
+            Color(UIColor.systemGroupedBackground)
+
+            if let appIconURL = appIconURL {
+                RemoteImageView(url: appIconURL)
+            }
+        }
+        .frame(width: 60, height: 60)
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(appIconLabel)
+    }
+
+    private var appIconLabel: String {
+        String(format: NSLocalizedString(
+            "%@ App Icon",
+            bundle: .module,
+            comment: ""
+        ), otherApp.name)
+    }
+
+    private var viewLabel: String {
+        String(format: NSLocalizedString(
+            "View %@ in the App Store",
+            bundle: .module,
+            comment: ""
+        ), otherApp.name)
     }
 
     private var appURL: String {
         "https://apps.apple.com/app/id\(otherApp.id)"
     }
 
+    private var viewOnAppStoreButton: some View {
+        Link(destination: URL(string: appURL)!) {
+            Text(LocalizedStrings.view)
+                .font(.headline)
+                .lineLimit(1)
+                .foregroundColor(.accentColor)
+                .padding(.vertical, 5)
+                .padding(.horizontal)
+                .background(Color(UIColor.systemGroupedBackground))
+                .clipShape(Capsule())
+                .contentShape(Capsule())
+                .hoverEffect(.lift)
+                .layoutPriority(1)
+                .accessibilityLabel(viewLabel)
+        }
+    }
+
     var body: some View {
-        HStack(spacing: 20) {
-            ZStack {
-                Color(UIColor.systemGroupedBackground)
-                
-                if let appIconURL = appIconURL {
-                    RemoteImageView(url: appIconURL)
-                }
-            }
-            .frame(width: 60, height: 60)
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-            
+        HStack(spacing: 15) {
+            appIcon
+
             Text(otherApp.name)
                 .font(.headline)
+                .lineLimit(2)
 
-            Spacer()
+            Spacer(minLength: 1)
 
-            Link(destination: URL(string: appURL)!) {
-                Text(LocalizedStrings.view)
-                    .font(.headline)
-                    .foregroundColor(.accentColor)
-                    .padding(.vertical, 5)
-                    .padding(.horizontal)
-                    .background(Color(UIColor.systemGroupedBackground))
-                    .clipShape(Capsule())
-                    .contentShape(Capsule())
-                    .hoverEffect(.lift)
-                    .accessibility(label: viewLabel)
-            }
+            viewOnAppStoreButton
         }
         .padding(.vertical, 8)
         .buttonStyle(PlainButtonStyle())
-        .accessibilityElement(children: .ignore)
-        .accessibility(label: Text(otherApp.name))
-        .onAppear {
-            AppIconNetworkManager.shared.getURL(for: otherApp.id) { (appIconURL) in
-                DispatchQueue.main.async {
-                    self.appIconURL = appIconURL
-                }
+        .onAppear(perform: loadAppIcon)
+    }
+
+    private func loadAppIcon() {
+        AppIconNetworkManager.shared.getURL(for: otherApp.id) { (appIconURL) in
+            DispatchQueue.main.async {
+                self.appIconURL = appIconURL
             }
         }
     }

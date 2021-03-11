@@ -19,11 +19,7 @@ struct RemoteImageView: View {
         case .loading, .failure:
             return Image(uiImage: UIImage())
         case .success:
-            if let image = imageLoader.image {
-                return Image(uiImage: image)
-            } else {
-                return Image(uiImage: UIImage())
-            }
+            return Image(uiImage: imageLoader.image ?? UIImage())
         }
     }
     

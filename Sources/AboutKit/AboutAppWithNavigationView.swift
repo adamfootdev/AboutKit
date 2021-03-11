@@ -25,7 +25,11 @@ public struct AboutAppWithNavigationView: View {
     ///   - app: A custom struct containing details about the current app.
     ///   - otherApps: An array of custom structs that contain details about other apps the developer owns.
     ///   - titleDisplayMode: The type of navigation title to show. Defaults to inline.
-    public init(app: AKApp, otherApps: [AKOtherApp], titleDisplayMode: NavigationBarItem.TitleDisplayMode = .inline) {
+    public init(
+        app: AKApp,
+        otherApps: [AKOtherApp],
+        titleDisplayMode: NavigationBarItem.TitleDisplayMode = .inline
+    ) {
         self.app = app
         self.otherApps = otherApps
         

@@ -23,6 +23,18 @@ public struct AboutAppView: View {
     
     @State private var activeSheet: ActiveSheet?
 
+    private var appReviewURL: String {
+        "https://apps.apple.com/app/id\(app.id)?action=write-review"
+    }
+
+    private var developerURL: String {
+        "https://apps.apple.com/developer/id\(app.developer.id)"
+    }
+
+    private var debugDetails: String {
+        "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)"
+    }
+
     /// Initializes a new SwiftUI view which displays attributes and links relating to an app.
     /// - Parameters:
     ///   - app: A custom struct containing details about the current app.
@@ -44,21 +56,15 @@ public struct AboutAppView: View {
                     Label(LocalizedStrings.email, systemImage: "envelope")
                 }
                 
-                if let appHandle = app.twitterHandle,
-                   let url = URL(string: "https://twitter.com/\(appHandle)") {
-                    let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), appHandle)
-
-                    Link(destination: url) {
-                        Label(title, systemImage: "at")
+                if let appTwitterDetails = getTwitterDetails(for: app.twitterHandle) {
+                    Link(destination: appTwitterDetails.url) {
+                        Label(appTwitterDetails.title, systemImage: "at")
                     }
                 }
 
-                if let developerHandle = app.developer.twitterHandle,
-                   let url = URL(string: "https://twitter.com/\(developerHandle)") {
-                    let title = String(format: NSLocalizedString("Twitter (@%@)", bundle: .module, comment: ""), developerHandle)
-
-                    Link(destination: url) {
-                        Label(title, systemImage: "at")
+                if let developerTwitterDetails = getTwitterDetails(for:  app.developer.twitterHandle) {
+                    Link(destination: developerTwitterDetails.url) {
+                        Label(developerTwitterDetails.title, systemImage: "at")
                     }
                 }
 
@@ -74,17 +80,14 @@ public struct AboutAppView: View {
                     Label(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
                 }
                 
-                Link(
-                    destination: URL(string: appReviewURL)!
-                ) {
+                Link(destination: URL(string: appReviewURL)!) {
                     Label(LocalizedStrings.writeReview, systemImage: "star.fill")
                 }
             }
             
-            if let privacyPolicyURLString = app.privacyPolicyURL,
-               let privacyPolicyURL = URL(string: privacyPolicyURLString) {
+            if let privacyPolicyURLString = app.privacyPolicyURL {
                 Section {
-                    Link(destination: privacyPolicyURL) {
+                    Link(destination: URL(string: privacyPolicyURLString)!) {
                         Label(LocalizedStrings.privacyPolicy, systemImage: "lock.fill")
                     }
                 }
@@ -111,18 +114,6 @@ public struct AboutAppView: View {
             }
         }
     }
-
-    private var appReviewURL: String {
-        "https://apps.apple.com/app/id\(app.id)?action=write-review"
-    }
-
-    private var developerURL: String {
-        "https://apps.apple.com/developer/id\(app.developer.id)"
-    }
-
-    private var debugDetails: String {
-        "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)"
-    }
     
     private func sendMail() {
         if MFMailComposeViewController.canSendMail() {
@@ -137,6 +128,21 @@ public struct AboutAppView: View {
                 UIApplication.shared.open(url)
             }
         }
+    }
+
+    private func getTwitterDetails(for handle: String?) -> (title: String, url: URL)? {
+        if let handle = handle,
+           let url = URL(string: "https://twitter.com/\(handle)") {
+            let title = String(format: NSLocalizedString(
+                "Twitter (@%@)",
+                bundle: .module,
+                comment: ""
+            ), handle)
+
+            return (title, url)
+        }
+
+        return nil
     }
     
     private func showShareSheet() {

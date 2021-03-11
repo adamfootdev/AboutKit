@@ -25,7 +25,11 @@ public struct WelcomeView: View {
     ///   - app: The app that is being used to display the welcome view.
     ///   - featureItems: An array of featured items to display in a scrollable list.
     ///   - onContinueAction: An optional completion block to perform when the Continue button is tapped.
-    public init(app: AKApp, featureItems: [AKFeatureItem], onContinueAction: (() -> Void)?) {
+    public init(
+        app: AKApp,
+        featureItems: [AKFeatureItem],
+        onContinueAction: (() -> Void)? = nil
+    ) {
         self.app = app
         self.featureItems = featureItems
         self.onContinueAction = onContinueAction
@@ -72,7 +76,14 @@ struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView(
             app: AKApp.example,
-            featureItems: [AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example, AKFeatureItem.example]
+            featureItems: [
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example,
+                AKFeatureItem.example
+            ]
         ) {
             print("Done")
         }
