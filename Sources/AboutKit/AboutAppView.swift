@@ -106,11 +106,11 @@ public struct AboutAppView: View {
             switch item {
             case .mail:
                 MailView(app: app, debugDetails: debugDetails)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .edgesIgnoringSafeArea(.all)
                 
             case .share:
                 ShareSheetView(app: app)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .edgesIgnoringSafeArea(.all)
             }
         }
     }
