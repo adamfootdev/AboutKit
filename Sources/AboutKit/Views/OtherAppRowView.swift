@@ -56,7 +56,7 @@ struct OtherAppRowView: View {
                 .background(Color(UIColor.systemGroupedBackground))
                 .clipShape(Capsule())
                 .contentShape(Capsule())
-                .hoverEffect(.lift)
+                .if(.isCatalyst == false) { $0.hoverEffect(.lift) }
                 .layoutPriority(1)
                 .accessibilityLabel(viewLabel)
         }
