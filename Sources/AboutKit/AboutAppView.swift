@@ -15,24 +15,29 @@ public struct AboutAppView: View {
 
     /// An array of custom structs that contain details about other apps the developer owns.
     private let otherApps: [AKOtherApp]
-    
+
+    /// An enum containing active UIKit sheets.
     private enum ActiveSheet: Identifiable {
         case mail, share
         var id: Int { hashValue }
     }
-    
+
+    /// The current active UIKit sheet.
     @State private var activeSheet: ActiveSheet?
 
+    /// The URL to review the current app on the App Store.
     private var appReviewURL: String {
         "https://apps.apple.com/app/id\(app.id)?action=write-review"
     }
 
+    /// The URL to the developer's App Store profile.
     private var developerURL: String {
         "https://apps.apple.com/developer/id\(app.developer.id)"
     }
 
+    /// A string containing debug details about the current app.
     private var debugDetails: String {
-        "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)"
+        "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)\nEnvironment: \(Bundle.main.userType)"
     }
 
     /// Initializes a new SwiftUI view which displays attributes and links relating to an app.

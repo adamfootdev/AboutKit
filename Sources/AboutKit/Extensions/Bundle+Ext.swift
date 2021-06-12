@@ -17,4 +17,17 @@ extension Bundle {
     var buildNumber: String {
         infoDictionary?["CFBundleVersion"] as? String ?? ""
     }
+
+    /// Returns a custom enum containing the environment that the current user is using.
+    var userType: UserType {
+        #if DEBUG
+        return .debug
+        #else
+        if appStoreReceiptURL?.lastPathComponent == "sandboxReceipt" {
+            return .testFlight
+        } else {
+            return .appStore
+        }
+        #endif
+    }
 }
