@@ -1,10 +1,17 @@
-/* GENERAL STRINGS */
+/*
+ Localizable.strings
+ AboutKit
+
+ Created by Adam Foot on 06/07/2021.
+
+ */
+
+/* General */
 
 "Continue" = "Continuez";
 
 
-
-/* ABOUT STRINGS */
+/* About */
 
 "Email" = "E-mail";
 "Twitter (@%@)" = "Twitter (@%@)";
@@ -18,17 +25,17 @@
 "Other Apps" = "Autres Apps";
 "%@ App Icon" = "%@ Icône d’app";
 "VIEW" = "VOIR";
-"View All Apps" = "Voir Toutes Apps";
+"View all Apps" = "Voir toutes Apps";
 
 "Check out %@ on the App Store!" = "Découvrez %@ sur l'App Store!";
 
 
+/* Navigation */
 
-/* NAVIGATION STRINGS */
-"About" = "À propos";
+"About" = "À Propos";
 "Done" = "Valider";
 
 
+/* Welcome */
 
-/* WELCOME STRINGS */
 "Welcome to" = "Bienvenue sur";

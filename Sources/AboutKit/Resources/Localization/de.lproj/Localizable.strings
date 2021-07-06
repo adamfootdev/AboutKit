@@ -1,10 +1,9 @@
-/* GENERAL STRINGS */
+/* General */
 
 "Continue" = "Fortsetzen";
 
 
-
-/* ABOUT STRINGS */
+/* About */
 
 "Email" = "Email";
 "Twitter (@%@)" = "Twitter (@%@)";
@@ -18,17 +17,17 @@
 "Other Apps" = "Weitere Apps";
 "%@ App Icon" = "%@ App Symbol";
 "VIEW" = "ANZEIGEN";
-"View All Apps" = "Alle Anzeigen Apps";
+"View all Apps" = "Alle anzeigen Apps";
 
 "Check out %@ on the App Store!" = "Schauen Sie sich das %@ im App Store an!";
 
 
+/* Navigation */
 
-/* NAVIGATION STRINGS */
 "About" = "Über";
 "Done" = "Fertig";
 
 
+/* Welcome */
 
-/* WELCOME STRINGS */
 "Welcome to" = "Willkommen auf dem";

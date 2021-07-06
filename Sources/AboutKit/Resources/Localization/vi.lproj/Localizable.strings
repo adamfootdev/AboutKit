@@ -1,0 +1,41 @@
+/*
+ Localizable.strings
+ AboutKit
+
+ Created by Adam Foot on 06/07/2021.
+
+ */
+
+/* General */
+
+"Continue" = "Tiếp tục";
+
+
+/* About */
+
+"Email" = "E-mail";
+"Twitter (@%@)" = "Twitter (@%@)";
+"Website" = "Trang mạng";
+"Share App" = "Chia sẻ ứng dụng";
+"Write Review" = "Viết đánh giá";
+"Privacy Policy" = "Chính sách bảo mật";
+
+"View %@ in the App Store" = "Xem %@ trong App Store";
+
+"Other Apps" = "Những ứng dụng khác";
+"%@ App Icon" = "Biểu tượng ứng dụng %@";
+"VIEW" = "XEM";
+"View all Apps" = "Xem tất cả ứng dụng";
+
+"Check out %@ on the App Store!" = "Xem %@ trên App Store!";
+
+
+/* Navigation */
+
+"About" = "Giới thiệu";
+"Done" = "Xong";
+
+
+/* Welcome */
+
+"Welcome to" = "Chào mừng đến với";

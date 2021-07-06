@@ -1,0 +1,41 @@
+/*
+ Localizable.strings
+ AboutKit
+
+ Created by Adam Foot on 06/07/2021.
+
+ */
+
+/* General */
+
+"Continue" = "Pokračovat";
+
+
+/* About */
+
+"Email" = "E-mailem";
+"Twitter (@%@)" = "Twitter (@%@)";
+"Website" = "Webová Stránka";
+"Share App" = "Sdílet Aplikaci";
+"Write Review" = "Napsat Recenzi";
+"Privacy Policy" = "Zásady ochrany osobních údajů";
+
+"View %@ in the App Store" = "Zobrazit %@ v App Store";
+
+"Other Apps" = "Další Aplikace";
+"%@ App Icon" = "Ikona Aplikace %@";
+"VIEW" = "POHLED";
+"View all Apps" = "Zobrazit všechny Aplikace";
+
+"Check out %@ on the App Store!" = "Podívejte se na %@ v App Store!";
+
+
+/* Navigation */
+
+"About" = "O Aplikaci";
+"Done" = "Hotovo";
+
+
+/* Welcome */
+
+"Welcome to" = "Vítejte v aplikaci";

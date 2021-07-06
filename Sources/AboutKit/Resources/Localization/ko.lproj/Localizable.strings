@@ -1,0 +1,41 @@
+/*
+ Localizable.strings
+ AboutKit
+
+ Created by Adam Foot on 06/07/2021.
+
+ */
+
+/* General */
+
+"Continue" = "계속하다";
+
+
+/* About */
+
+"Email" = "이메일";
+"Twitter (@%@)" = "트위터 (@%@)";
+"Website" = "웹사이트";
+"Share App" = "앱 공유";
+"Write Review" = "리뷰를 쓰다";
+"Privacy Policy" = "개인 정보 정책";
+
+"View %@ in the App Store" = "App Store에서 %@보기";
+
+"Other Apps" = "기타 앱";
+"%@ App Icon" = "%@ 앱 아이콘";
+"VIEW" = "전망";
+"View all Apps" = "모든 앱보기";
+
+"Check out %@ on the App Store!" = "App Store에서 %@을 확인하세요!";
+
+
+/* Navigation */
+
+"About" = "앱에 관해";
+"Done" = "끝난";
+
+
+/* Welcome */
+
+"Welcome to" = "에 오신 것을 환영합니다";

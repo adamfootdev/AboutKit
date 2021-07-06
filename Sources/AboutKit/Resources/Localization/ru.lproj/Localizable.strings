@@ -1,0 +1,41 @@
+/*
+ Localizable.strings
+ AboutKit
+
+ Created by Adam Foot on 06/07/2021.
+
+ */
+
+/* General */
+
+"Continue" = "Продолжать";
+
+
+/* About */
+
+"Email" = "Электронное письмо";
+"Twitter (@%@)" = "Twitter (@%@)";
+"Website" = "Веб-сайт";
+"Share App" = "Поделиться приложением";
+"Write Review" = "Написать обзор";
+"Privacy Policy" = "Политика конфиденциальности";
+
+"View %@ in the App Store" = "Посмотреть %@ в App Store";
+
+"Other Apps" = "Другие приложения";
+"%@ App Icon" = "Значок приложения %@";
+"VIEW" = "ПОСМОТРЕТЬ";
+"View all Apps" = "Просмотреть все приложения";
+
+"Check out %@ on the App Store!" = "Проверьте %@ в App Store!";
+
+
+/* Navigation */
+
+"About" = "О";
+"Done" = "Сделанный";
+
+
+/* Welcome */
+
+"Welcome to" = "Добро пожаловать в";
