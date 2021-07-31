@@ -10,6 +10,8 @@ import MessageUI
 
 /// A SwiftUI view which displays attributes and links relating to an app.
 public struct AboutAppView: View {
+    @Environment(\.openURL) var openURL
+
     /// A custom struct containing details about the current app.
     private let app: AKApp
 
@@ -130,7 +132,7 @@ public struct AboutAppView: View {
             let urlString = "mailto:info@adamfoot.dev?subject=\(subject)%20-%20Support&body=\(body)"
 
             if let url = URL(string: urlString) {
-                UIApplication.shared.open(url)
+                openURL(url)
             }
         }
     }
