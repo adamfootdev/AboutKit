@@ -39,7 +39,7 @@ public struct AboutAppView: View {
 
     /// A string containing debug details about the current app.
     private var debugDetails: String {
-        "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)\nEnvironment: \(Bundle.main.userType)"
+        "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)\nEnvironment: \(Bundle.main.userType.name)"
     }
 
     /// Initializes a new SwiftUI view which displays attributes and links relating to an app.
@@ -60,42 +60,42 @@ public struct AboutAppView: View {
             
             Section {
                 Button(action: sendMail) {
-                    Label(LocalizedStrings.email, systemImage: "envelope")
+                    ListButtonLabel(LocalizedStrings.email, systemImage: "envelope")
                 }
                 
                 if let appTwitterDetails = getTwitterDetails(for: app.twitterHandle) {
                     Link(destination: appTwitterDetails.url) {
-                        Label(appTwitterDetails.title, systemImage: "at")
+                        ListButtonLabel(appTwitterDetails.title, systemImage: "at")
                     }
                 }
 
                 if let developerTwitterDetails = getTwitterDetails(for:  app.developer.twitterHandle) {
                     Link(destination: developerTwitterDetails.url) {
-                        Label(developerTwitterDetails.title, systemImage: "at")
+                        ListButtonLabel(developerTwitterDetails.title, systemImage: "at")
                     }
                 }
 
                 if let websiteURL = URL(string: app.websiteURL) {
                     Link(destination: websiteURL) {
-                        Label(LocalizedStrings.website, systemImage: "safari")
+                        ListButtonLabel(LocalizedStrings.website, systemImage: "safari")
                     }
                 }
             }
             
             Section {
                 Button(action: showShareSheet) {
-                    Label(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
+                    ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
                 }
                 
                 Link(destination: URL(string: appReviewURL)!) {
-                    Label(LocalizedStrings.writeReview, systemImage: "star.fill")
+                    ListButtonLabel(LocalizedStrings.writeReview, systemImage: "star")
                 }
             }
             
             if let privacyPolicyURLString = app.privacyPolicyURL {
                 Section {
                     Link(destination: URL(string: privacyPolicyURLString)!) {
-                        Label(LocalizedStrings.privacyPolicy, systemImage: "lock.fill")
+                        ListButtonLabel(LocalizedStrings.privacyPolicy, systemImage: "lock.shield")
                     }
                 }
             }
@@ -129,7 +129,7 @@ public struct AboutAppView: View {
             guard let subject = app.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let body = debugDetails.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
 
-            let urlString = "mailto:info@adamfoot.dev?subject=\(subject)%20-%20Support&body=\(body)"
+            let urlString = "mailto:\(app.email)?subject=\(subject)%20-%20Support&body=\(body)"
 
             if let url = URL(string: urlString) {
                 openURL(url)
