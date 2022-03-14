@@ -93,7 +93,8 @@ public struct AboutAppView: View {
                 }
             }
             
-            if let privacyPolicyURL = URL(string: app.privacyPolicyURL) {
+            if let privacyPolicyURLString = app.privacyPolicyURL,
+               let privacyPolicyURL = URL(string: privacyPolicyURLString) {
                 Section {
                     Link(destination: privacyPolicyURL) {
                         ListButtonLabel(LocalizedStrings.privacyPolicy, systemImage: "lock.shield")
