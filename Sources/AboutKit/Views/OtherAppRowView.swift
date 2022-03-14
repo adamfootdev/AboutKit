@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 
 struct OtherAppRowView: View {
@@ -13,7 +14,7 @@ struct OtherAppRowView: View {
 
     private var appIcon: some View {
         ZStack {
-            Color(UIColor.systemGroupedBackground)
+            Color.systemGroupedBackground
 
             if let appIconURL = appIconURL {
                 RemoteImageView(url: appIconURL)
@@ -53,10 +54,12 @@ struct OtherAppRowView: View {
                 .foregroundColor(.accentColor)
                 .padding(.vertical, 5)
                 .padding(.horizontal)
-                .background(Color(UIColor.systemGroupedBackground))
+                .background(Color.systemGroupedBackground)
                 .clipShape(Capsule())
                 .contentShape(Capsule())
+                #if os(iOS)
                 .if(.isCatalyst == false) { $0.hoverEffect(.lift) }
+                #endif
                 .layoutPriority(1)
                 .accessibilityLabel(viewLabel)
         }
@@ -93,3 +96,4 @@ struct OtherAppRowView_Previews: PreviewProvider {
         OtherAppRowView(otherApp: AKOtherApp.example)
     }
 }
+#endif

@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 24/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 
 /// A SwiftUI view which displays a list of featured items.
@@ -81,3 +82,4 @@ struct FeaturesView_Previews: PreviewProvider {
         }
     }
 }
+#endif

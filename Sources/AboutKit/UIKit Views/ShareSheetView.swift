@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 
 /// A UIViewControllerRepresentable that shows the default iOS share sheet
@@ -30,3 +31,4 @@ struct ShareSheetView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ShareSheetView>) {}
 }
+#endif

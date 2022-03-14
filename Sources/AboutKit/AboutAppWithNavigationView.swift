@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 
 /// A SwiftUI view with navigation bar that displays attributes and links relating to an app.
@@ -66,3 +67,4 @@ struct AboutAppWithNavigationView_Previews: PreviewProvider {
         )
     }
 }
+#endif

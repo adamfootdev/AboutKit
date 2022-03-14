@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 
 /// A SwiftUI view which displays a list of featured items beneath some large Welcome to App text.
@@ -89,3 +90,4 @@ struct WelcomeView_Previews: PreviewProvider {
         }
     }
 }
+#endif

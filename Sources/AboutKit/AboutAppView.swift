@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 import MessageUI
 
@@ -55,7 +56,7 @@ public struct AboutAppView: View {
         List {
             Section {
                 HeaderView(app: app)
-                    .listRowBackground(Color(UIColor.systemGroupedBackground))
+                    .listRowBackground(Color.systemGroupedBackground)
             }
             
             Section {
@@ -92,9 +93,9 @@ public struct AboutAppView: View {
                 }
             }
             
-            if let privacyPolicyURLString = app.privacyPolicyURL {
+            if let privacyPolicyURL = URL(string: app.privacyPolicyURL) {
                 Section {
-                    Link(destination: URL(string: privacyPolicyURLString)!) {
+                    Link(destination: privacyPolicyURL) {
                         ListButtonLabel(LocalizedStrings.privacyPolicy, systemImage: "lock.shield")
                     }
                 }
@@ -165,3 +166,4 @@ struct AboutAppView_Previews: PreviewProvider {
         )
     }
 }
+#endif

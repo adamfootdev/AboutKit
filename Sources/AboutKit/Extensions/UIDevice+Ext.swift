@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UIDevice {
@@ -26,3 +27,4 @@ extension UIDevice {
         return "Unknown Device"
     }
 }
+#endif
