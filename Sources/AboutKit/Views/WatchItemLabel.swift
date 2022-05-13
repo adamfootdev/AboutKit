@@ -8,7 +8,7 @@
 #if os(watchOS)
 import SwiftUI
 
-struct WatchItemLabel: View {
+struct ItemLabel: View {
     private let titleKey: LocalizedStringKey?
     private let title: String?
     private let details: String
@@ -46,9 +46,9 @@ struct WatchItemLabel: View {
     }
 }
 
-struct WatchItemLabel_Previews: PreviewProvider {
+struct ItemLabel_Previews: PreviewProvider {
     static var previews: some View {
-        WatchItemLabel("Title", details: "Details")
+        ItemLabel("Title", details: "Details")
     }
 }
 #endif
