@@ -28,16 +28,6 @@ public struct AboutAppView: View {
     /// The current active UIKit sheet.
     @State private var activeSheet: ActiveSheet?
 
-    /// The URL to review the current app on the App Store.
-    private var appReviewURL: String {
-        "https://apps.apple.com/app/id\(app.id)?action=write-review"
-    }
-
-    /// The URL to the developer's App Store profile.
-    private var developerURL: String {
-        "https://apps.apple.com/developer/id\(app.developer.id)"
-    }
-
     /// A string containing debug details about the current app.
     private var debugDetails: String {
         "\n\n\nDEBUG DETAILS\n\nApp Version: \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))\niOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)\nEnvironment: \(Bundle.main.userType.name)"
@@ -84,11 +74,20 @@ public struct AboutAppView: View {
             }
             
             Section {
-                Button(action: showShareSheet) {
-                    ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
+                if #available(iOS 16.0, *) {
+                    ShareLink(
+                        item: app.appStoreURL,
+                        message: Text(String(format: NSLocalizedString("Check out %@ on the App Store!", bundle: .module, comment: ""), app.name))
+                    ) {
+                        ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
+                    }
+                } else {
+                    Button(action: showShareSheet) {
+                        ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
+                    }
                 }
                 
-                Link(destination: URL(string: appReviewURL)!) {
+                Link(destination: app.appStoreReviewURL) {
                     ListButtonLabel(LocalizedStrings.writeReview, systemImage: "star")
                 }
             }
@@ -106,7 +105,7 @@ public struct AboutAppView: View {
                 Section(header: Text(LocalizedStrings.otherApps)) {
                     ForEach(otherApps, content: OtherAppRowView.init)
 
-                    Link(LocalizedStrings.viewAll, destination: URL(string: developerURL)!)
+                    Link(LocalizedStrings.viewAll, destination: app.developer.appStoreURL)
                 }
             }
         }

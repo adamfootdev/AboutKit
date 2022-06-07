@@ -22,10 +22,9 @@ struct ShareSheetView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheetView>) -> UIActivityViewController {
-        let appURL = URL(string: "https://apps.apple.com/app/id\(app.id)")!
         let message = String(format: NSLocalizedString("Check out %@ on the App Store!", bundle: .module, comment: ""), app.name)
         
-        let activityViewController = UIActivityViewController(activityItems: [appURL, message], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [app.appStoreURL, message], applicationActivities: nil)
         return activityViewController
     }
     

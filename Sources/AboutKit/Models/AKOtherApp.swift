@@ -23,6 +23,11 @@ public struct AKOtherApp: Identifiable {
         self.id = id
         self.name = name
     }
+
+    /// The App Store URL of the app based on its ID.
+    public var appStoreURL: URL {
+        URL(string: "https://apps.apple.com/app/id\(id)")!
+    }
     
     static let example = AKOtherApp(
         id: "987654321",

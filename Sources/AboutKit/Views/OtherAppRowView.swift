@@ -42,12 +42,8 @@ struct OtherAppRowView: View {
         ), otherApp.name)
     }
 
-    private var appURL: String {
-        "https://apps.apple.com/app/id\(otherApp.id)"
-    }
-
     private var viewOnAppStoreButton: some View {
-        Link(destination: URL(string: appURL)!) {
+        Link(destination: otherApp.appStoreURL) {
             Text(LocalizedStrings.view)
                 .font(.headline)
                 .lineLimit(1)

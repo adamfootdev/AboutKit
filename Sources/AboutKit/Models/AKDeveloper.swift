@@ -28,6 +28,11 @@ public struct AKDeveloper {
         self.name = name
         self.twitterHandle = twitterHandle
     }
+
+    /// The App Store URL for the developer page based on the ID.
+    public var appStoreURL: URL {
+        URL(string: "https://apps.apple.com/developer/id\(id)")!
+    }
     
     static let example = AKDeveloper(
         id: "123456789",

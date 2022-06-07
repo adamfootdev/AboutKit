@@ -45,7 +45,16 @@ public struct AKApp {
     ///   - twitterHandle: An optional Twitter profile handle string for the app. This should be in the format SampleApp without the @.
     ///   - privacyPolicyURL: An optional URL string directing to the privacy policy for the app.
     ///   - websiteURL: A URL string directing to the app's website.
-    public init(id: String, name: String, appIcon: UIImage?, developer: AKDeveloper, email: String, twitterHandle: String?, websiteURL: String, privacyPolicyURL: String?) {
+    public init(
+        id: String,
+        name: String,
+        appIcon: UIImage?,
+        developer: AKDeveloper,
+        email: String,
+        twitterHandle: String?,
+        websiteURL: String,
+        privacyPolicyURL: String?
+    ) {
         self.id = id
         self.name = name
         self.appIcon = appIcon
@@ -54,6 +63,16 @@ public struct AKApp {
         self.twitterHandle = twitterHandle
         self.websiteURL = websiteURL
         self.privacyPolicyURL = privacyPolicyURL
+    }
+
+    /// The App Store URL of the app based on its ID.
+    public var appStoreURL: URL {
+        URL(string: "https://apps.apple.com/app/id\(id)")!
+    }
+
+    /// The App Store URL to review the app based on its ID.
+    public var appStoreReviewURL: URL {
+        URL(string: "https://apps.apple.com/app/id\(id)?action=write-review")!
     }
     
     static let example = AKApp(
