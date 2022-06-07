@@ -34,6 +34,9 @@ public struct AKApp {
     /// An optional URL string directing to the privacy policy for the app.
     public let privacyPolicyURL: String?
 
+    /// An optional URL string directing to the terms of use for the app.
+    public let termsOfUseURL: String?
+
     /// Initializes a custom struct of data pertaining to the specified app.
     /// - Parameters:
     ///   - id: The app ID string for the given app. This can be found in App Store Connect or the URL of the App Store listing
@@ -43,8 +46,9 @@ public struct AKApp {
     ///   - appIcon: An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
     ///   - developer: A custom struct container details about the developer of the app.
     ///   - twitterHandle: An optional Twitter profile handle string for the app. This should be in the format SampleApp without the @.
-    ///   - privacyPolicyURL: An optional URL string directing to the privacy policy for the app.
     ///   - websiteURL: A URL string directing to the app's website.
+    ///   - privacyPolicyURL: An optional URL string directing to the privacy policy for the app.
+    ///   - termsOfUseURL: An optional URL string directing to the terms of use for the app.
     public init(
         id: String,
         name: String,
@@ -53,7 +57,8 @@ public struct AKApp {
         email: String,
         twitterHandle: String?,
         websiteURL: String,
-        privacyPolicyURL: String?
+        privacyPolicyURL: String?,
+        termsOfUseURL: String?
     ) {
         self.id = id
         self.name = name
@@ -63,6 +68,7 @@ public struct AKApp {
         self.twitterHandle = twitterHandle
         self.websiteURL = websiteURL
         self.privacyPolicyURL = privacyPolicyURL
+        self.termsOfUseURL = termsOfUseURL
     }
 
     /// The App Store URL of the app based on its ID.
@@ -83,6 +89,7 @@ public struct AKApp {
         email: "sampleapp@example.com",
         twitterHandle: "SampleApp",
         websiteURL: "https://www.example.com",
-        privacyPolicyURL: "https://www.example.com/privacy-policy"
+        privacyPolicyURL: "https://www.example.com/privacy-policy",
+        termsOfUseURL: "https://www.example.com/terms-of-use"
     )
 }

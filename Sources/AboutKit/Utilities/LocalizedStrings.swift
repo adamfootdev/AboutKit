@@ -16,6 +16,7 @@ enum LocalizedStrings {
     static let shareApp = NSLocalizedString("Share App", bundle: .module, comment: "")
     static let writeReview = NSLocalizedString("Write Review", bundle: .module, comment: "")
     static let privacyPolicy = NSLocalizedString("Privacy Policy", bundle: .module, comment: "")
+    static let termsOfUse = NSLocalizedString("Terms Of Use", bundle: .module, comment: "")
 
     static let otherApps = NSLocalizedString("Other Apps", bundle: .module, comment: "")
     static let view = NSLocalizedString("VIEW", bundle: .module, comment: "")

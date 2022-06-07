@@ -91,12 +91,21 @@ public struct AboutAppView: View {
                     ListButtonLabel(LocalizedStrings.writeReview, systemImage: "star")
                 }
             }
-            
-            if let privacyPolicyURLString = app.privacyPolicyURL,
-               let privacyPolicyURL = URL(string: privacyPolicyURLString) {
+
+            if app.privacyPolicyURL != nil || app.termsOfUseURL != nil {
                 Section {
-                    Link(destination: privacyPolicyURL) {
-                        ListButtonLabel(LocalizedStrings.privacyPolicy, systemImage: "lock.shield")
+                    if let privacyPolicy = app.privacyPolicyURL,
+                       let privacyPolicyURL = URL(string: privacyPolicy) {
+                        Link(destination: privacyPolicyURL) {
+                            ListButtonLabel(LocalizedStrings.privacyPolicy, systemImage: "lock.shield")
+                        }
+                    }
+
+                    if let termsOfUse = app.termsOfUseURL,
+                       let termsOfUseURL = URL(string: termsOfUse) {
+                        Link(destination: termsOfUseURL) {
+                            ListButtonLabel(LocalizedStrings.termsOfUse, systemImage: "checkmark.seal")
+                        }
                     }
                 }
             }

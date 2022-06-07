@@ -61,9 +61,15 @@ public struct AboutAppView: View {
                 }
             }
 
-            if let privacyPolicyURL = app.privacyPolicyURL {
+            if app.privacyPolicyURL != nil || app.termsOfUseURL != nil {
                 Section {
-                    ItemLabel(LocalizedStrings.privacyPolicy, details: privacyPolicyURL)
+                    if let privacyPolicyURL = app.privacyPolicyURL {
+                        ItemLabel(LocalizedStrings.privacyPolicy, details: privacyPolicyURL)
+                    }
+
+                    if let termsOfUseURL = app.termsOfUseURL {
+                        ItemLabel(LocalizedStrings.termsOfUse, details: termsOfUseURL)
+                    }
                 }
             }
         }
