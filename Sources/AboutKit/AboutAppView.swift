@@ -74,18 +74,18 @@ public struct AboutAppView: View {
             }
             
             Section {
-                if #available(iOS 16.0, *) {
-                    ShareLink(
-                        item: app.appStoreURL,
-                        message: Text(String(format: NSLocalizedString("Check out %@ on the App Store!", bundle: .module, comment: ""), app.name))
-                    ) {
-                        ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
-                    }
-                } else {
+//                if #available(iOS 16.0, *) {
+//                    ShareLink(
+//                        item: app.appStoreURL,
+//                        message: Text(String(format: NSLocalizedString("Check out %@ on the App Store!", bundle: .module, comment: ""), app.name))
+//                    ) {
+//                        ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
+//                    }
+//                } else {
                     Button(action: showShareSheet) {
                         ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
                     }
-                }
+//                }
                 
                 Link(destination: app.appStoreReviewURL) {
                     ListButtonLabel(LocalizedStrings.writeReview, systemImage: "star")
