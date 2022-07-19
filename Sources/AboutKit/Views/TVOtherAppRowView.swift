@@ -1,11 +1,11 @@
 //
-//  OtherAppRowView.swift
+//  TVOtherAppRowView.swift
 //  AboutKit
 //
-//  Created by Adam Foot on 23/02/2021.
+//  Created by Adam Foot on 19/07/2022.
 //
 
-#if os(iOS)
+#if os(tvOS)
 import SwiftUI
 
 struct OtherAppRowView: View {
@@ -18,18 +18,14 @@ struct OtherAppRowView: View {
     }
 
     var body: some View {
-        HStack(spacing: 16) {
-            appIcon
+        Link(destination: otherApp.appStoreURL) {
+            HStack(spacing: 28) {
+                appIcon
+                ItemLabel(otherApp.name, details: LocalizedStrings.view.capitalized)
+            }
+            .padding(.vertical, 8)
 
-            Text(otherApp.name)
-                .font(.headline)
-                .lineLimit(2)
-
-            Spacer(minLength: 1)
-
-            viewOnAppStoreButton
         }
-        .padding(.vertical, 8)
         .buttonStyle(.plain)
         .task {
             await loadAppIcon()
@@ -38,7 +34,7 @@ struct OtherAppRowView: View {
 
     private var appIcon: some View {
         ZStack {
-            Color(.systemGroupedBackground)
+            Color.secondary.opacity(0.2)
 
             if let appIcon = otherApp.appIcon {
                 Image(uiImage: appIcon)
@@ -49,25 +45,9 @@ struct OtherAppRowView: View {
                 RemoteImageView(url: appIconURL)
             }
         }
-        .frame(width: 60, height: 60)
+        .frame(width: 150, height: 90)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .accessibilityHidden(true)
-    }
-
-    private var viewOnAppStoreButton: some View {
-        Link(destination: otherApp.appStoreURL) {
-            Text(LocalizedStrings.view)
-                .font(.headline)
-                .lineLimit(1)
-                .padding(.horizontal, 8)
-                #if os(iOS) && !targetEnvironment(macCatalyst)
-                .hoverEffect(.lift)
-                #endif
-//                .layoutPriority(1)
-                .accessibilityLabel(String(localized: "View \(otherApp.name) in the App Store", bundle: .module))
-        }
-        .buttonStyle(.bordered)
-        .buttonBorderShape(.capsule)
     }
 
     private func loadAppIcon() async {
@@ -79,7 +59,9 @@ struct OtherAppRowView: View {
 
 struct OtherAppRowView_Previews: PreviewProvider {
     static var previews: some View {
-        OtherAppRowView(AKOtherApp.example)
+        Form {
+            OtherAppRowView(AKOtherApp.example)
+        }
     }
 }
 #endif

@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A custom struct of data pertaining to the specified app.
-public struct AKApp {
+public struct AKMyApp: AKApp {
     /// The app ID string for the given app. This can be found in App Store Connect or the URL of the App Store listing
     /// for the app. This should  be in the format 123456789.
     public let id: String
@@ -25,7 +25,7 @@ public struct AKApp {
     /// The email address to contact the app's support as a string.
     public let email: String
 
-    /// An optional Twitter profile handle string for the app. This should be in the format SampleApp without the @.
+    /// An optional Twitter profile handle string for the app.
     public let twitterHandle: String?
 
     /// A URL string directing to the app's website.
@@ -45,7 +45,7 @@ public struct AKApp {
     ///   - email: The email address to contact the app's support as a string.
     ///   - appIcon: An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
     ///   - developer: A custom struct container details about the developer of the app.
-    ///   - twitterHandle: An optional Twitter profile handle string for the app. This should be in the format SampleApp without the @.
+    ///   - twitterHandle: An optional Twitter profile handle string for the app.
     ///   - websiteURL: A URL string directing to the app's website.
     ///   - privacyPolicyURL: An optional URL string directing to the privacy policy for the app.
     ///   - termsOfUseURL: An optional URL string directing to the terms of use for the app.
@@ -65,23 +65,13 @@ public struct AKApp {
         self.appIcon = appIcon
         self.developer = developer
         self.email = email
-        self.twitterHandle = twitterHandle
+        self.twitterHandle = twitterHandle?.replacingOccurrences(of: "@", with: "")
         self.websiteURL = websiteURL
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
     }
 
-    /// The App Store URL of the app based on its ID.
-    public var appStoreURL: URL {
-        URL(string: "https://apps.apple.com/app/id\(id)")!
-    }
-
-    /// The App Store URL to review the app based on its ID.
-    public var appStoreReviewURL: URL {
-        URL(string: "https://apps.apple.com/app/id\(id)?action=write-review")!
-    }
-    
-    static let example = AKApp(
+    static let example = AKMyApp(
         id: "123456789",
         name: "Sample",
         appIcon: nil,

@@ -9,17 +9,19 @@ import SwiftUI
 
 struct RemoteImageView: View {
     private enum LoadState {
-        case loading, success, failure
+        case loading
+        case error
+        case loaded(image: UIImage)
     }
     
     @StateObject private var imageLoader: RemoteImageLoader
     
     private var downloadedImage: Image {
         switch imageLoader.loadState {
-        case .loading, .failure:
+        case .loading, .error:
             return Image(uiImage: UIImage())
-        case .success:
-            return Image(uiImage: imageLoader.image ?? UIImage())
+        case .loaded(let image):
+            return Image(uiImage: image)
         }
     }
     
@@ -32,43 +34,43 @@ struct RemoteImageView: View {
     }
     
     private class RemoteImageLoader: ObservableObject {
-        var image: UIImage?
         var loadState = LoadState.loading
         
         private let cache = NSCache<NSString, UIImage>()
         
         init(url: String) {
-            guard let imageURL = URL(string: url) else { return }
-            
-            let cacheKey = NSString(string: url)
-            
+            Task {
+                await loadAppIcon(from: url)
+            }
+        }
+
+        @MainActor private func loadAppIcon(from urlString: String) async {
+            loadState = .loading
+
+            let cacheKey = NSString(string: urlString)
+
+            guard let url = URL(string: urlString) else {
+                loadState = .error
+                return
+            }
+
             if let cachedImage = cache.object(forKey: cacheKey) {
-                self.image = cachedImage
-                self.loadState = .success
-                
-                DispatchQueue.main.async {
-                    self.objectWillChange.send()
-                }
-                
+                loadState = .loaded(image: cachedImage)
             } else {
-                URLSession.shared.dataTask(with: imageURL) { data, response, error in
-                    guard error == nil,
-                          let data = data,
-                          let image = UIImage(data: data) else {
-                        self.loadState = .failure
+                do {
+                    let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
+
+                    guard let image = UIImage(data: data) else {
+                        loadState = .error
                         return
                     }
-                    
-                    self.image = image
-                    self.loadState = .success
-                    
-                    self.cache.setObject(image, forKey: cacheKey)
-                    
-                    DispatchQueue.main.async {
-                        self.objectWillChange.send()
-                    }
-                    
-                }.resume()
+
+                    cache.setObject(image, forKey: cacheKey)
+                    loadState = .loaded(image: image)
+
+                } catch {
+                    loadState = .error
+                }
             }
         }
     }

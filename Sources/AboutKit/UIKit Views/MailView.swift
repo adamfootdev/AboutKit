@@ -12,10 +12,10 @@ import MessageUI
 /// A UIViewControllerRepresentable that shows the default iOS mail sheet
 /// with some pre-configured fields based on the current app.
 struct MailView: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
 
     /// The app to use for providing data to show in the mail sheet.
-    private let app: AKApp
+    private let app: AKMyApp
 
     /// A string containing some debug information that will be sent to the developer.
     private let debugDetails: String
@@ -25,25 +25,25 @@ struct MailView: UIViewControllerRepresentable {
     /// - Parameters:
     ///   - app: The app to use for providing data to show in the mail sheet.
     ///   - debugDetails: A string containing some debug information that will be sent to the developer.
-    init(app: AKApp, debugDetails: String) {
+    init(app: AKMyApp, debugDetails: String) {
         self.app = app
         self.debugDetails = debugDetails
     }
     
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        @Binding var presentationMode: PresentationMode
+        private var dismiss: DismissAction
         
-        init(presentationMode: Binding<PresentationMode>) {
-            _presentationMode = presentationMode
+        init(dismiss: DismissAction) {
+            self.dismiss = dismiss
         }
         
         func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-            $presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode)
+        return Coordinator(dismiss: dismiss)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {

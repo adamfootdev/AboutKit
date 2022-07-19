@@ -9,21 +9,21 @@ import Foundation
 
 /// Provides a quick way to access localized strings stored in the package bundle.
 enum LocalizedStrings {
-    static let continueButton = NSLocalizedString("Continue", bundle: .module, comment: "")
+    static let continueButton = String(localized: "Continue", bundle: .module)
 
-    static let email = NSLocalizedString("Email", bundle: .module, comment: "")
-    static let website = NSLocalizedString("Website", bundle: .module, comment: "")
-    static let shareApp = NSLocalizedString("Share App", bundle: .module, comment: "")
-    static let writeReview = NSLocalizedString("Write Review", bundle: .module, comment: "")
-    static let privacyPolicy = NSLocalizedString("Privacy Policy", bundle: .module, comment: "")
-    static let termsOfUse = NSLocalizedString("Terms Of Use", bundle: .module, comment: "")
+    static let email = String(localized: "Email", bundle: .module)
+    static let website = String(localized: "Website", bundle: .module)
+    static let shareApp = String(localized: "Share App", bundle: .module)
+    static let writeReview = String(localized: "Write Review", bundle: .module)
+    static let privacyPolicy = String(localized: "Privacy Policy", bundle: .module)
+    static let termsOfUse = String(localized: "Terms Of Use", bundle: .module)
 
-    static let otherApps = NSLocalizedString("Other Apps", bundle: .module, comment: "")
-    static let view = NSLocalizedString("VIEW", bundle: .module, comment: "")
-    static let viewAll = NSLocalizedString("View all Apps", bundle: .module, comment: "")
+    static let otherApps = String(localized: "Other Apps", bundle: .module)
+    static let view = String(localized: "VIEW", bundle: .module)
+    static let viewAll = String(localized: "View all Apps", bundle: .module)
 
-    static let done = NSLocalizedString("Done", bundle: .module, comment: "")
-    static let about = NSLocalizedString("About", bundle: .module, comment: "")
+    static let done = String(localized: "Done", bundle: .module)
+    static let about = String(localized: "About", bundle: .module)
 
-    static let welcomeTo = NSLocalizedString("Welcome to", bundle: .module, comment: "")
+    static let welcomeTo = String(localized: "Welcome to", bundle: .module)
 }

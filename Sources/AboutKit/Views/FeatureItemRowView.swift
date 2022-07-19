@@ -11,27 +11,21 @@ struct FeatureItemRowView: View {
     var item: AKFeatureItem
     
     var body: some View {
-        HStack {
+        HStack(spacing: 16) {
             Image(systemName: item.systemImage)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 30, height: 30)
                 .foregroundColor(item.imageTint)
-                .padding(.trailing, 15)
+                .frame(width: 30, height: 30)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
                     .font(.headline)
                 
                 Text(item.description)
                     .foregroundColor(.secondary)
             }
-            
-            Spacer()
         }
-        .padding(.horizontal, 40)
-        .padding(.vertical, 15)
-        .frame(maxWidth: .infinity)
     }
 }
 

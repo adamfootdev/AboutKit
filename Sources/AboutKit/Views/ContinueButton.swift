@@ -5,6 +5,7 @@
 //  Created by Adam Foot on 24/02/2021.
 //
 
+#if os(iOS)
 import SwiftUI
 
 struct ContinueButton: View {
@@ -14,12 +15,10 @@ struct ContinueButton: View {
         Button(action: action) {
             Text(LocalizedStrings.continueButton)
                 .font(.headline)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity)
         }
-        .frame(height: 50)
-        .background(Color.accentColor)
-        .cornerRadius(15)
+        .buttonStyle(.borderedProminent)
+        .controlSize(.large)
     }
 }
 
@@ -30,3 +29,4 @@ struct ContinueButton_Previews: PreviewProvider {
         }
     }
 }
+#endif

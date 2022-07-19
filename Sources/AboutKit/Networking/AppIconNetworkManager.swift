@@ -18,37 +18,37 @@ final class AppIconNetworkManager {
     /// Creates the cache object for storing the app icon URL.
     private let cache = NSCache<NSString, NSString>()
 
-    /// Gets the app icon URL string for a given app ID>
-    /// - Parameters:
-    ///   - appID: The app ID string of the app to retrieve the app icon for.
-    ///   - completion: A completion block containing an optional string if a url value is found during the request.
-    func getURL(for appID: String, completion: @escaping (String?) -> Void) {
-        let urlString = "https://itunes.apple.com/lookup?id=\(appID)"
+    private init() {}
+
+    /// Fetches the app icon URL string for a given app.
+    /// - Parameter app: The app to retrieve the app icon for.
+    /// - Returns: The string containing the URL of the app's icon.
+    func fetchURL(for app: AKApp) async -> String? {
+        let urlString = "https://itunes.apple.com/lookup?id=\(app.id)"
         let cacheKey = NSString(string: urlString)
-        
-        guard let url = URL(string: urlString) else { return }
-        
-        if let cachedImageURL = cache.object(forKey: cacheKey) {
-            completion(cachedImageURL as String)
-            return
-            
+
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+
+        if let cachedImageURL = cache.object(forKey: cacheKey) as? String {
+            return cachedImageURL
+
         } else {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard error == nil, let data = data else {
-                    completion(nil)
-                    return
+            do {
+                let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
+
+                guard let decodedResponse = try? JSONDecoder().decode(AppResponse.self, from: data),
+                   let appIconURL = decodedResponse.results.first?.appIcon else {
+                    return nil
                 }
-                
-                if let decodedResponse = try? JSONDecoder().decode(AppResponse.self, from: data),
-                   let appIconURL = decodedResponse.results.first?.appIcon {
-                    self.cache.setObject(NSString(string: appIconURL), forKey: cacheKey)
-                    completion(appIconURL)
-                    
-                } else {
-                    completion(nil)
-                }
-                
-            }.resume()
+
+                cache.setObject(NSString(string: appIconURL), forKey: cacheKey)
+                return appIconURL
+
+            } catch {
+                return nil
+            }
         }
     }
 

@@ -1,16 +1,18 @@
 # AboutKit
 
 ![Feature Graphic](https://github.com/adamfootdev/AboutKit/blob/main/Assets/feature-graphic.png?raw=true)
-![Platform](https://img.shields.io/badge/platforms-iOS%2014.0-F28D00.svg)
+![Platform](https://img.shields.io/badge/platforms-iOS%2015.0%2B%20%7C%20watchOS%208.0%2B%20%7C%20tvOS%2015.0%2B-blue)
 
 AboutKit provides developers with the ability to add an About, Features List or Welcome screen to an app. All of the screens are built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
 
 The views have been localised into a few other languages too. The button colors adapt to the accent color of your app, or can be customised using the .accentColor SwiftUI view modifier.
 
+All screens are supported on iOS/iPadOS and there is the ability to add the About screen to a watchOS or tvOS app as well.
+
 1. [Requirements](#requirements)
 2. [Integration](#integration)
 3. [Usage](#usage)
-    - [AKApp](#akapp)
+    - [AKMyApp](#akmyapp)
     - [AKDeveloper](#akdeveloper)
     - [AKFeatureItem](#akfeatureitem)
     - [AKOtherApp](#akotherapp)
@@ -20,7 +22,9 @@ The views have been localised into a few other languages too. The button colors 
 
 ## Requirements
 
-- iOS 14+
+- iOS 15+
+- watchOS 8+
+- tvOS 15+
 - Xcode 12+
 
 ## Integration
@@ -45,12 +49,12 @@ import AboutKit
 
 These views rely on passing in one or more created custom structs. These could be:
 
-### AKApp
+### AKMyApp
 
 This is a struct containing details about the current app. It can be created like so:
 
 ```swift
-let app = AKApp(id: "123456789", name: "App Name", appIcon: UIImage(named: "app-icon"), developer: developer, email: "app@example.com", twitterHandle: "AppName", websiteURL: "https://www.example.com", privacyPolicyURL: "https://www.example.com/privacy-policy")
+let app = AKMyApp(id: "123456789", name: "App Name", appIcon: UIImage(named: "app-icon"), developer: developer, email: "app@example.com", twitterHandle: "AppName", websiteURL: "https://www.example.com", privacyPolicyURL: "https://www.example.com/privacy-policy", termsOfUseURL: "https://www.example.com/terms-of-use"))
 ```
 
 If a value for the app icon is not provided, one will attempt to be downloaded from the App Store based on the provided app ID. The app ID can be found in App Store Connect or from the app's URL e.g. <https://apps.apple.com/app/id123456789>
@@ -65,7 +69,7 @@ This is a struct containing details about the developer belonging to the current
 let developer = AKDeveloper(id: "987654321", name: "App Developer", twitterHandle: "AppDeveloper")
 ```
 
-The Twitter handle should be without the '@'. The developer ID can be found by locating the App Store page that contains all of your apps e.g. <https://apps.apple.com/developer/id987654321>
+The developer ID can be found by locating the App Store page that contains all of your apps e.g. <https://apps.apple.com/developer/id987654321>
 
 ### AKFeatureItem
 
@@ -82,34 +86,17 @@ The imageTint value is optional and will default to the accent color if not prov
 This is a struct which contains details to display another app that you own and want to show in a list on the about screen. You can create one as follows:
 
 ```swift
-let otherApp = AKOtherApp(id: "543216789", name: "Other App")
+let otherApp = AKOtherApp(id: "543216789", name: "Other App", appIcon: UIImage(named: "app-icon"))
 ```
+
+If a value for the app icon is not provided, one will attempt to be downloaded from the App Store based on the provided app ID. The app ID can be found in App Store Connect or from the app's URL e.g. <https://apps.apple.com/app/id123456789>
+
 ### About Example
 
-There are two variations of the About view: with or without a navigation bar.
-
-#### Without Navigation Bar Example
-
-The version without the navigation bar enables the view to be embedded in a navigation stack or can be dismissed with the standard swipe gesture if opened as a sheet. Create an instance of the view using the following:
+Create an instance of the view using the following:
 
 ```swift
 AboutAppView(app: app, otherApps: otherApps)
-```
-
-See above for details on creating an AKApp and AKOtherApp.
-
-#### With Navigation Bar Example
-
-The version with a navigation bar provides the system navigation bar with a done button. The title display mode can also be customised to fit your app. Create an instance of the view using the following:
-
-```swift
-AboutAppWithNavigationView(app: app, otherApps: otherApps)
-```
-
-Or, to customise the title display mode (it defaults to inline) with the following:
-
-```swift
-AboutAppWithNavigationView(app: app, otherApps: otherApps, titleDisplayMode: .large)
 ```
 
 See above for details on creating an AKApp and AKOtherApp.

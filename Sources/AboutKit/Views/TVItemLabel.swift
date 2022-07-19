@@ -9,18 +9,10 @@
 import SwiftUI
 
 struct ItemLabel: View {
-    private let titleKey: LocalizedStringKey?
-    private let title: String?
+    private let title: String
     private let details: String
 
-    init(_ titleKey: LocalizedStringKey, details: String) {
-        self.titleKey = titleKey
-        self.title = nil
-        self.details = details
-    }
-
     init(_ title: String, details: String) {
-        self.titleKey = nil
         self.title = title
         self.details = details
     }
@@ -31,16 +23,7 @@ struct ItemLabel: View {
         Button {
         } label: {
             HStack {
-                Group {
-                    if let titleKey = titleKey {
-                        Text(titleKey)
-                    } else if let title = title {
-                        Text(title)
-                    } else {
-                        Text("")
-                    }
-                }
-
+                Text(title)
                 Spacer()
 
                 Text(details)

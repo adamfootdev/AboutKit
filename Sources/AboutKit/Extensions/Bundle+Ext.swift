@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 24/02/2021.
 //
 
-import Foundation
+import UIKit
 
 extension Bundle {
     /// Returns a string with the current app version number e.g. 1.0.
@@ -30,4 +30,11 @@ extension Bundle {
         }
         #endif
     }
+
+    #if os(iOS)
+    /// A string containing debug details about the current app.
+    var debugDetails: String {
+        "\n\n\nDEBUG DETAILS\n\nApp Version: \(versionNumber) (\(buildNumber))\nOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)\nEnvironment: \(userType.title)"
+    }
+    #endif
 }

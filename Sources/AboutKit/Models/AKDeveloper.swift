@@ -15,18 +15,18 @@ public struct AKDeveloper {
     /// The name of the developer as a string.
     public let name: String
 
-    /// An optional Twitter profile handle string for the developer. This should be in the format SampleDeveloper without the @.
+    /// An optional Twitter profile handle string for the developer.
     public let twitterHandle: String?
 
     /// Initializes a custom struct of data pertaining to developer of an app.
     /// - Parameters:
     ///   - id: The developer ID string for the given developer. This can be found by locating the App Store URL for the developer. This should be in the format 123456789.
     ///   - name: The name of the developer as a string.
-    ///   - twitterHandle: An optional Twitter profile handle string for the developer. This should be in the format SampleDeveloper without the @.
+    ///   - twitterHandle: An optional Twitter profile handle string for the developer.
     public init(id: String, name: String, twitterHandle: String?) {
         self.id = id
         self.name = name
-        self.twitterHandle = twitterHandle
+        self.twitterHandle = twitterHandle?.replacingOccurrences(of: "@", with: "")
     }
 
     /// The App Store URL for the developer page based on the ID.

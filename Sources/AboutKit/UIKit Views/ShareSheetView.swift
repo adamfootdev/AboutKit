@@ -12,22 +12,23 @@ import SwiftUI
 /// with some details on how to install the current app.
 struct ShareSheetView: UIViewControllerRepresentable {
     /// The app to use for showing in the download message.
-    private let app: AKApp
+    private let app: AKMyApp
 
     /// Initializes a UIViewControllerRepresentable that shows the default iOS share sheet
     /// with some details on how to install the current app.
     /// - Parameter app: The app to use for showing in the download message.
-    init(app: AKApp) {
+    init(app: AKMyApp) {
         self.app = app
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheetView>) -> UIActivityViewController {
-        let message = String(format: NSLocalizedString("Check out %@ on the App Store!", bundle: .module, comment: ""), app.name)
-        
-        let activityViewController = UIActivityViewController(activityItems: [app.appStoreURL, message], applicationActivities: nil)
-        return activityViewController
+        let message = String(localized: "Check out \(app.name) on the App Store!", bundle: .module)
+        return UIActivityViewController(activityItems: [app.appStoreURL, message], applicationActivities: nil)
     }
     
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ShareSheetView>) {}
+    func updateUIViewController(
+        _ uiViewController: UIActivityViewController,
+        context: UIViewControllerRepresentableContext<ShareSheetView>
+    ) {}
 }
 #endif

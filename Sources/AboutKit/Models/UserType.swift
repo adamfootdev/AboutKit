@@ -12,7 +12,7 @@ enum UserType {
     case debug, testFlight, appStore
 
     /// Returns a string matching the environment.
-    var name: String {
+    var title: String {
         switch self {
         case .debug:
             return "Debug"

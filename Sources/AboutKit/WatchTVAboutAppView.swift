@@ -1,53 +1,43 @@
 //
-//  AboutAppView.swift
+//  WatchTVAboutAppView.swift
 //  AboutKit
 //
-//  Created by Adam Foot on 13/05/2022.
+//  Created by Adam Foot on 14/03/2022.
 //
 
+#if os(watchOS) || os(tvOS)
 import SwiftUI
 
-#if os(tvOS)
+/// A SwiftUI view which displays attributes and links relating to an app.
 public struct AboutAppView: View {
-
     /// A custom struct containing details about the current app.
-    private let app: AKApp
+    private let app: AKMyApp
 
-    /// A `Bool` indicating whether to show the navigation title or not. Defaults to false.
-    private let showNavigationTitle: Bool
-
+    /// An array of custom structs that contain details about other apps the developer owns.
+    private let otherApps: [AKOtherApp]
+    
     /// Initializes a new SwiftUI view which displays attributes and links relating to an app.
     /// - Parameters:
     ///   - app: A custom struct containing details about the current app.
-    ///   - showNavigationTitle: A `Bool` indicating whether to show the navigation title or not. Defaults to false.
-    public init(app: AKApp, showNavigationTitle: Bool = false) {
+    ///   - otherApps: An array of custom structs that contain details about other apps the developer owns.
+    public init(app: AKMyApp, otherApps: [AKOtherApp]) {
         self.app = app
-        self.showNavigationTitle = showNavigationTitle
+        self.otherApps = otherApps
     }
-
+    
     public var body: some View {
-        Group {
-            if showNavigationTitle {
-                aboutForm
-                    .navigationTitle(LocalizedStrings.about)
-            } else {
-                aboutForm
-            }
-        }
-    }
-
-    private var aboutForm: some View {
         Form {
             Section {
                 HeaderView(app: app)
+                    .focusable()
             }
-
+            
             Section {
                 ItemLabel(
                     LocalizedStrings.email,
                     details: app.email
                 )
-
+                
                 if let appTwitterHandle = app.twitterHandle {
                     ItemLabel("Twitter", details: "@\(appTwitterHandle)")
                 }
@@ -55,12 +45,12 @@ public struct AboutAppView: View {
                 if let developerTwitterHandle = app.developer.twitterHandle {
                     ItemLabel("Twitter", details: "@\(developerTwitterHandle)")
                 }
-
+                
                 if let websiteURL = app.websiteURL {
                     ItemLabel(LocalizedStrings.website, details: websiteURL)
                 }
             }
-
+            
             if app.privacyPolicyURL != nil || app.termsOfUseURL != nil {
                 Section {
                     if let privacyPolicyURL = app.privacyPolicyURL {
@@ -72,15 +62,24 @@ public struct AboutAppView: View {
                     }
                 }
             }
+
+            if otherApps.isEmpty == false {
+                Section(header: Text(LocalizedStrings.otherApps)) {
+                    ForEach(otherApps, content: OtherAppRowView.init)
+                    Link(LocalizedStrings.viewAll, destination: app.developer.appStoreURL)
+                }
+            }
         }
+        .navigationTitle(LocalizedStrings.about)
     }
 }
 
 struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            AboutAppView(app: AKApp.example)
-        }
+        AboutAppView(
+            app: AKMyApp.example,
+            otherApps: [AKOtherApp.example, AKOtherApp.example]
+        )
     }
 }
 #endif
