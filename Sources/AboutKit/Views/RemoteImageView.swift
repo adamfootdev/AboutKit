@@ -34,7 +34,7 @@ struct RemoteImageView: View {
     }
     
     private class RemoteImageLoader: ObservableObject {
-        var loadState = LoadState.loading
+        @Published var loadState = LoadState.loading
         
         private let cache = NSCache<NSString, UIImage>()
         
