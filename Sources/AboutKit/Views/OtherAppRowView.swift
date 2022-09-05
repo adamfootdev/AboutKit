@@ -63,11 +63,11 @@ struct OtherAppRowView: View {
                 #if os(iOS) && !targetEnvironment(macCatalyst)
                 .hoverEffect(.lift)
                 #endif
-//                .layoutPriority(1)
                 .accessibilityLabel(String(localized: "View \(otherApp.name) in the App Store", bundle: .module))
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
+        .controlSize(.small)
     }
 
     private func loadAppIcon() async {
