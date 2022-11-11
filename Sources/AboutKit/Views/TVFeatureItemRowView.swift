@@ -1,29 +1,30 @@
 //
-//  FeatureItemRowView.swift
+//  TVFeatureItemRowView.swift
 //  AboutKit
 //
-//  Created by Adam Foot on 24/02/2021.
+//  Created by Adam Foot on 11/11/2022.
 //
 
-#if os(iOS)
+#if os(tvOS)
 import SwiftUI
 
 struct FeatureItemRowView: View {
     var item: AKFeatureItem
-    
+
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 40) {
             Image(systemName: item.systemImage)
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(item.imageTint)
-                .frame(width: 30, height: 30)
+                .frame(width: 60, height: 60)
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(item.title)
-                    .font(.headline)
+                    .font(.title3.bold())
 
                 Text(item.description)
+                    .font(.headline)
                     .foregroundColor(.secondary)
             }
         }

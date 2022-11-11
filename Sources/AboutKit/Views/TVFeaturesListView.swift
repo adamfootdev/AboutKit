@@ -1,11 +1,11 @@
 //
-//  FeaturesListView.swift
+//  TVFeaturesListView.swift
 //  AboutKit
 //
-//  Created by Adam Foot on 19/07/2022.
+//  Created by Adam Foot on 11/11/2022.
 //
 
-#if os(iOS)
+#if os(tvOS)
 import SwiftUI
 
 struct FeaturesListView: View {
@@ -16,11 +16,13 @@ struct FeaturesListView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 28) {
-            ForEach(featureItems, content: FeatureItemRowView.init)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 60) {
+                ForEach(featureItems, content: FeatureItemRowView.init)
+            }
+            .padding(.horizontal, 400)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.horizontal, 40)
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
