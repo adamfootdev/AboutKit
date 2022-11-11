@@ -16,11 +16,13 @@ struct FeaturesListView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 28) {
-            ForEach(featureItems, content: FeatureItemRowView.init)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 28) {
+                ForEach(featureItems, content: FeatureItemRowView.init)
+            }
+            .padding(.horizontal, 40)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.horizontal, 40)
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
