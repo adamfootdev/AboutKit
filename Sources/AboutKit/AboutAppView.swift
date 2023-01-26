@@ -61,10 +61,14 @@ public struct AboutAppView: View {
                         Array(app.developer.profiles.enumerated()),
                         id: \.0
                     ) { _, profile in
-                        ItemLabel(
-                            profile.title,
-                            image: profile.platform.imageName
-                        )
+                        Button {
+                            openURL(profile.url)
+                        } label: {
+                            ItemLabel(
+                                profile.title,
+                                image: profile.platform.imageName
+                            )
+                        }
                     }
                 }
             }
@@ -75,10 +79,14 @@ public struct AboutAppView: View {
                         Array(app.profiles.enumerated()),
                         id: \.0
                     ) { _, profile in
-                        ItemLabel(
-                            profile.title,
-                            image: profile.platform.imageName
-                        )
+                        Button {
+                            openURL(profile.url)
+                        } label: {
+                            ItemLabel(
+                                profile.title,
+                                image: profile.platform.imageName
+                            )
+                        }
                     }
                 }
             }
