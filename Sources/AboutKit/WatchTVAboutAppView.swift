@@ -41,16 +41,6 @@ public struct AboutAppView: View {
                 if let websiteURL = app.websiteURL {
                     ItemLabel(LocalizedStrings.website, details: websiteURL)
                 }
-                
-                if let appTwitterHandle = app.twitterHandle {
-                    ItemLabel("Twitter", details: "@\(appTwitterHandle)")
-                }
-
-                if let developerTwitterHandle = app.developer.twitterHandle {
-                    ItemLabel("Twitter", details: "@\(developerTwitterHandle)")
-                }
-                
-
             }
 
             if app.developer.profiles.isEmpty == false {
