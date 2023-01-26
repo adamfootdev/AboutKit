@@ -37,6 +37,10 @@ public struct AboutAppView: View {
                     LocalizedStrings.email,
                     details: app.email
                 )
+
+                if let websiteURL = app.websiteURL {
+                    ItemLabel(LocalizedStrings.website, details: websiteURL)
+                }
                 
                 if let appTwitterHandle = app.twitterHandle {
                     ItemLabel("Twitter", details: "@\(appTwitterHandle)")
@@ -46,8 +50,34 @@ public struct AboutAppView: View {
                     ItemLabel("Twitter", details: "@\(developerTwitterHandle)")
                 }
                 
-                if let websiteURL = app.websiteURL {
-                    ItemLabel(LocalizedStrings.website, details: websiteURL)
+
+            }
+
+            if app.developer.profiles.isEmpty == false {
+                Section {
+                    ForEach(
+                        Array(app.developer.profiles.enumerated()),
+                        id: \.0
+                    ) { _, profile in
+                        ItemLabel(
+                            profile.platform.name,
+                            details: profile.displayUsername
+                        )
+                    }
+                }
+            }
+
+            if app.profiles.isEmpty == false {
+                Section {
+                    ForEach(
+                        Array(app.profiles.enumerated()),
+                        id: \.0
+                    ) { _, profile in
+                        ItemLabel(
+                            profile.platform.name,
+                            details: profile.displayUsername
+                        )
+                    }
                 }
             }
             

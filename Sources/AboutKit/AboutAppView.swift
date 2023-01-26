@@ -44,44 +44,72 @@ public struct AboutAppView: View {
                 Button(action: sendMail) {
                     ItemLabel(LocalizedStrings.email, systemImage: "envelope")
                 }
-                
-                if let appTwitterDetails = getTwitterDetails(for: app.twitterHandle) {
-                    Link(destination: appTwitterDetails.url) {
-                        ItemLabel(appTwitterDetails.title, systemImage: "at")
-                    }
-                }
-
-                if let developerTwitterDetails = getTwitterDetails(for:  app.developer.twitterHandle) {
-                    Link(destination: developerTwitterDetails.url) {
-                        ItemLabel(developerTwitterDetails.title, systemImage: "at")
-                    }
-                }
 
                 if let websiteURL = URL(string: app.websiteURL) {
                     Link(destination: websiteURL) {
-                        ItemLabel(LocalizedStrings.website, systemImage: "safari")
+                        ItemLabel(
+                            LocalizedStrings.website,
+                            systemImage: "safari"
+                        )
+                    }
+                }
+            }
+
+            if app.developer.profiles.isEmpty == false {
+                Section {
+                    ForEach(
+                        Array(app.developer.profiles.enumerated()),
+                        id: \.0
+                    ) { _, profile in
+                        ItemLabel(
+                            profile.title,
+                            image: profile.platform.imageName
+                        )
+                    }
+                }
+            }
+
+            if app.profiles.isEmpty == false {
+                Section {
+                    ForEach(
+                        Array(app.profiles.enumerated()),
+                        id: \.0
+                    ) { _, profile in
+                        ItemLabel(
+                            profile.title,
+                            image: profile.platform.imageName
+                        )
                     }
                 }
             }
             
             Section {
-//                if #available(iOS 16.0, *) {
-//                    ShareLink(
-//                        item: app.appStoreURL,
-//                        message: Text(String(localized: "Check out %@ on the App Store!", bundle: .module))
-//                    ) {
-//                        ListButtonLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
-//                    }
-//                } else {
-                Button {
-                    showingShareSheet = true
-                } label: {
-                    ItemLabel(LocalizedStrings.shareApp, systemImage: "square.and.arrow.up")
+                if #available(iOS 16.0, *) {
+                    ShareLink(
+                        item: app.appStoreURL,
+                        message: Text(String(localized: "Check out %@ on the App Store!", bundle: .module))
+                    ) {
+                        ItemLabel(
+                            LocalizedStrings.shareApp,
+                            systemImage: "square.and.arrow.up"
+                        )
+                    }
+                } else {
+                    Button {
+                        showingShareSheet = true
+                    } label: {
+                        ItemLabel(
+                            LocalizedStrings.shareApp,
+                            systemImage: "square.and.arrow.up"
+                        )
+                    }
                 }
-//                }
                 
                 Link(destination: app.appStoreReviewURL) {
-                    ItemLabel(LocalizedStrings.writeReview, systemImage: "star")
+                    ItemLabel(
+                        LocalizedStrings.writeReview,
+                        systemImage: "star"
+                    )
                 }
             }
 
@@ -90,14 +118,20 @@ public struct AboutAppView: View {
                     if let privacyPolicy = app.privacyPolicyURL,
                        let privacyPolicyURL = URL(string: privacyPolicy) {
                         Link(destination: privacyPolicyURL) {
-                            ItemLabel(LocalizedStrings.privacyPolicy, systemImage: "lock.shield")
+                            ItemLabel(
+                                LocalizedStrings.privacyPolicy,
+                                systemImage: "lock.shield"
+                            )
                         }
                     }
 
                     if let termsOfUse = app.termsOfUseURL,
                        let termsOfUseURL = URL(string: termsOfUse) {
                         Link(destination: termsOfUseURL) {
-                            ItemLabel(LocalizedStrings.termsOfUse, systemImage: "checkmark.seal")
+                            ItemLabel(
+                                LocalizedStrings.termsOfUse,
+                                systemImage: "checkmark.seal"
+                            )
                         }
                     }
                 }
@@ -106,7 +140,10 @@ public struct AboutAppView: View {
             if otherApps.isEmpty == false {
                 Section(header: Text(LocalizedStrings.otherApps)) {
                     ForEach(otherApps, content: OtherAppRowView.init)
-                    Link(LocalizedStrings.viewAll, destination: app.developer.appStoreURL)
+                    Link(
+                        LocalizedStrings.viewAll,
+                        destination: app.developer.appStoreURL
+                    )
                 }
             }
         }
@@ -135,16 +172,6 @@ public struct AboutAppView: View {
                 openURL(url)
             }
         }
-    }
-
-    private func getTwitterDetails(for handle: String?) -> (title: String, url: URL)? {
-        guard let handle = handle,
-           let url = URL(string: "https://twitter.com/\(handle)") else {
-            return nil
-        }
-
-        let title = String(localized: "Twitter (@\(handle))", bundle: .module)
-        return (title, url)
     }
     
     private func showShareSheet() {

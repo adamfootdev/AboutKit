@@ -25,8 +25,8 @@ public struct AKMyApp: AKApp {
     /// The email address to contact the app's support as a string.
     public let email: String
 
-    /// An optional Twitter profile handle string for the app.
-    public let twitterHandle: String?
+    /// A list of social media pages for the app.
+    public let profiles: [AKProfile]
 
     /// A URL string directing to the app's website.
     public let websiteURL: String
@@ -45,7 +45,7 @@ public struct AKMyApp: AKApp {
     ///   - email: The email address to contact the app's support as a string.
     ///   - appIcon: An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
     ///   - developer: A custom struct container details about the developer of the app.
-    ///   - twitterHandle: An optional Twitter profile handle string for the app.
+    ///   - profiles: A list of social media pages for the app.
     ///   - websiteURL: A URL string directing to the app's website.
     ///   - privacyPolicyURL: An optional URL string directing to the privacy policy for the app.
     ///   - termsOfUseURL: An optional URL string directing to the terms of use for the app.
@@ -55,7 +55,7 @@ public struct AKMyApp: AKApp {
         appIcon: UIImage?,
         developer: AKDeveloper,
         email: String,
-        twitterHandle: String?,
+        profiles: [AKProfile],
         websiteURL: String,
         privacyPolicyURL: String?,
         termsOfUseURL: String?
@@ -65,7 +65,7 @@ public struct AKMyApp: AKApp {
         self.appIcon = appIcon
         self.developer = developer
         self.email = email
-        self.twitterHandle = twitterHandle?.replacingOccurrences(of: "@", with: "")
+        self.profiles = profiles
         self.websiteURL = websiteURL
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
@@ -77,7 +77,9 @@ public struct AKMyApp: AKApp {
         appIcon: nil,
         developer: AKDeveloper.example,
         email: "sampleapp@example.com",
-        twitterHandle: "SampleApp",
+        profiles: [
+            .init(username: "exampleapp", platform: .twitter)
+        ],
         websiteURL: "https://www.example.com",
         privacyPolicyURL: "https://www.example.com/privacy-policy",
         termsOfUseURL: "https://www.example.com/terms-of-use"
