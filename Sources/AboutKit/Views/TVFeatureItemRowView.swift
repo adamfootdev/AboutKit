@@ -18,10 +18,12 @@ struct FeatureItemRowView: View {
                 .scaledToFit()
                 .foregroundColor(item.imageTint)
                 .frame(width: 60, height: 60)
+                .accessibilityElement(children: .ignore)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
                     .font(.title3.bold())
+                    .accessibilityAddTraits(.isHeader)
 
                 Text(item.description)
                     .font(.headline)
