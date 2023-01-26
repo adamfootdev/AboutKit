@@ -46,6 +46,7 @@ public struct FeaturesView: View {
                 .font(.largeTitle.bold())
                 .multilineTextAlignment(.center)
                 .padding([.top, .horizontal], 40)
+                .accessibilityAddTraits(.isHeader)
 
             VStack(spacing: 16) {
                 FeaturesListView(featureItems)

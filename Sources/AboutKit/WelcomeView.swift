@@ -47,6 +47,8 @@ public struct WelcomeView: View {
             .font(.system(size: 48, weight: .heavy))
             .padding([.top, .horizontal], 40)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isHeader)
             
             FeaturesListView(featureItems)
             
