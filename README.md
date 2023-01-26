@@ -5,9 +5,9 @@
 
 AboutKit provides developers with the ability to add an About, Features List or Welcome screen to an app. All of the screens are built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
 
-The views have been localised into a few other languages too. The button colors adapt to the accent color of your app, or can be customised using the .accentColor SwiftUI view modifier.
+The views have been localised into a few other languages too. The button colors adapt to the accent color of your app, or can be customized using the .accentColor SwiftUI view modifier.
 
-All screens are supported on iOS/iPadOS and there is the ability to add the About screen to a watchOS or tvOS app as well.
+All screens are supported on iOS/iPadOS and there is the ability to add the About screen to a watchOS or tvOS app as well. The Features List can be added to tvOS.
 
 1. [Requirements](#requirements)
 2. [Integration](#integration)
@@ -54,7 +54,7 @@ These views rely on passing in one or more created custom structs. These could b
 This is a struct containing details about the current app. It can be created like so:
 
 ```swift
-let app = AKMyApp(id: "123456789", name: "App Name", appIcon: UIImage(named: "app-icon"), developer: developer, email: "app@example.com", twitterHandle: "AppName", websiteURL: "https://www.example.com", privacyPolicyURL: "https://www.example.com/privacy-policy", termsOfUseURL: "https://www.example.com/terms-of-use"))
+let app = AKMyApp(id: "123456789", name: "App Name", appIcon: UIImage(named: "app-icon"), developer: developer, email: "app@example.com", profiles: [profile], websiteURL: "https://www.example.com", privacyPolicyURL: "https://www.example.com/privacy-policy", termsOfUseURL: "https://www.example.com/terms-of-use"))
 ```
 
 If a value for the app icon is not provided, one will attempt to be downloaded from the App Store based on the provided app ID. The app ID can be found in App Store Connect or from the app's URL e.g. <https://apps.apple.com/app/id123456789>
@@ -66,7 +66,17 @@ See below for details on creating an AKDeveloper.
 This is a struct containing details about the developer belonging to the current app. It can be created like so:
 
 ```swift
-let developer = AKDeveloper(id: "987654321", name: "App Developer", twitterHandle: "AppDeveloper")
+let developer = AKDeveloper(id: "987654321", name: "App Developer", profiles: [profile])
+```
+
+The developer ID can be found by locating the App Store page that contains all of your apps e.g. <https://apps.apple.com/developer/id987654321>
+
+### AKProfile
+
+This is a struct containing details about about a social media profile relating to either the developer or the app itself. It supports multiple platforms such as Twitter and Mastodon. It can be created like so:
+
+```swift
+let profile = AKProfile(username: "appdeveloper", platform: .twitter)
 ```
 
 The developer ID can be found by locating the App Store page that contains all of your apps e.g. <https://apps.apple.com/developer/id987654321>
