@@ -79,8 +79,6 @@ This is a struct containing details about about a social media profile relating 
 let profile = AKProfile(username: "appdeveloper", platform: .twitter)
 ```
 
-The developer ID can be found by locating the App Store page that contains all of your apps e.g. <https://apps.apple.com/developer/id987654321>
-
 ### AKFeatureItem
 
 This is a struct containing details relating to items that appear on a feature list screen. It can be created as follows:
