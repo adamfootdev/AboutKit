@@ -19,7 +19,7 @@ struct FeatureItemRowView: View {
                 .foregroundColor(item.imageTint)
                 .frame(width: 60, height: 60)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
                     .font(.title3.bold())
 
