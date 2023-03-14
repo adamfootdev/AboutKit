@@ -8,7 +8,7 @@
 #if os(macOS)
 import SwiftUI
 
-struct AboutAppView: View {
+public struct AboutAppView: View {
     @Environment(\.openURL) var openURL
 
     /// A custom struct containing details about the current app.
