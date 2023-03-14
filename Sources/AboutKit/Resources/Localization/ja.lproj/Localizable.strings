@@ -29,6 +29,15 @@
 
 "Check out %@ on the App Store!" = "App Store で %@ をチェックしてください!";
 
+"Contact Developer…" = "開発者に連絡…";
+"Open Website…" = "ウェブサイトを開く…";
+"View Profile…" = "プロフィールを見る…";
+"Share…" = "共有…";
+"Review…" = "レビュー…";
+"View Privacy Policy…" = "プライバシーポリシーを見る…";
+"View Terms of Use…" = "利用規約を見る…";
+"View…" = "意見…";
+
 
 /* Navigation */
 

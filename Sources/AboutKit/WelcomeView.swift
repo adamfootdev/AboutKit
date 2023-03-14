@@ -18,6 +18,9 @@ public struct WelcomeView: View {
     /// An array of featured items to display in a scrollable list.
     private let featureItems: [AKFeatureItem]
 
+    /// A Boolean indicating whether the continue button should be shown.
+    private let showContinueButton: Bool
+
     /// An optional completion block to perform when the Continue button is tapped.
     private let continueAction: (() -> Void)?
 
@@ -25,14 +28,17 @@ public struct WelcomeView: View {
     /// - Parameters:
     ///   - app: The app that is being used to display the welcome view.
     ///   - featureItems: An array of featured items to display in a scrollable list.
+    ///   - showContinueButton: A Boolean indicating whether the continue button should be shown.
     ///   - continueAction: An optional completion block to perform when the Continue button is tapped.
     public init(
         app: AKMyApp,
         featureItems: [AKFeatureItem],
+        showContinueButton: Bool = true,
         continueAction: (() -> Void)? = nil
     ) {
         self.app = app
         self.featureItems = featureItems
+        self.showContinueButton = showContinueButton
         self.continueAction = continueAction
     }
 
@@ -51,16 +57,19 @@ public struct WelcomeView: View {
             .accessibilityAddTraits(.isHeader)
             
             FeaturesListView(featureItems)
-            
-            ContinueButton {
-                dismiss()
 
-                if let continueAction = continueAction {
-                    continueAction()
+            if showContinueButton {
+                ContinueButton {
+                    dismiss()
+
+                    if let continueAction = continueAction {
+                        continueAction()
+                    }
                 }
+                .padding(28)
             }
-            .padding(28)
         }
+        .padding(.bottom, showContinueButton ? 0 : 28)
     }
 }
 

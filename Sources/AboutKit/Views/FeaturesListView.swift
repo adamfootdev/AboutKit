@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 19/07/2022.
 //
 
-#if os(iOS)
+#if os(iOS) || os(macOS)
 import SwiftUI
 
 struct FeaturesListView: View {

@@ -5,7 +5,12 @@
 //  Created by Adam Foot on 24/02/2021.
 //
 
+#if os(macOS)
+import AppKit
+import IOKit
+#else
 import UIKit
+#endif
 
 extension Bundle {
     /// Returns a string with the current app version number e.g. 1.0.
@@ -35,6 +40,31 @@ extension Bundle {
     /// A string containing debug details about the current app.
     var debugDetails: String {
         "\n\n\nDEBUG DETAILS\n\nApp Version: \(versionNumber) (\(buildNumber))\nOS Version: \(UIDevice.current.systemVersion)\nDevice: \(UIDevice.current.deviceType)\nEnvironment: \(userType.title)"
+    }
+
+    #elseif os(macOS)
+
+    /// Returns a string containing the identifier of the current device e.g. MacBook Pro 13,1
+    var deviceType: String {
+        let service = IOServiceGetMatchingService(
+            kIOMainPortDefault,
+            IOServiceMatching("IOPlatformExpertDevice")
+        )
+
+        var modelIdentifier: String?
+
+        if let modelData = IORegistryEntryCreateCFProperty(service, "model" as CFString, kCFAllocatorDefault, 0).takeRetainedValue() as? Data {
+            modelIdentifier = String(data: modelData, encoding: .utf8)?.trimmingCharacters(in: .controlCharacters)
+        }
+
+        IOObjectRelease(service)
+
+        return modelIdentifier ?? "Unknown"
+    }
+
+    /// A string containing debug details about the current app.
+    var debugDetails: String {
+        "\n\n\nDEBUG DETAILS\n\nApp Version: \(versionNumber) (\(buildNumber))\nOS Version: \(ProcessInfo.processInfo.operatingSystemVersionString)\nDevice: \(deviceType)\nEnvironment: \(userType.title)"
     }
     #endif
 }

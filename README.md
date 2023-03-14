@@ -1,7 +1,7 @@
 # AboutKit
 
 ![Feature Graphic](https://github.com/adamfootdev/AboutKit/blob/main/Assets/feature-graphic.png?raw=true)
-![Platform](https://img.shields.io/badge/platforms-iOS%2015.0%2B%20%7C%20watchOS%208.0%2B%20%7C%20tvOS%2015.0%2B-blue)
+![Platform](https://img.shields.io/badge/platforms-iOS%2015.0%2B%20%7C%20watchOS%208.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2015.0%2B-blue)
 
 AboutKit provides developers with the ability to add an About, Features List or Welcome screen to an app. All of the screens are built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
 
@@ -22,10 +22,11 @@ All screens are supported on iOS/iPadOS and there is the ability to add the Abou
 
 ## Requirements
 
-- iOS 15+
-- watchOS 8+
-- tvOS 15+
-- Xcode 12+
+- iOS 15.0+
+- watchOS 8.0+
+- macOS 13.0+
+- tvOS 15.0+
+- Xcode 12.0+
 
 ## Integration
 
@@ -132,3 +133,6 @@ WelcomeView(app: app, featureItems: featureItems) {
 ```
 
 See above for details on creating an AKApp and AKFeatureItem.
+
+
+Please note not all views are supported on all platforms.

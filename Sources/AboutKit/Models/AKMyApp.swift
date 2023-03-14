@@ -17,7 +17,7 @@ public struct AKMyApp: AKApp {
     public let name: String
 
     /// An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
-    public let appIcon: UIImage?
+    public let appIcon: PlatformImage?
 
     /// A custom struct container details about the developer of the app.
     public let developer: AKDeveloper
@@ -52,7 +52,7 @@ public struct AKMyApp: AKApp {
     public init(
         id: String,
         name: String,
-        appIcon: UIImage?,
+        appIcon: PlatformImage?,
         developer: AKDeveloper,
         email: String,
         profiles: [AKProfile],

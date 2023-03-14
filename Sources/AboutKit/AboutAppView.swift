@@ -146,12 +146,15 @@ public struct AboutAppView: View {
             }
 
             if otherApps.isEmpty == false {
-                Section(header: Text(LocalizedStrings.otherApps)) {
+                Section {
                     ForEach(otherApps, content: OtherAppRowView.init)
+
                     Link(
-                        LocalizedStrings.viewAll,
+                        LocalizedStrings.viewAllApps,
                         destination: app.developer.appStoreURL
                     )
+                } header: {
+                    Text(LocalizedStrings.otherApps)
                 }
             }
         }

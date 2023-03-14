@@ -37,12 +37,20 @@ struct HeaderView: View {
             Color(.secondarySystemGroupedBackground)
             #elseif os(watchOS) || os(tvOS)
             Color.white.opacity(0.2)
+            #elseif os(macOS)
+            Color(.controlBackgroundColor)
             #endif
 
             if let appIcon = app.appIcon {
+                #if os(macOS)
+                Image(nsImage: appIcon)
+                    .resizable()
+                    .scaledToFit()
+                #else
                 Image(uiImage: appIcon)
                     .resizable()
                     .scaledToFit()
+                #endif
 
             } else if let appIconURL = appIconURL {
                 RemoteImageView(url: appIconURL)
@@ -51,6 +59,8 @@ struct HeaderView: View {
         .frame(width: appIconWidth, height: appIconHeight)
         #if os(iOS) || os(tvOS)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        #elseif os(macOS)
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         #elseif os(watchOS)
         .clipShape(Circle())
         #endif
@@ -62,6 +72,8 @@ struct HeaderView: View {
         return 100
         #elseif os(watchOS)
         return 64
+        #elseif os(macOS)
+        return 64
         #elseif os(tvOS)
         return 300
         #endif
@@ -71,6 +83,8 @@ struct HeaderView: View {
         #if os(iOS)
         return 100
         #elseif os(watchOS)
+        return 64
+        #elseif os(macOS)
         return 64
         #elseif os(tvOS)
         return 180

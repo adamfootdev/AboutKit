@@ -86,7 +86,7 @@ public struct AboutAppView: View {
             if otherApps.isEmpty == false {
                 Section(header: Text(LocalizedStrings.otherApps)) {
                     ForEach(otherApps, content: OtherAppRowView.init)
-                    Link(LocalizedStrings.viewAll, destination: app.developer.appStoreURL)
+                    Link(LocalizedStrings.viewAllApps, destination: app.developer.appStoreURL)
                 }
             }
         }

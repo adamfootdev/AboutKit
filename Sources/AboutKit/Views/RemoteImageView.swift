@@ -11,7 +11,7 @@ struct RemoteImageView: View {
     private enum LoadState {
         case loading
         case error
-        case loaded(image: UIImage)
+        case loaded(image: PlatformImage)
     }
     
     @StateObject private var imageLoader: RemoteImageLoader
@@ -19,9 +19,17 @@ struct RemoteImageView: View {
     private var downloadedImage: Image {
         switch imageLoader.loadState {
         case .loading, .error:
+            #if os(macOS)
+            return Image(nsImage: NSImage())
+            #else
             return Image(uiImage: UIImage())
+            #endif
         case .loaded(let image):
+            #if os(macOS)
+            return Image(nsImage: image)
+            #else
             return Image(uiImage: image)
+            #endif
         }
     }
     
@@ -36,7 +44,7 @@ struct RemoteImageView: View {
     private class RemoteImageLoader: ObservableObject {
         @Published var loadState = LoadState.loading
         
-        private let cache = NSCache<NSString, UIImage>()
+        private let cache = NSCache<NSString, PlatformImage>()
         
         init(url: String) {
             Task {
@@ -60,7 +68,7 @@ struct RemoteImageView: View {
                 do {
                     let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
 
-                    guard let image = UIImage(data: data) else {
+                    guard let image = PlatformImage(data: data) else {
                         loadState = .error
                         return
                     }

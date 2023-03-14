@@ -10,7 +10,7 @@ import SwiftUI
 public protocol AKApp {
     var id: String { get }
     var name: String { get }
-    var appIcon: UIImage? { get }
+    var appIcon: PlatformImage? { get }
 }
 
 public extension AKApp {

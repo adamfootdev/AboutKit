@@ -29,6 +29,15 @@
 
 "Check out %@ on the App Store!" = "App Store에서 %@을 확인하세요!";
 
+"Contact Developer…" = "개발자에게 문의…";
+"Open Website…" = "웹사이트 열기…";
+"View Profile…" = "프로필보기…";
+"Share…" = "공유하다…";
+"Review…" = "검토…";
+"View Privacy Policy…" = "개인정보 보호정책 보기…";
+"View Terms of Use…" = "이용약관 보기…";
+"View…" = "보다…";
+
 
 /* Navigation */
 

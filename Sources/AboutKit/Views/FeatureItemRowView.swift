@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 24/02/2021.
 //
 
-#if os(iOS)
+#if os(iOS) || os(macOS)
 import SwiftUI
 
 struct FeatureItemRowView: View {

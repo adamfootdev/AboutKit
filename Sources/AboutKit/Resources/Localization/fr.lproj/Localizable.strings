@@ -19,7 +19,7 @@
 "Share App" = "Partager l’app";
 "Write Review" = "Écrire un Commentaire";
 "Privacy Policy" = "Politique de Confidentialité";
-"Terms Of Use" = "Conditions d'utilisation";
+"Terms Of Use" = "Conditions d'Utilisation";
 
 "View %@ in the App Store" = "Voir %@ dans l'App Store";
 
@@ -28,6 +28,15 @@
 "View all Apps" = "Voir toutes Apps";
 
 "Check out %@ on the App Store!" = "Découvrez %@ sur l'App Store!";
+
+"Contact Developer…" = "Contacter le Développeur…";
+"Open Website…" = "Ouvrir le Site Web…";
+"View Profile…" = "Voir le Profil…";
+"Share…" = "Partager…";
+"Review…" = "Examen…";
+"View Privacy Policy…" = "Voir la Politique de Confidentialité…";
+"View Terms of Use…" = "Voir les Conditions d'Utilisation…";
+"View…" = "Voir…";
 
 
 /* Navigation */

@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 24/02/2021.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(macOS) || os(tvOS)
 import SwiftUI
 
 /// A SwiftUI view which displays a list of featured items.
@@ -21,6 +21,9 @@ public struct FeaturesView: View {
     /// An array of featured items to display in a scrollable list.
     private let featureItems: [AKFeatureItem]
 
+    /// A Boolean indicating whether the continue button should be shown.
+    private let showContinueButton: Bool
+
     /// An optional completion block to perform when the Continue button is tapped.
     private let continueAction: (() -> Void)?
 
@@ -29,14 +32,17 @@ public struct FeaturesView: View {
     ///   - title: The string to display at the top of the view
     ///   e.g. What's New, What's New in App or Welcome to App.
     ///   - featureItems: An array of featured items to display in a scrollable list.
+    ///   - showContinueButton: A Boolean indicating whether the continue button should be shown.
     ///   - continueAction: An optional completion block to perform when the Continue button is tapped.
     public init(
         title: String,
         featureItems: [AKFeatureItem],
+        showContinueButton: Bool = true,
         continueAction: (() -> Void)? = nil
     ) {
         self.title = title
         self.featureItems = featureItems
+        self.showContinueButton = showContinueButton
         self.continueAction = continueAction
     }
     
@@ -51,22 +57,25 @@ public struct FeaturesView: View {
             VStack(spacing: 16) {
                 FeaturesListView(featureItems)
 
-                ContinueButton {
-                    dismiss()
+                if showContinueButton {
+                    ContinueButton {
+                        dismiss()
 
-                    if let continueAction = continueAction {
-                        continueAction()
+                        if let continueAction = continueAction {
+                            continueAction()
+                        }
                     }
+                    #if os(tvOS)
+                    .prefersDefaultFocus(true, in: featuresNamespace)
+                    #endif
+                    .padding(.horizontal, horizontalPadding)
+                    .padding(.vertical, verticalPadding)
                 }
-                #if os(tvOS)
-                .prefersDefaultFocus(true, in: featuresNamespace)
-                #endif
-                .padding(.horizontal, horizontalPadding)
-                .padding(.vertical, verticalPadding)
             }
             #if os(tvOS)
             .focusScope(featuresNamespace)
             #endif
+            .padding(.bottom, showContinueButton ? 0 : verticalPadding)
         }
     }
 

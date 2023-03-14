@@ -16,7 +16,7 @@ public struct AKOtherApp: AKApp, Identifiable {
     public let name: String
 
     /// An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
-    public let appIcon: UIImage?
+    public let appIcon: PlatformImage?
 
     /// Initializes a custom struct of data to create a promoted other app list item.
     /// - Parameters:
@@ -26,7 +26,7 @@ public struct AKOtherApp: AKApp, Identifiable {
     public init(
         id: String,
         name: String,
-        appIcon: UIImage? = nil
+        appIcon: PlatformImage? = nil
     ) {
         self.id = id
         self.name = name

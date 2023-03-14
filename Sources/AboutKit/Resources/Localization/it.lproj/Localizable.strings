@@ -18,7 +18,7 @@
 "Website" = "Sito Web";
 "Share App" = "Condividi App";
 "Write Review" = "Scrivere una Recensione";
-"Privacy Policy" = "Politica sulla Riservatezza";
+"Privacy Policy" = "Politica Sulla Riservatezza";
 "Terms Of Use" = "Termini di Utilizzo";
 
 "View %@ in the App Store" = "Visualizza %@ nell'App Store";
@@ -28,6 +28,15 @@
 "View all Apps" = "Visualizza tutte le App";
 
 "Check out %@ on the App Store!" = "Dai un'occhiata a %@ sull'App Store!";
+
+"Contact Developer…" = "Contatta lo Sviluppatore...";
+"Open Website…" = "Apri Sito Web…";
+"View Profile…" = "Vedi Profilo…";
+"Share…" = "Condividere…";
+"Review…" = "Revisione…";
+"View Privacy Policy…" = "Visualizza l'Informativa Sulla Privacy…";
+"View Terms of Use…" = "Visualizza i Termini di Utilizzo...";
+"View…" = "Visualizzazione…";
 
 
 /* Navigation */
