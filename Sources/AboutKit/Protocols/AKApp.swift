@@ -16,11 +16,19 @@ public protocol AKApp {
 public extension AKApp {
     /// The App Store URL of the app based on its ID.
     var appStoreURL: URL {
+        #if os(macOS)
+        URL(string: "macappstore://apps.apple.com/app/id\(id)")!
+        #else
         URL(string: "https://apps.apple.com/app/id\(id)")!
+        #endif
     }
 
     /// The App Store URL to review the app based on its ID.
     var appStoreReviewURL: URL {
+        #if os(macOS)
+        URL(string: "macappstore://apps.apple.com/app/id\(id)?action=write-review")!
+        #else
         URL(string: "https://apps.apple.com/app/id\(id)?action=write-review")!
+        #endif
     }
 }

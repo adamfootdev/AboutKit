@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AKProfile {
+public struct AKProfile: Identifiable, Hashable {
     public let username: String
     public let platform: AKProfilePlatform
     public let displayMode: AKProfileDisplayMode
@@ -20,6 +20,10 @@ public struct AKProfile {
         self.username = username.replacingOccurrences(of: "@", with: "")
         self.platform = platform
         self.displayMode = displayMode
+    }
+
+    public var id: String {
+        "\(username)-\(platform.name)"
     }
 
     var title: String {

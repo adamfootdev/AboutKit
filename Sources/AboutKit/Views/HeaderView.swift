@@ -37,8 +37,6 @@ struct HeaderView: View {
             Color(.secondarySystemGroupedBackground)
             #elseif os(watchOS) || os(tvOS)
             Color.white.opacity(0.2)
-            #elseif os(macOS)
-            Color(.controlBackgroundColor)
             #endif
 
             if let appIcon = app.appIcon {

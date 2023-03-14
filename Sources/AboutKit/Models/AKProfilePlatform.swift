@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AKProfilePlatform {
+public enum AKProfilePlatform: Hashable {
     case facebook
     case instagram
     case linkedIn(profileType: LinkedInProfileType)

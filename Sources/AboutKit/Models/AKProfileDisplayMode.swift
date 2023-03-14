@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AKProfileDisplayMode {
+public enum AKProfileDisplayMode: Hashable {
     case combined
     case platformOnly
     case usernameOnly
