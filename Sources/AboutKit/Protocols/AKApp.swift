@@ -23,6 +23,11 @@ public extension AKApp {
         #endif
     }
 
+    /// The App Store URL of the app based on its ID for sharing.
+    var appStoreShareURL: URL {
+        URL(string: "https://apps.apple.com/app/id\(id)")!
+    }
+
     /// The App Store URL to review the app based on its ID.
     var appStoreReviewURL: URL {
         #if os(macOS)

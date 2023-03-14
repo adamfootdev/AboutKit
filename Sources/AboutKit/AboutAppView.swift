@@ -94,7 +94,7 @@ public struct AboutAppView: View {
             Section {
                 if #available(iOS 16.0, *) {
                     ShareLink(
-                        item: app.appStoreURL,
+                        item: app.appStoreShareURL,
                         message: Text(String(localized: "Check out \(app.name) on the App Store!", bundle: .module))
                     ) {
                         ItemLabel(

@@ -88,7 +88,7 @@ public struct AboutAppView: View {
                     Spacer()
 
                     ShareLink(
-                        item: app.appStoreURL,
+                        item: app.appStoreShareURL,
                         message: Text(String(localized: "Check out \(app.name) on the App Store!", bundle: .module))
                     ) {
                         Text(LocalizedStrings.share)
