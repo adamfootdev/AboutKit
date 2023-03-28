@@ -39,7 +39,7 @@ public struct AboutAppView: View {
                 )
 
                 if URL(string: app.websiteURL) != nil {
-                    ItemLabel(LocalizedStrings.website, details: websiteURL)
+                    ItemLabel(LocalizedStrings.website, details: app.websiteURL)
                 }
             }
 
