@@ -38,7 +38,7 @@ public struct AboutAppView: View {
                     details: app.email
                 )
 
-                if let websiteURL = app.websiteURL {
+                if URL(string: app.websiteURL) != nil {
                     ItemLabel(LocalizedStrings.website, details: websiteURL)
                 }
             }
