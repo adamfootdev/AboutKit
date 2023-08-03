@@ -20,7 +20,7 @@ For users who previously used AboutKit for showing the features list, please use
 
 ## Requirements
 
-- iOS 15.0+
+- iOS/iPadOS 15.0+
 - macOS 13.0+
 - tvOS 15.0+
 - watchOS 8.0+
