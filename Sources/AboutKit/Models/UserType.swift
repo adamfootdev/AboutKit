@@ -11,7 +11,7 @@ import Foundation
 enum UserType {
     case debug, testFlight, appStore
 
-    /// Returns a string matching the environment.
+    /// Returns a `String` matching the environment.
     var title: String {
         switch self {
         case .debug:

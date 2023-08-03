@@ -9,8 +9,6 @@ import Foundation
 
 /// Provides a quick way to access localized strings stored in the package bundle.
 enum LocalizedStrings {
-    static let continueButton = String(localized: "Continue", bundle: .module)
-
     static let email = String(localized: "Email", bundle: .module)
     static let website = String(localized: "Website", bundle: .module)
     static let shareApp = String(localized: "Share App", bundle: .module)

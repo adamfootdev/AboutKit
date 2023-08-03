@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct RemoteImageView: View {
-    private enum LoadState {
-        case loading
-        case error
-        case loaded(image: PlatformImage)
+    @StateObject private var imageLoader: RemoteImageLoader
+
+    init(url: String) {
+        _imageLoader = StateObject(
+            wrappedValue: RemoteImageLoader(url: url)
+        )
     }
     
-    @StateObject private var imageLoader: RemoteImageLoader
-    
+    var body: some View {
+        downloadedImage.resizable()
+    }
+
     private var downloadedImage: Image {
         switch imageLoader.loadState {
         case .loading, .error:
@@ -30,56 +34,6 @@ struct RemoteImageView: View {
             #else
             return Image(uiImage: image)
             #endif
-        }
-    }
-    
-    init(url: String) {
-        _imageLoader = StateObject(wrappedValue: RemoteImageLoader(url: url))
-    }
-    
-    var body: some View {
-        downloadedImage.resizable()
-    }
-    
-    private class RemoteImageLoader: ObservableObject {
-        @Published var loadState = LoadState.loading
-        
-        private let cache = NSCache<NSString, PlatformImage>()
-        
-        init(url: String) {
-            Task {
-                await loadAppIcon(from: url)
-            }
-        }
-
-        @MainActor private func loadAppIcon(from urlString: String) async {
-            loadState = .loading
-
-            let cacheKey = NSString(string: urlString)
-
-            guard let url = URL(string: urlString) else {
-                loadState = .error
-                return
-            }
-
-            if let cachedImage = cache.object(forKey: cacheKey) {
-                loadState = .loaded(image: cachedImage)
-            } else {
-                do {
-                    let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
-
-                    guard let image = PlatformImage(data: data) else {
-                        loadState = .error
-                        return
-                    }
-
-                    cache.setObject(image, forKey: cacheKey)
-                    loadState = .loaded(image: image)
-
-                } catch {
-                    loadState = .error
-                }
-            }
         }
     }
 }

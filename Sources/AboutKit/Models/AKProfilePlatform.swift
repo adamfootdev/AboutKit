@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A custom enum used for a social profile platform.
 public enum AKProfilePlatform: Hashable {
     case facebook
     case instagram
@@ -15,9 +16,12 @@ public enum AKProfilePlatform: Hashable {
     case reddit
     case pinterest
     case snapchat
+    case threads
     case tikTok
     case twitter
+    case x
 
+    /// A `String` containing the name of the platform.
     var name: String {
         switch self {
         case .facebook:
@@ -34,13 +38,18 @@ public enum AKProfilePlatform: Hashable {
             return "Reddit"
         case .snapchat:
             return "Snapchat"
+        case .threads:
+            return "Threads"
         case .tikTok:
             return "TikTok"
         case .twitter:
             return "Twitter"
+        case .x:
+            return "X"
         }
     }
-
+    
+    /// A `String` containing the name of the image to use for the platform.
     var imageName: String {
         switch self {
         case .facebook:
@@ -57,10 +66,14 @@ public enum AKProfilePlatform: Hashable {
             return "reddit"
         case .snapchat:
             return "snapchat"
+        case .threads:
+            return "threads"
         case .tikTok:
             return "tiktok"
         case .twitter:
             return "twitter"
+        case .x:
+            return "x"
         }
     }
 }

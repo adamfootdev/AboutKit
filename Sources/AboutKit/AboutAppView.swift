@@ -9,26 +9,26 @@
 import SwiftUI
 import MessageUI
 
-/// A SwiftUI view which displays attributes and links relating to an app.
+/// A SwiftUI `View` which displays attributes and links relating to an app.
 public struct AboutAppView: View {
     @Environment(\.openURL) var openURL
 
-    /// A custom struct containing details about the current app.
+    /// A custom struct of type `AKMyApp` containing details about the current app.
     private let app: AKMyApp
 
-    /// An array of custom structs that contain details about other apps the developer owns.
+    /// An array of `AKOtherApp` that contains details about other apps the developer owns.
     private let otherApps: [AKOtherApp]
 
-    /// A Boolean indicating whether the Mail sheet is currently showing.
+    /// A `Bool` indicating whether the Mail sheet is currently showing.
     @State private var showingMailSheet: Bool = false
 
-    /// A Boolean indicating whether the Share sheet is currently showing.
+    /// A `Bool` indicating whether the share sheet is currently showing.
     @State private var showingShareSheet: Bool = false
 
-    /// Initializes a new SwiftUI view which displays attributes and links relating to an app.
+    /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
     /// - Parameters:
-    ///   - app: A custom struct containing details about the current app.
-    ///   - otherApps: An array of custom structs that contain details about other apps the developer owns.
+    ///   - app: A custom struct of type `AKMyApp` containing details about the current app.
+    ///   - otherApps: An array of `AKOtherApp` that contains details about other apps the developer owns.
     public init(app: AKMyApp, otherApps: [AKOtherApp]) {
         self.app = app
         self.otherApps = otherApps
@@ -39,18 +39,24 @@ public struct AboutAppView: View {
             Section {
                 HeaderView(app: app)
             }
-            
-            Section {
-                Button(action: sendMail) {
-                    ItemLabel(LocalizedStrings.email, systemImage: "envelope")
-                }
 
-                if let websiteURL = URL(string: app.websiteURL) {
-                    Link(destination: websiteURL) {
+            if app.email != nil || app.websiteURL != nil {
+                Section {
+                    Button(action: sendMail) {
                         ItemLabel(
-                            LocalizedStrings.website,
-                            systemImage: "safari"
+                            LocalizedStrings.email,
+                            systemImage: "envelope"
                         )
+                    }
+                    
+                    if let websiteURLString = app.websiteURL,
+                       let websiteURL = URL(string: websiteURLString) {
+                        Link(destination: websiteURL) {
+                            ItemLabel(
+                                LocalizedStrings.website,
+                                systemImage: "safari"
+                            )
+                        }
                     }
                 }
             }
@@ -153,6 +159,7 @@ public struct AboutAppView: View {
                         LocalizedStrings.viewAllApps,
                         destination: app.developer.appStoreURL
                     )
+                    
                 } header: {
                     Text(LocalizedStrings.otherApps)
                 }
@@ -161,7 +168,7 @@ public struct AboutAppView: View {
         .listStyle(.insetGrouped)
         .navigationTitle(LocalizedStrings.about)
         .sheet(isPresented: $showingMailSheet) {
-            MailView(app: app, debugDetails: Bundle.main.debugDetails)
+            MailView(app: app, debugDetails: AboutKit.debugDetails)
                 .edgesIgnoringSafeArea(.all)
         }
         .sheet(isPresented: $showingShareSheet) {
@@ -169,24 +176,25 @@ public struct AboutAppView: View {
                 .edgesIgnoringSafeArea(.all)
         }
     }
-    
+
+
+    // MARK: - Mail
+
     private func sendMail() {
         if MFMailComposeViewController.canSendMail() {
             showingMailSheet = true
         } else {
             guard let subject = app.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
-                  let body = Bundle.main.debugDetails.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+                  let body = AboutKit.debugDetails.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
 
-            let urlString = "mailto:\(app.email)?subject=\(subject)%20-%20Support&body=\(body)"
+            guard let email = app.email else { return }
+
+            let urlString = "mailto:\(email)?subject=\(subject)%20-%20Support&body=\(body)"
 
             if let url = URL(string: urlString) {
                 openURL(url)
             }
         }
-    }
-    
-    private func showShareSheet() {
-        showingShareSheet = true
     }
 }
 

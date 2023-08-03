@@ -21,7 +21,11 @@ struct OtherAppRowView: View {
         Link(destination: otherApp.appStoreURL) {
             HStack(spacing: 28) {
                 appIcon
-                ItemLabel(otherApp.name, details: LocalizedStrings.view.capitalized)
+
+                ItemLabel(
+                    otherApp.name,
+                    details: LocalizedStrings.view.capitalized
+                )
             }
             .padding(.vertical, 8)
 
@@ -60,7 +64,7 @@ struct OtherAppRowView: View {
 struct OtherAppRowView_Previews: PreviewProvider {
     static var previews: some View {
         Form {
-            OtherAppRowView(AKOtherApp.example)
+            OtherAppRowView(.example)
         }
     }
 }

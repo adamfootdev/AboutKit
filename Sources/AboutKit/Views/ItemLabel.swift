@@ -28,7 +28,7 @@ struct ItemLabel: View {
     var body: some View {
         Label {
             Text(title)
-                .foregroundColor(.primary)
+                .foregroundStyle(Color.primary)
 
         } icon: {
             Group {
@@ -40,7 +40,7 @@ struct ItemLabel: View {
                     Image(systemName: "circle")
                 }
             }
-            .foregroundColor(.accentColor)
+            .foregroundStyle(Color.accentColor)
         }
     }
 }

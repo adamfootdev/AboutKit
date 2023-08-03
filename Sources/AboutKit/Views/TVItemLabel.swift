@@ -18,16 +18,15 @@ struct ItemLabel: View {
     }
 
     var body: some View {
-        // Adding an empty button here so that the row can be highlighted
-        // in a SwiftUI form.
-        Button {
-        } label: {
+        // Adding an empty button here so that the row can be
+        // highlighted in a SwiftUI form.
+        Button(action: {}) {
             HStack {
                 Text(title)
                 Spacer()
 
                 Text(details)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(Color.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

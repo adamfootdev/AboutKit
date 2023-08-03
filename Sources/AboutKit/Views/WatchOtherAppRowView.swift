@@ -54,7 +54,9 @@ struct OtherAppRowView: View {
 
     private func loadAppIcon() async {
         if otherApp.appIcon == nil {
-            appIconURL = await AppIconNetworkManager.shared.fetchURL(for: otherApp)
+            appIconURL = await AppIconNetworkManager.shared.fetchURL(
+                for: otherApp
+            )
         }
     }
 }
@@ -62,7 +64,7 @@ struct OtherAppRowView: View {
 struct OtherAppRowView_Previews: PreviewProvider {
     static var previews: some View {
         Form {
-            OtherAppRowView(AKOtherApp.example)
+            OtherAppRowView(.example)
         }
     }
 }

@@ -7,38 +7,42 @@
 
 import Foundation
 
-/// A custom struct of data pertaining to developer of an app.
+/// A custom struct of containing details about the developer.
 public struct AKDeveloper {
-    /// The developer ID string for the given developer. This can be found by locating the App Store URL for the developer. This should be in the format 123456789.
+
+    /// The developer ID `String` for the given app. This can be found by locating the App Store URL
+    /// for the developer. This should be in the format 123456789.
     public let id: String
 
-    /// The name of the developer as a string.
+    /// A `String` containing the developerʼs name.
     public let name: String
 
-    /// A list of social media pages for the developer.
+    /// An array of `AKProfile` containing the social media pages for the developer.
     public let profiles: [AKProfile]
 
     /// Initializes a custom struct of data pertaining to developer of an app.
     /// - Parameters:
-    ///   - id: The developer ID string for the given developer. This can be found by locating the App Store URL for the developer. This should be in the format 123456789.
-    ///   - name: The name of the developer as a string.
-    ///   - profiles: A list of social media pages for the developer.
-    public init(id: String, name: String, profiles: [AKProfile]) {
+    ///   - id: The developer ID `String` for the given app. This can be found by locating the App Store URL
+    ///   for the developer. This should be in the format 123456789.
+    ///   - name: A `String` containing the developerʼs name.
+    ///   - profiles: An `Optional` array of `AKProfile` containing the social media pages for the developer.
+    public init(id: String, name: String, profiles: [AKProfile]?) {
         self.id = id
         self.name = name
-        self.profiles = profiles
+        self.profiles = profiles ?? []
     }
 
-    /// The App Store URL for the developer page based on the ID.
+    /// The App Store `URL` for the developer page based on the ID.
     public var appStoreURL: URL {
         URL(string: "https://apps.apple.com/developer/id\(id)")!
     }
-    
+
+    /// An example `AKDeveloper` to be used in SwiftUI previews.
     static let example = AKDeveloper(
         id: "123456789",
         name: "App Developer",
         profiles: [
-            .init(username: "appdeveloper", platform: .twitter)
+            .example
         ]
     )
 }

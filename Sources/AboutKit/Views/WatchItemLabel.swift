@@ -21,8 +21,8 @@ struct ItemLabel: View {
         VStack(alignment: .leading) {
             Text(title)
                 .font(.caption.bold())
-                .foregroundColor(.secondary)
-            
+                .foregroundStyle(Color.secondary)
+
             Text(details)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

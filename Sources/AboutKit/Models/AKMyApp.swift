@@ -7,56 +7,59 @@
 
 import SwiftUI
 
-/// A custom struct of data pertaining to the specified app.
+/// A custom struct of containing details about the developerʼs app.
 public struct AKMyApp: AKApp {
-    /// The app ID string for the given app. This can be found in App Store Connect or the URL of the App Store listing
-    /// for the app. This should  be in the format 123456789.
+
+    /// The app ID `String` for the given app. This can be found in App Store Connect or the URL of the App Store
+    /// listing for the app. This should be in the format 123456789.
     public let id: String
 
-    /// The app name string.
+    /// A `String` containing the appʼs name.
     public let name: String
 
-    /// An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
+    /// An `Optional<PlatformImage>` containing the app icon.
+    /// If an image is not specified, the app icon will be fetched from the App Store.
     public let appIcon: PlatformImage?
 
-    /// A custom struct container details about the developer of the app.
+    /// A custom `AKDeveloper` struct containing details about the developer of the app.
     public let developer: AKDeveloper
 
-    /// The email address to contact the app's support as a string.
-    public let email: String
+    /// An `Optional<String>` containing the email address to contact the app's support.
+    public let email: String?
 
-    /// A list of social media pages for the app.
+    /// An `Optional<String>` containing the app's website.
+    public let websiteURL: String?
+
+    /// An array of `AKProfile` containing the social media pages for the app.
     public let profiles: [AKProfile]
 
-    /// A URL string directing to the app's website.
-    public let websiteURL: String
-
-    /// An optional URL string directing to the privacy policy for the app.
+    /// An `Optional<String>` containing the privacy policy for the app.
     public let privacyPolicyURL: String?
 
-    /// An optional URL string directing to the terms of use for the app.
+    /// An `Optional<String>` containing the terms of use for the app.
     public let termsOfUseURL: String?
 
     /// Initializes a custom struct of data pertaining to the specified app.
     /// - Parameters:
-    ///   - id: The app ID string for the given app. This can be found in App Store Connect or the URL of the App Store listing
-    ///   for the app. This should  be in the format 123456789.
-    ///   - name: The app name string.
-    ///   - email: The email address to contact the app's support as a string.
-    ///   - appIcon: An optional app icon UIImage. If an image is not specified, the app icon will be fetched from the App Store.
-    ///   - developer: A custom struct container details about the developer of the app.
-    ///   - profiles: A list of social media pages for the app.
-    ///   - websiteURL: A URL string directing to the app's website.
-    ///   - privacyPolicyURL: An optional URL string directing to the privacy policy for the app.
-    ///   - termsOfUseURL: An optional URL string directing to the terms of use for the app.
+    ///   - id: The app ID `String` for the given app. This can be found in App Store Connect or the URL of the App Store
+    ///   listing for the app. This should be in the format 123456789.
+    ///   - name: A `String` containing the app's name.
+    ///   - appIcon: An `Optional<PlatformImage>` containing the app icon.
+    ///   If an image is not specified, the app icon will be fetched from the App Store.
+    ///   - developer: A custom `AKDeveloper` struct containing details about the developer of the app.
+    ///   - email: An `Optional<String>` containing the email address to contact the app's support.
+    ///   - websiteURL: An `Optional<String>` containing the app's website.
+    ///   - profiles: An `Optional` array of `AKProfile` containing the social media pages for the app.
+    ///   - privacyPolicyURL: An `Optional<String>` containing the privacy policy for the app.
+    ///   - termsOfUseURL: An `Optional<String>` containing the terms of use for the app.
     public init(
         id: String,
         name: String,
         appIcon: PlatformImage?,
         developer: AKDeveloper,
-        email: String,
-        profiles: [AKProfile],
-        websiteURL: String,
+        email: String?,
+        websiteURL: String?,
+        profiles: [AKProfile]?,
         privacyPolicyURL: String?,
         termsOfUseURL: String?
     ) {
@@ -65,22 +68,21 @@ public struct AKMyApp: AKApp {
         self.appIcon = appIcon
         self.developer = developer
         self.email = email
-        self.profiles = profiles
+        self.profiles = profiles ?? []
         self.websiteURL = websiteURL
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
     }
 
+    /// An example `AKMyApp` to be used in SwiftUI previews.
     static let example = AKMyApp(
         id: "123456789",
-        name: "Sample",
+        name: "Example",
         appIcon: nil,
-        developer: AKDeveloper.example,
-        email: "sampleapp@example.com",
-        profiles: [
-            .init(username: "exampleapp", platform: .twitter)
-        ],
+        developer: .example,
+        email: "exampleapp@example.com",
         websiteURL: "https://www.example.com",
+        profiles: [.example],
         privacyPolicyURL: "https://www.example.com/privacy-policy",
         termsOfUseURL: "https://www.example.com/terms-of-use"
     )

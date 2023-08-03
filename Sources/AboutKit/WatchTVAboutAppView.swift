@@ -8,18 +8,19 @@
 #if os(watchOS) || os(tvOS)
 import SwiftUI
 
-/// A SwiftUI view which displays attributes and links relating to an app.
+/// A SwiftUI `View` which displays attributes and links relating to an app.
 public struct AboutAppView: View {
-    /// A custom struct containing details about the current app.
+
+    /// A custom struct of type `AKMyApp` containing details about the current app.
     private let app: AKMyApp
 
-    /// An array of custom structs that contain details about other apps the developer owns.
+    /// An array of `AKOtherApp` that contains details about other apps the developer owns.
     private let otherApps: [AKOtherApp]
     
-    /// Initializes a new SwiftUI view which displays attributes and links relating to an app.
+    /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
     /// - Parameters:
-    ///   - app: A custom struct containing details about the current app.
-    ///   - otherApps: An array of custom structs that contain details about other apps the developer owns.
+    ///   - app: A custom struct of type `AKMyApp` containing details about the current app.
+    ///   - otherApps: An array of `AKOtherApp` that contains details about other apps the developer owns.
     public init(app: AKMyApp, otherApps: [AKOtherApp]) {
         self.app = app
         self.otherApps = otherApps
@@ -31,15 +32,20 @@ public struct AboutAppView: View {
                 HeaderView(app: app)
                     .focusable()
             }
-            
-            Section {
-                ItemLabel(
-                    LocalizedStrings.email,
-                    details: app.email
-                )
 
-                if URL(string: app.websiteURL) != nil {
-                    ItemLabel(LocalizedStrings.website, details: app.websiteURL)
+            if app.email != nil || app.websiteURL != nil {
+                Section {
+                    if let email = app.email {
+                        ItemLabel(
+                            LocalizedStrings.email,
+                            details: email
+                        )
+                    }
+
+                    if let websiteURL = app.websiteURL,
+                       URL(string: websiteURL) != nil {
+                        ItemLabel(LocalizedStrings.website, details: websiteURL)
+                    }
                 }
             }
 

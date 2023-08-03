@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct HeaderView: View {
-    let app: AKMyApp
+    private let app: AKMyApp
 
     @State private var appIconURL: String?
+
+    init(app: AKMyApp) {
+        self.app = app
+    }
 
     var body: some View {
         VStack(spacing: 8) {
@@ -21,7 +25,7 @@ struct HeaderView: View {
                 .padding(.top)
 
             Text(app.developer.name)
-                .foregroundColor(.secondary)
+                .foregroundStyle(Color.secondary)
         }
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
@@ -66,26 +70,22 @@ struct HeaderView: View {
     }
 
     private var appIconWidth: CGFloat {
-        #if os(iOS)
-        return 100
-        #elseif os(watchOS)
-        return 64
-        #elseif os(macOS)
+        #if os(macOS) || os(watchOS)
         return 64
         #elseif os(tvOS)
         return 300
+        #else
+        return 100
         #endif
     }
 
     private var appIconHeight: CGFloat {
-        #if os(iOS)
-        return 100
-        #elseif os(watchOS)
-        return 64
-        #elseif os(macOS)
+        #if os(macOS) || os(watchOS)
         return 64
         #elseif os(tvOS)
         return 180
+        #else
+        return 100
         #endif
     }
 
