@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "계속하다";
-
-
 /* About */
 
 "Email" = "이메일";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "App Store에서 %@보기";
 
 "Other Apps" = "기타 앱";
-"VIEW" = "전망";
+"View" = "전망";
 "View all Apps" = "모든 앱보기";
 
 "Check out %@ on the App Store!" = "App Store에서 %@을 확인하세요!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "앱에 관해";
-"Done" = "끝난";
-
-
-/* Welcome */
-
-"Welcome to" = "에 오신 것을 환영합니다";

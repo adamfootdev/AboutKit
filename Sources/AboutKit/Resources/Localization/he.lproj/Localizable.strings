@@ -5,12 +5,6 @@
  Created by Adam Foot on 06/07/2021.
 
  */
-
-/* General */
-
-"Continue" = "לְהַמשִׁיך";
-
-
 /* About */
 
 "Email" = "אימייל";
@@ -24,7 +18,7 @@
 "View %@ in the App Store" = "צפה ב- %@ ב- App Store";
 
 "Other Apps" = "אפליקציות אחרות";
-"VIEW" = "נוף";
+"View" = "נוף";
 "View all Apps" = "צפה בכל היישומים";
 
 "Check out %@ on the App Store!" = "צפה ב- %@ ב- App Store!";
@@ -42,9 +36,3 @@
 /* Navigation */
 
 "About" = "אודות";
-"Done" = "בוצע";
-
-
-/* Welcome */
-
-"Welcome to" = "ברוך הבא ל- %@";

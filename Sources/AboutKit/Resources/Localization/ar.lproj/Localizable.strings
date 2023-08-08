@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "يكمل";
-
-
 /* About */
 
 "Email" = "بريد إلكتروني";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "عرض %@ في متجر التطبيقات";
 
 "Other Apps" = "تطبيقات أخرى";
-"VIEW" = "منظر";
+"View" = "منظر";
 "View all Apps" = "عرض جميع التطبيقات";
 
 "Check out %@ on the App Store!" = "تحقق من %@ في متجر التطبيقات!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "حول";
-"Done" = "منجز";
-
-
-/* Welcome */
-
-"Welcome to" = "مرحبًا بك في";

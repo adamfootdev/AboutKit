@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "Continua";
-
-
 /* About */
 
 "Email" = "E-mail";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "Visualizza %@ nell'App Store";
 
 "Other Apps" = "Altre App";
-"VIEW" = "VISTA";
+"View" = "Vista";
 "View all Apps" = "Visualizza tutte le App";
 
 "Check out %@ on the App Store!" = "Dai un'occhiata a %@ sull'App Store!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "Riguardo";
-"Done" = "Fatto";
-
-
-/* Welcome */
-
-"Welcome to" = "Benvenuto in";

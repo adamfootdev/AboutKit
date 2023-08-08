@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "Continua";
-
-
 /* About */
 
 "Email" = "E-mail";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "Vizualizați %@ în App Store";
 
 "Other Apps" = "Alte Aplicații";
-"VIEW" = "VIZUALIZAȚI";
+"View" = "Vizualizați";
 "View all Apps" = "Vizualizați toate Aplicații";
 
 "Check out %@ on the App Store!" = "Verificați %@ în App Store!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "Despre";
-"Done" = "Gata";
-
-
-/* Welcome */
-
-"Welcome to" = "Bun venit pe";

@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "Продолжать";
-
-
 /* About */
 
 "Email" = "Электронное письмо";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "Посмотреть %@ в App Store";
 
 "Other Apps" = "Другие приложения";
-"VIEW" = "ПОСМОТРЕТЬ";
+"View" = "Посмотреть";
 "View all Apps" = "Просмотреть все приложения";
 
 "Check out %@ on the App Store!" = "Проверьте %@ в App Store!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "О";
-"Done" = "Сделанный";
-
-
-/* Welcome */
-
-"Welcome to" = "Добро пожаловать в";

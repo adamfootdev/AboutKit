@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "Doorgaan met";
-
-
 /* About */
 
 "Email" = "E-mail";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "Bekijk %@ in de App Store";
 
 "Other Apps" = "Andere Apps";
-"VIEW" = "VISIE";
+"View" = "Visie";
 "View all Apps" = "Bekijk alle Apps";
 
 "Check out %@ on the App Store!" = "Bekijk %@ in de App Store!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "Over";
-"Done" = "Gedaan";
-
-
-/* Welcome */
-
-"Welcome to" = "Welkom bij";

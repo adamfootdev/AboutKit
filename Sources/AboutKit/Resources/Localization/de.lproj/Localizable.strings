@@ -1,7 +1,10 @@
-/* General */
+/*
+ Localizable.strings
+ AboutKit
 
-"Continue" = "Fortsetzen";
+ Created by Adam Foot on 06/07/2021.
 
+ */
 
 /* About */
 
@@ -16,7 +19,7 @@
 "View %@ in the App Store" = "%@ im App Store anzeigen";
 
 "Other Apps" = "Weitere Apps";
-"VIEW" = "ANZEIGEN";
+"View" = "Anzeigen";
 "View all Apps" = "Alle anzeigen Apps";
 
 "Check out %@ on the App Store!" = "Schauen Sie sich das %@ im App Store an!";
@@ -34,9 +37,3 @@
 /* Navigation */
 
 "About" = "Über";
-"Done" = "Fertig";
-
-
-/* Welcome */
-
-"Welcome to" = "Willkommen auf dem";

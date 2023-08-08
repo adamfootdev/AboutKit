@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "続ける";
-
-
 /* About */
 
 "Email" = "メール";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "App Store で %@ を表示";
 
 "Other Apps" = "他のアプリ";
-"VIEW" = "見る";
+"View" = "見る";
 "View all Apps" = "すべてのアプリを表示";
 
 "Check out %@ on the App Store!" = "App Store で %@ をチェックしてください!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "約";
-"Done" = "終わり";
-
-
-/* Welcome */
-
-"Welcome to" = "へようこそ";

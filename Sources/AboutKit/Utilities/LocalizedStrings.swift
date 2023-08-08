@@ -25,12 +25,9 @@ enum LocalizedStrings {
     static let viewTermsOfUse = String(localized: "View Terms of Use…", bundle: .module)
 
     static let otherApps = String(localized: "Other Apps", bundle: .module)
-    static let view = String(localized: "VIEW", bundle: .module)
+    static let view = String(localized: "View", bundle: .module)
     static let viewAllApps = String(localized: "View all Apps", bundle: .module)
     static let viewMac = String(localized: "View…", bundle: .module)
 
-    static let done = String(localized: "Done", bundle: .module)
     static let about = String(localized: "About", bundle: .module)
-
-    static let welcomeTo = String(localized: "Welcome to", bundle: .module)
 }

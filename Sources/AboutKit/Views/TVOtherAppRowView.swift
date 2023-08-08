@@ -24,7 +24,7 @@ struct OtherAppRowView: View {
 
                 ItemLabel(
                     otherApp.name,
-                    details: LocalizedStrings.view.capitalized
+                    details: LocalizedStrings.view
                 )
             }
             .padding(.vertical, 8)

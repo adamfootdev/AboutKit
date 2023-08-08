@@ -6,11 +6,6 @@
 
  */
 
-/* General */
-
-"Continue" = "Tiếp tục";
-
-
 /* About */
 
 "Email" = "E-mail";
@@ -24,7 +19,7 @@
 "View %@ in the App Store" = "Xem %@ trong App Store";
 
 "Other Apps" = "Những ứng dụng khác";
-"VIEW" = "XEM";
+"View" = "Xem";
 "View all Apps" = "Xem tất cả ứng dụng";
 
 "Check out %@ on the App Store!" = "Xem %@ trên App Store!";
@@ -42,9 +37,3 @@
 /* Navigation */
 
 "About" = "Giới thiệu";
-"Done" = "Xong";
-
-
-/* Welcome */
-
-"Welcome to" = "Chào mừng đến với";
