@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "О";
+"Done" = "Сделанный";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Благодарности";
+"View Acknowledgements…" = "Просмотр благодарностей…";
+"People" = "Люди";
+"Frameworks" = "Фреймворки";
+"Links" = "Ссылки";
+"Profiles" = "Профили";
+"Details" = "Подробности";
+"Product Page" = "Страница продукта";
+"Repository" = "Репозиторий";
+"Compliance" = "Согласие";

@@ -35,7 +35,7 @@ public struct AboutAppView: View {
     }
     
     public var body: some View {
-        List {
+        Form {
             Section {
                 HeaderView(app: app)
             }
@@ -151,6 +151,19 @@ public struct AboutAppView: View {
                 }
             }
 
+            if app.acknowledgements.isEmpty == false {
+                Section {
+                    NavigationLink {
+                        AcknowledgementsView(app.acknowledgements)
+                    } label: {
+                        ItemLabel(
+                            LocalizedStrings.acknowledgements,
+                            systemImage: "list.star"
+                        )
+                    }
+                }
+            }
+
             if otherApps.isEmpty == false {
                 Section {
                     ForEach(otherApps, content: OtherAppRowView.init)
@@ -200,10 +213,12 @@ public struct AboutAppView: View {
 
 struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutAppView(
-            app: AKMyApp.example,
-            otherApps: [AKOtherApp.example, AKOtherApp.example]
-        )
+        NavigationView {
+            AboutAppView(
+                app: AKMyApp.example,
+                otherApps: [AKOtherApp.example, AKOtherApp.example]
+            )
+        }
     }
 }
 #endif

@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "关于";
+"Done" = "完毕";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "致谢";
+"View Acknowledgements…" = "查看致谢…";
+"People" = "人们";
+"Frameworks" = "构架";
+"Links" = "链接";
+"Profiles" = "型材";
+"Details" = "细节";
+"Product Page" = "产品页面";
+"Repository" = "存储库";
+"Compliance" = "遵守";

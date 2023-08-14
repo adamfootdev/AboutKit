@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "O Aplikaci";
+"Done" = "Hotovo";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Poděkování";
+"View Acknowledgements…" = "Zobrazit Poděkování…";
+"People" = "Lidé";
+"Frameworks" = "Rámce";
+"Links" = "Odkazy";
+"Profiles" = "Profily";
+"Details" = "Podrobnosti";
+"Product Page" = "Stránka produktu";
+"Repository" = "Úložiště";
+"Compliance" = "Dodržování";

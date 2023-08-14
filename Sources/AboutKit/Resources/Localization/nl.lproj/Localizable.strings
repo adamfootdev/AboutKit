@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "Over";
+"Done" = "Gedaan";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Dankbetuigingen";
+"View Acknowledgements…" = "Dankbetuigingen Bekijken…";
+"People" = "Mensen";
+"Frameworks" = "Kaders";
+"Links" = "Koppelingen";
+"Profiles" = "Profielen";
+"Details" = "Details";
+"Product Page" = "Productpagina";
+"Repository" = "Opslagplaats";
+"Compliance" = "Naleving";

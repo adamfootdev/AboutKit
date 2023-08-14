@@ -38,7 +38,7 @@ public struct AKDeveloper {
     }
 
     /// An example `AKDeveloper` to be used in SwiftUI previews.
-    static let example = AKDeveloper(
+    public static let example = AKDeveloper(
         id: "123456789",
         name: "App Developer",
         profiles: [

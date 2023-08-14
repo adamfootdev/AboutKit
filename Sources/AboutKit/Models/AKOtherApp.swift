@@ -40,7 +40,7 @@ public struct AKOtherApp: AKApp, Identifiable {
     }
 
     /// An example `AKOtherApp` to be used in SwiftUI previews.
-    static let example = AKOtherApp(
+    public static let example = AKOtherApp(
         id: "987654321",
         name: "Other App"
     )

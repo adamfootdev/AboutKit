@@ -89,6 +89,14 @@ public struct AboutAppView: View {
                 }
             }
 
+            if app.acknowledgements.isEmpty == false {
+                Section {
+                    NavigationLink(LocalizedStrings.acknowledgements) {
+                        AcknowledgementsView(app.acknowledgements)
+                    }
+                }
+            }
+
             if otherApps.isEmpty == false {
                 Section(header: Text(LocalizedStrings.otherApps)) {
                     ForEach(otherApps, content: OtherAppRowView.init)
@@ -102,10 +110,12 @@ public struct AboutAppView: View {
 
 struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutAppView(
-            app: AKMyApp.example,
-            otherApps: [AKOtherApp.example, AKOtherApp.example]
-        )
+        NavigationView {
+            AboutAppView(
+                app: AKMyApp.example,
+                otherApps: [AKOtherApp.example, AKOtherApp.example]
+            )
+        }
     }
 }
 #endif

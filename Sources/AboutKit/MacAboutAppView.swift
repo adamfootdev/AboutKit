@@ -18,6 +18,9 @@ public struct AboutAppView: View {
     /// An array of `AKOtherApp` that contains details about other apps the developer owns.
     private let otherApps: [AKOtherApp]
 
+    /// A `Boolean` indicating whether the Acknowledgements view is visible.
+    @State private var showingAcknowledgements: Bool = false
+
     /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
     /// - Parameters:
     ///   - app: A custom struct of type `AKMyApp` containing details about the current app.
@@ -131,6 +134,19 @@ public struct AboutAppView: View {
                 }
             }
 
+            if let acknowledgements = app.acknowledgements {
+                if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
+                    Section {
+                        ItemLabel(
+                            LocalizedStrings.acknowledgements,
+                            actionTitle: LocalizedStrings.viewAcknowledgements
+                        ) {
+                            showingAcknowledgements.toggle()
+                        }
+                    }
+                }
+            }
+
             if otherApps.isEmpty == false {
                 Section {
                     ForEach(otherApps, content: OtherAppRowView.init)
@@ -148,6 +164,11 @@ public struct AboutAppView: View {
             }
         }
         .formStyle(.grouped)
+        .sheet(isPresented: $showingAcknowledgements) {
+            if let acknowledgements = app.acknowledgements {
+                AcknowledgementsView(acknowledgements)
+            }
+        }
     }
 
     

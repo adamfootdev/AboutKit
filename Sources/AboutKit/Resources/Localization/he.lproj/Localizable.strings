@@ -5,6 +5,7 @@
  Created by Adam Foot on 06/07/2021.
 
  */
+
 /* About */
 
 "Email" = "אימייל";
@@ -36,3 +37,18 @@
 /* Navigation */
 
 "About" = "אודות";
+"Done" = "בוצע";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "תודות";
+"View Acknowledgements…" = "הצג תודות…";
+"People" = "אֲנָשִׁים";
+"Frameworks" = "מסגרות";
+"Links" = "קישורים";
+"Profiles" = "פרופילים";
+"Details" = "פרטים";
+"Product Page" = "דף מוצר";
+"Repository" = "מאגר";
+"Compliance" = "הענות";

@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "À Propos";
+"Done" = "Valider";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Remerciements";
+"View Acknowledgements…" = "Afficher les Remerciements…";
+"People" = "Personnes";
+"Frameworks" = "Cadres";
+"Links" = "Liens";
+"Profiles" = "Profils";
+"Details" = "Détails";
+"Product Page" = "Fiche produit";
+"Repository" = "Dépôt";
+"Compliance" = "Conformité";

@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "Despre";
+"Done" = "Gata";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Mulțumiri";
+"View Acknowledgements…" = "Vedeți Mulțumirile…";
+"People" = "Oameni";
+"Frameworks" = "Cadre";
+"Links" = "Legături";
+"Profiles" = "Profiluri";
+"Details" = "Detalii";
+"Product Page" = "Pagina de produs";
+"Repository" = "Repertoriu";
+"Compliance" = "Conformitate";

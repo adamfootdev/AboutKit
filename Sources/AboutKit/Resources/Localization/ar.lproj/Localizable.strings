@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "حول";
+"Done" = "منجز";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "شكر وتقدير";
+"View Acknowledgements…" = "عرض شكر وتقدير…";
+"People" = "الناس";
+"Frameworks" = "إطار أعمال";
+"Links" = "الروابط";
+"Profiles" = "مظهر";
+"Details" = "تفاصيل";
+"Product Page" = "صفحة المنتج";
+"Repository" = "مخزن";
+"Compliance" = "امتثال";

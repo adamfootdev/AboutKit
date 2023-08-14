@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "Więcej";
+"Done" = "Gotowy";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Podziękowanie";
+"View Acknowledgements…" = "Wyświetl Podziękowania…";
+"People" = "Ludzie";
+"Frameworks" = "Ramy";
+"Links" = "Spinki do Mankietów";
+"Profiles" = "Profile";
+"Details" = "Detale";
+"Product Page" = "Strona produktu";
+"Repository" = "Magazyn";
+"Compliance" = "Zgodność";

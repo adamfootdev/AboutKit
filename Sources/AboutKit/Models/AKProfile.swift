@@ -87,5 +87,5 @@ public struct AKProfile: Identifiable, Hashable {
     }
 
     /// An example `AKProfile` to be used in SwiftUI previews.
-    static let example = AKProfile(username: "ExampleApp", platform: .reddit)
+    public static let example = AKProfile(username: "ExampleApp", platform: .reddit)
 }

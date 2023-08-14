@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "約";
+"Done" = "終わり";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "謝辞";
+"View Acknowledgements…" = "謝辞を表示…";
+"People" = "人々";
+"Frameworks" = "フレームワーク";
+"Links" = "リンク";
+"Profiles" = "プロフィール";
+"Details" = "詳細";
+"Product Page" = "製品ページ";
+"Repository" = "リポジトリ";
+"Compliance" = "コンプライアンス";

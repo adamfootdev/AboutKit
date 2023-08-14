@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "Giới thiệu";
+"Done" = "Xong";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Sự nhìn nhận";
+"View Acknowledgements…" = "Xem lời cảm ơn…";
+"People" = "Mọi người";
+"Frameworks" = "Khung";
+"Links" = "Liên kết";
+"Profiles" = "Hồ sơ";
+"Details" = "Chi tiết";
+"Product Page" = "Trang sản phẩm";
+"Repository" = "Kho";
+"Compliance" = "Sự tuân thủ";

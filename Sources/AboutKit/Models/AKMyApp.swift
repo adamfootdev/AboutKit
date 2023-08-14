@@ -39,6 +39,9 @@ public struct AKMyApp: AKApp {
     /// An `Optional<String>` containing the terms of use for the app.
     public let termsOfUseURL: String?
 
+    /// An `Optional<AKAcknowledgements>` struct containing all the acknowledgments for the app.
+    public let acknowledgements: AKAcknowledgements?
+
     /// Initializes a custom struct of data pertaining to the specified app.
     /// - Parameters:
     ///   - id: The app ID `String` for the given app. This can be found in App Store Connect or the URL of the App Store
@@ -52,6 +55,7 @@ public struct AKMyApp: AKApp {
     ///   - profiles: An `Optional` array of `AKProfile` containing the social media pages for the app.
     ///   - privacyPolicyURL: An `Optional<String>` containing the privacy policy for the app.
     ///   - termsOfUseURL: An `Optional<String>` containing the terms of use for the app.
+    ///   - acknowledgements: An `Optional<AKAcknowledgement>` struct containing all the acknowledgments for the app. Defaults to `nil`.
     public init(
         id: String,
         name: String,
@@ -61,21 +65,23 @@ public struct AKMyApp: AKApp {
         websiteURL: String?,
         profiles: [AKProfile]?,
         privacyPolicyURL: String?,
-        termsOfUseURL: String?
+        termsOfUseURL: String?,
+        acknowledgements: AKAcknowledgements? = nil
     ) {
         self.id = id
         self.name = name
         self.appIcon = appIcon
         self.developer = developer
         self.email = email
-        self.profiles = profiles ?? []
         self.websiteURL = websiteURL
+        self.profiles = profiles ?? []
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
+        self.acknowledgements = acknowledgements
     }
 
     /// An example `AKMyApp` to be used in SwiftUI previews.
-    static let example = AKMyApp(
+    public static let example = AKMyApp(
         id: "123456789",
         name: "Example",
         appIcon: nil,
@@ -84,6 +90,7 @@ public struct AKMyApp: AKApp {
         websiteURL: "https://www.example.com",
         profiles: [.example],
         privacyPolicyURL: "https://www.example.com/privacy-policy",
-        termsOfUseURL: "https://www.example.com/terms-of-use"
+        termsOfUseURL: "https://www.example.com/terms-of-use",
+        acknowledgements: .example
     )
 }

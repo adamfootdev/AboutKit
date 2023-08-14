@@ -16,6 +16,9 @@ For users who previously used AboutKit for showing the features list, please use
     - [AKDeveloper](#akdeveloper)
     - [AKFeatureItem](#akfeatureitem)
     - [AKOtherApp](#akotherapp)
+    - [AKAcknowledgements](#akacknowledgements)
+    - [AKPersonAcknowledgement](#akpersonacknowledgement)
+    - [AKFrameworkAcknowledgement](#akframeworkacknowledgement)
     - [AboutAppView](#aboutappview)
 
 ## Requirements
@@ -51,7 +54,18 @@ import AboutKit
 This is a struct containing details about the current app. It can be created like so:
 
 ```swift
-let app = AKMyApp(id: "123456789", name: "Example App", appIcon: UIImage(named: "app-icon"), developer: developer, email: "exampleapp@example.com", websiteURL: "https://www.example.com", profiles: [profile], privacyPolicyURL: "https://www.example.com/privacy-policy", termsOfUseURL: "https://www.example.com/terms-of-use"))
+let app = AKMyApp(
+    id: "123456789", 
+    name: "Example App", 
+    appIcon: UIImage(named: "app-icon"), 
+    developer: developer, 
+    email: "exampleapp@example.com", 
+    websiteURL: "https://www.example.com", 
+    profiles: [profile], 
+    privacyPolicyURL: "https://www.example.com/privacy-policy", 
+    termsOfUseURL: "https://www.example.com/terms-of-use"), 
+    acknowledgements: acknowledgements
+)
 ```
 
 If a value for the app icon is not provided, one will attempt to be downloaded from the App Store based on the provided app ID. The app ID can be found in App Store Connect or from the app's URL, e.g. <https://apps.apple.com/app/id123456789>
@@ -61,7 +75,11 @@ If a value for the app icon is not provided, one will attempt to be downloaded f
 This is a struct containing details about the developer belonging to the current app. It can be created like so:
 
 ```swift
-let developer = AKDeveloper(id: "987654321", name: "App Developer", profiles: [profile])
+let developer = AKDeveloper(
+    id: "987654321", 
+    name: "App Developer", 
+    profiles: [profile]
+)
 ```
 
 The developer ID can be found by locating the App Store page that contains all of your apps e.g. <https://apps.apple.com/developer/id987654321>
@@ -71,7 +89,10 @@ The developer ID can be found by locating the App Store page that contains all o
 This is a struct containing details about about a social media profile relating to either the developer or the app itself. It supports multiple platforms such as X and Mastodon. It can be created like so:
 
 ```swift
-let profile = AKProfile(username: "appdeveloper", platform: .reddit)
+let profile = AKProfile(
+    username: "appdeveloper", 
+    platform: .reddit
+)
 ```
 
 ### AKOtherApp
@@ -79,15 +100,57 @@ let profile = AKProfile(username: "appdeveloper", platform: .reddit)
 This is a struct which contains details to display another app that you own and want to show in a list on the about screen. You can create one as follows:
 
 ```swift
-let otherApp = AKOtherApp(id: "543216789", name: "Other App", appIcon: UIImage(named: "app-icon"))
+let otherApp = AKOtherApp(
+    id: "543216789",
+    name: "Other App",
+    appIcon: UIImage(named: "app-icon")
+)
 ```
 
 If a value for the app icon is not provided, one will attempt to be downloaded from the App Store based on the provided app ID. The app ID can be found in App Store Connect or from the app's URL, e.g. <https://apps.apple.com/app/id123456789>
+
+### AKAcknowledgements
+
+This is a struct which contains details about frameworks and people youʼd like to acknowledge. You can create one as follows:
+
+```swift
+let acknowledgements = AKAcknowledgements(
+    people: [person],
+    frameworks: [framework]
+)
+```
+
+### AKPersonAcknowledgement
+
+This is a struct which contains details about a person youʼd like to acknowledge. You can create one as follows:
+
+```swift
+let person = AKPersonAcknowledgement(
+    name: "App Developer",
+    details: "Some details about this person!",
+    profiles: [profile]
+)
+```
+
+### AKFrameworkAcknowledgement
+
+This is a struct which contains details about a framework youʼd like to acknowledge. You can create one as follows:
+
+```swift
+let framework = AKFrameworkAcknowledgement(
+    name: "Framework",
+    details: "Some details about this framework!",
+    links: [.productPage(URL(string: "https://www.example.com")!)]
+)
+```
 
 ### AboutAppView
 
 Create an instance of the view using the following:
 
 ```swift
-AboutAppView(app: app, otherApps: otherApps)
+AboutAppView(
+    app: app, 
+    otherApps: otherApps
+)
 ```

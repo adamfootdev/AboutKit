@@ -37,3 +37,18 @@
 /* Navigation */
 
 "About" = "Riguardo";
+"Done" = "Fatto";
+
+
+/* Acknowledgements */
+
+"Acknowledgements" = "Ringraziamenti";
+"View Acknowledgements…" = "Visualizza i Ringraziamenti…";
+"People" = "Persone";
+"Frameworks" = "Quadri";
+"Links" = "Collegamenti";
+"Profiles" = "Profili";
+"Details" = "Dettagli";
+"Product Page" = "Pagina del prodotto";
+"Repository" = "Deposito";
+"Compliance" = "Conformità";
