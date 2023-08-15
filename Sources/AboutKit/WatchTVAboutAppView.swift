@@ -89,10 +89,12 @@ public struct AboutAppView: View {
                 }
             }
 
-            if app.acknowledgements.isEmpty == false {
-                Section {
-                    NavigationLink(LocalizedStrings.acknowledgements) {
-                        AcknowledgementsView(app.acknowledgements)
+            if let acknowledgements = app.acknowledgements {
+                if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
+                    Section {
+                        NavigationLink(LocalizedStrings.acknowledgements) {
+                            AcknowledgementsView(acknowledgements)
+                        }
                     }
                 }
             }

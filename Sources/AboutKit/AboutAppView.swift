@@ -151,15 +151,17 @@ public struct AboutAppView: View {
                 }
             }
 
-            if app.acknowledgements.isEmpty == false {
-                Section {
-                    NavigationLink {
-                        AcknowledgementsView(app.acknowledgements)
-                    } label: {
-                        ItemLabel(
-                            LocalizedStrings.acknowledgements,
-                            systemImage: "list.star"
-                        )
+            if let acknowledgements = app.acknowledgements {
+                if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
+                    Section {
+                        NavigationLink {
+                            AcknowledgementsView(acknowledgements)
+                        } label: {
+                            ItemLabel(
+                                LocalizedStrings.acknowledgements,
+                                systemImage: "list.star"
+                            )
+                        }
                     }
                 }
             }
@@ -178,7 +180,6 @@ public struct AboutAppView: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
         .navigationTitle(LocalizedStrings.about)
         .sheet(isPresented: $showingMailSheet) {
             MailView(app: app, debugDetails: AboutKit.debugDetails)
