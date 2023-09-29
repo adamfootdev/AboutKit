@@ -18,15 +18,15 @@ struct ItemLabel: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(title)
-                .font(.caption.bold())
-                .foregroundStyle(Color.secondary)
 
             Text(details)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .listRowBackground(Color.clear)
+        .padding(.vertical, 8)
     }
 }
 

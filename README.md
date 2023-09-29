@@ -12,6 +12,7 @@ For users who previously used AboutKit for showing the features list, please use
 1. [Requirements](#requirements)
 2. [Integration](#integration)
 3. [Usage](#usage)
+    - [AKConfiguration](#akconfiguration)
     - [AKMyApp](#akmyapp)
     - [AKDeveloper](#akdeveloper)
     - [AKFeatureItem](#akfeatureitem)
@@ -49,6 +50,19 @@ To start using the framework, you'll need to import it first:
 import AboutKit
 ```
 
+### AKConfiguration
+
+This is a struct containing all of the relevant details required to configure AboutKit. It can be created like so:
+
+```swift
+let configuration = AKConfiguration(
+    app: app, 
+    otherApps: otherApps, 
+    showShareApp: .always, 
+    showWriteReview: .always, 
+)
+```
+
 ### AKMyApp
 
 This is a struct containing details about the current app. It can be created like so:
@@ -60,10 +74,11 @@ let app = AKMyApp(
     appIcon: UIImage(named: "app-icon"), 
     developer: developer, 
     email: "exampleapp@example.com", 
-    websiteURL: "https://www.example.com", 
+    websiteURL: URL(string: "https://www.example.com")!, 
     profiles: [profile], 
-    privacyPolicyURL: "https://www.example.com/privacy-policy", 
-    termsOfUseURL: "https://www.example.com/terms-of-use"), 
+    privacyPolicyURL: URL(string: "https://www.example.com/privacy-policy")!, 
+    termsOfUseURL: URL(string: "https://www.example.com/terms-of-use")!, 
+    testFlightURL: URL(string: "https://www.example.com/testflight")!, 
     acknowledgements: acknowledgements
 )
 ```
@@ -149,8 +164,5 @@ let framework = AKFrameworkAcknowledgement(
 Create an instance of the view using the following:
 
 ```swift
-AboutAppView(
-    app: app, 
-    otherApps: otherApps
-)
+AboutAppView(configuration: configuration)
 ```

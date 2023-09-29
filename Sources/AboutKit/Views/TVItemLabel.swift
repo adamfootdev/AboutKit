@@ -26,7 +26,7 @@ struct ItemLabel: View {
                 Spacer()
 
                 Text(details)
-                    .foregroundStyle(Color.secondary)
+                    .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

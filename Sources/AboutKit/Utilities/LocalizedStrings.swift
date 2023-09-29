@@ -15,6 +15,7 @@ enum LocalizedStrings {
     static let writeReview = String(localized: "Write Review", bundle: .module)
     static let privacyPolicy = String(localized: "Privacy Policy", bundle: .module)
     static let termsOfUse = String(localized: "Terms Of Use", bundle: .module)
+    static let testFlight = String(localized: "TestFlight", bundle: .module)
     static let acknowledgements = String(localized: "Acknowledgements", bundle: .module)
 
     static let contactDeveloper = String(localized: "Contact Developer…", bundle: .module)
@@ -24,6 +25,7 @@ enum LocalizedStrings {
     static let review = String(localized: "Review…", bundle: .module)
     static let viewPrivacyPolicy = String(localized: "View Privacy Policy…", bundle: .module)
     static let viewTermsOfUse = String(localized: "View Terms of Use…", bundle: .module)
+    static let openTestFlight = String(localized: "Open TestFlight…", bundle: .module)
     static let viewAcknowledgements = String(localized: "View Acknowledgements…", bundle: .module)
 
     static let otherApps = String(localized: "Other Apps", bundle: .module)

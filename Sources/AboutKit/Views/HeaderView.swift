@@ -25,7 +25,7 @@ struct HeaderView: View {
                 .padding(.top)
 
             Text(app.developer.name)
-                .foregroundStyle(Color.secondary)
+                .foregroundStyle(.secondary)
         }
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)

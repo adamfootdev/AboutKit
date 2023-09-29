@@ -27,17 +27,20 @@ public struct AKMyApp: AKApp {
     /// An `Optional<String>` containing the email address to contact the app's support.
     public let email: String?
 
-    /// An `Optional<String>` containing the app's website.
-    public let websiteURL: String?
+    /// An `Optional<URL>` containing the app's website.
+    public let websiteURL: URL?
 
     /// An array of `AKProfile` containing the social media pages for the app.
     public let profiles: [AKProfile]
 
-    /// An `Optional<String>` containing the privacy policy for the app.
-    public let privacyPolicyURL: String?
+    /// An `Optional<URL>` containing the privacy policy for the app.
+    public let privacyPolicyURL: URL?
 
-    /// An `Optional<String>` containing the terms of use for the app.
-    public let termsOfUseURL: String?
+    /// An `Optional<URL>` containing the terms of use for the app.
+    public let termsOfUseURL: URL?
+
+    /// An `Optional<URL>` containing the link to TestFlight for the app.
+    public let testFlightURL: URL?
 
     /// An `Optional<AKAcknowledgements>` struct containing all the acknowledgments for the app.
     public let acknowledgements: AKAcknowledgements?
@@ -51,10 +54,11 @@ public struct AKMyApp: AKApp {
     ///   If an image is not specified, the app icon will be fetched from the App Store.
     ///   - developer: A custom `AKDeveloper` struct containing details about the developer of the app.
     ///   - email: An `Optional<String>` containing the email address to contact the app's support.
-    ///   - websiteURL: An `Optional<String>` containing the app's website.
+    ///   - websiteURL: An `Optional<URL>` containing the app's website.
     ///   - profiles: An `Optional` array of `AKProfile` containing the social media pages for the app.
-    ///   - privacyPolicyURL: An `Optional<String>` containing the privacy policy for the app.
-    ///   - termsOfUseURL: An `Optional<String>` containing the terms of use for the app.
+    ///   - privacyPolicyURL: An `Optional<URL>` containing the privacy policy for the app.
+    ///   - termsOfUseURL: An `Optional<URL>` containing the terms of use for the app.
+    ///   - testFlightURL: An `Optional<URL>` containing the link to TestFlight for the app. Defaults to `nil`.
     ///   - acknowledgements: An `Optional<AKAcknowledgement>` struct containing all the acknowledgments for the app. Defaults to `nil`.
     public init(
         id: String,
@@ -62,10 +66,11 @@ public struct AKMyApp: AKApp {
         appIcon: PlatformImage?,
         developer: AKDeveloper,
         email: String?,
-        websiteURL: String?,
+        websiteURL: URL?,
         profiles: [AKProfile]?,
-        privacyPolicyURL: String?,
-        termsOfUseURL: String?,
+        privacyPolicyURL: URL?,
+        termsOfUseURL: URL?,
+        testFlightURL: URL? = nil,
         acknowledgements: AKAcknowledgements? = nil
     ) {
         self.id = id
@@ -77,6 +82,7 @@ public struct AKMyApp: AKApp {
         self.profiles = profiles ?? []
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
+        self.testFlightURL = testFlightURL
         self.acknowledgements = acknowledgements
     }
 
@@ -87,10 +93,11 @@ public struct AKMyApp: AKApp {
         appIcon: nil,
         developer: .example,
         email: "exampleapp@example.com",
-        websiteURL: "https://www.example.com",
+        websiteURL: URL(string: "https://www.example.com")!,
         profiles: [.example],
-        privacyPolicyURL: "https://www.example.com/privacy-policy",
-        termsOfUseURL: "https://www.example.com/terms-of-use",
+        privacyPolicyURL: URL(string: "https://www.example.com/privacy-policy")!,
+        termsOfUseURL: URL(string: "https://www.example.com/terms-of-use")!,
+        testFlightURL: URL(string: "https://www.example.com/testflight")!,
         acknowledgements: .example
     )
 }

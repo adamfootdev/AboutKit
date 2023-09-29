@@ -12,32 +12,26 @@ import SwiftUI
 public struct AboutAppView: View {
     @Environment(\.openURL) var openURL
 
-    /// A custom struct of type `AKMyApp` containing details about the current app.
-    private let app: AKMyApp
-
-    /// An array of `AKOtherApp` that contains details about other apps the developer owns.
-    private let otherApps: [AKOtherApp]
+    /// A custom struct of type `AKConfiguration` containing details for AboutKit.
+    private let configuration: AKConfiguration
 
     /// A `Boolean` indicating whether the Acknowledgements view is visible.
     @State private var showingAcknowledgements: Bool = false
 
     /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
-    /// - Parameters:
-    ///   - app: A custom struct of type `AKMyApp` containing details about the current app.
-    ///   - otherApps: An array of `AKOtherApp` that contains details about other apps the developer owns.
-    public init(app: AKMyApp, otherApps: [AKOtherApp]) {
-        self.app = app
-        self.otherApps = otherApps
+    /// - Parameter configuration: A custom struct of type `AKConfiguration` containing details for AboutKit.
+    public init(configuration: AKConfiguration) {
+        self.configuration = configuration
     }
 
     public var body: some View {
         Form {
             Section {
-                HeaderView(app: app)
+                HeaderView(app: configuration.app)
                     .padding(.vertical, 8)
             }
 
-            if app.email != nil || app.websiteURL != nil {
+            if configuration.app.email != nil || configuration.app.websiteURL != nil {
                 Section {
                     ItemLabel(
                         LocalizedStrings.email,
@@ -45,8 +39,7 @@ public struct AboutAppView: View {
                         action: sendMail
                     )
                     
-                    if let websiteURLString = app.websiteURL,
-                       let websiteURL = URL(string: websiteURLString) {
+                    if let websiteURL = configuration.app.websiteURL {
                         ItemLabel(
                             LocalizedStrings.website,
                             actionTitle: LocalizedStrings.openWebsite
@@ -57,10 +50,10 @@ public struct AboutAppView: View {
                 }
             }
 
-            if app.developer.profiles.isEmpty == false {
+            if configuration.app.developer.profiles.isEmpty == false {
                 Section {
                     ForEach(
-                        Array(app.developer.profiles.enumerated()),
+                        Array(configuration.app.developer.profiles.enumerated()),
                         id: \.1
                     ) { _, profile in
                         ItemLabel(
@@ -73,10 +66,10 @@ public struct AboutAppView: View {
                 }
             }
 
-            if app.profiles.isEmpty == false {
+            if configuration.app.profiles.isEmpty == false {
                 Section {
                     ForEach(
-                        Array(app.profiles.enumerated()),
+                        Array(configuration.app.profiles.enumerated()),
                         id: \.1
                     ) { _, profile in
                         ItemLabel(
@@ -89,31 +82,36 @@ public struct AboutAppView: View {
                 }
             }
 
-            Section {
-                HStack {
-                    Text(LocalizedStrings.shareApp)
-                    Spacer()
+            if configuration.showShareApp.isVisible || configuration.showWriteReview.isVisible {
+                Section {
+                    if configuration.showShareApp.isVisible {
+                        HStack {
+                            Text(LocalizedStrings.shareApp)
+                            Spacer()
 
-                    ShareLink(
-                        item: app.appStoreShareURL,
-                        message: Text(String(localized: "Check out \(app.name) on the App Store!", bundle: .module))
-                    ) {
-                        Text(LocalizedStrings.share)
+                            ShareLink(
+                                item: configuration.app.appStoreShareURL,
+                                message: Text(String(localized: "Check out \(configuration.app.name) on the App Store!", bundle: .module))
+                            ) {
+                                Text(LocalizedStrings.share)
+                            }
+                        }
                     }
-                }
 
-                ItemLabel(
-                    LocalizedStrings.writeReview,
-                    actionTitle: LocalizedStrings.review
-                ) {
-                    openURL(app.appStoreReviewURL)
+                    if configuration.showWriteReview.isVisible {
+                        ItemLabel(
+                            LocalizedStrings.writeReview,
+                            actionTitle: LocalizedStrings.review
+                        ) {
+                            openURL(configuration.app.appStoreReviewURL)
+                        }
+                    }
                 }
             }
 
-            if app.privacyPolicyURL != nil || app.termsOfUseURL != nil {
+            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil {
                 Section {
-                    if let privacyPolicy = app.privacyPolicyURL,
-                       let privacyPolicyURL = URL(string: privacyPolicy) {
+                    if let privacyPolicyURL = configuration.app.privacyPolicyURL {
                         ItemLabel(
                             LocalizedStrings.privacyPolicy,
                             actionTitle: LocalizedStrings.viewPrivacyPolicy
@@ -122,8 +120,7 @@ public struct AboutAppView: View {
                         }
                     }
 
-                    if let termsOfUse = app.termsOfUseURL,
-                       let termsOfUseURL = URL(string: termsOfUse) {
+                    if let termsOfUseURL = configuration.app.termsOfUseURL {
                         ItemLabel(
                             LocalizedStrings.termsOfUse,
                             actionTitle: LocalizedStrings.viewTermsOfUse
@@ -134,7 +131,18 @@ public struct AboutAppView: View {
                 }
             }
 
-            if let acknowledgements = app.acknowledgements {
+            if let testFlightURL = configuration.app.testFlightURL {
+                Section {
+                    ItemLabel(
+                        LocalizedStrings.testFlight,
+                        actionTitle: LocalizedStrings.openTestFlight
+                    ) {
+                        openURL(testFlightURL)
+                    }
+                }
+            }
+
+            if let acknowledgements = configuration.app.acknowledgements {
                 if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
                     Section {
                         ItemLabel(
@@ -147,15 +155,15 @@ public struct AboutAppView: View {
                 }
             }
 
-            if otherApps.isEmpty == false {
+            if configuration.otherApps.isEmpty == false {
                 Section {
-                    ForEach(otherApps, content: OtherAppRowView.init)
+                    ForEach(configuration.otherApps, content: OtherAppRowView.init)
 
                     ItemLabel(
                         LocalizedStrings.viewAllApps,
                         actionTitle: LocalizedStrings.viewMac
                     ) {
-                        openURL(app.developer.appStoreURL)
+                        openURL(configuration.app.developer.appStoreURL)
                     }
 
                 } header: {
@@ -165,7 +173,7 @@ public struct AboutAppView: View {
         }
         .formStyle(.grouped)
         .sheet(isPresented: $showingAcknowledgements) {
-            if let acknowledgements = app.acknowledgements {
+            if let acknowledgements = configuration.app.acknowledgements {
                 AcknowledgementsView(acknowledgements)
             }
         }
@@ -175,10 +183,10 @@ public struct AboutAppView: View {
     // MARK: - Mail
 
     private func sendMail() {
-        guard let subject = app.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+        guard let subject = configuration.app.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
               let body = AboutKit.debugDetails.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
 
-        guard let email = app.email else { return }
+        guard let email = configuration.app.email else { return }
 
         let urlString = "mailto:\(email)?subject=\(subject)%20-%20Support&body=\(body)"
 
@@ -190,10 +198,7 @@ public struct AboutAppView: View {
 
 struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutAppView(
-            app: AKMyApp.example,
-            otherApps: [AKOtherApp.example, AKOtherApp.example]
-        )
+        AboutAppView(configuration: .example)
     }
 }
 #endif
