@@ -59,7 +59,7 @@ let configuration = AKConfiguration(
     app: app, 
     otherApps: otherApps, 
     showShareApp: .always, 
-    showWriteReview: .always, 
+    showWriteReview: .always
 )
 ```
 
