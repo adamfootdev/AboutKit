@@ -27,7 +27,7 @@ struct AboutKit {
         let deviceDetails = "Device: \(UIDevice.current.deviceType)"
         let environmentDetails = "Environment: \(Bundle.main.userType.title)"
 
-        return "\n\n\nDEBUG DETAILS\n\nApp Version: \(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
+        return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
     }
 
     #elseif os(macOS)
@@ -60,7 +60,7 @@ struct AboutKit {
         let deviceDetails = "Device: \(deviceType)"
         let environmentDetails = "Environment: \(Bundle.main.userType.title)"
 
-        return "\n\n\nDEBUG DETAILS\n\nApp Version: \(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
+        return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
     }
     #endif
 }
