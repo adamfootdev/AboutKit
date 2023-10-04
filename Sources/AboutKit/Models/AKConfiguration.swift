@@ -7,8 +7,9 @@
 
 import Foundation
 
+/// A custom struct containing details for AboutKit.
 public struct AKConfiguration {
-
+    
     /// A custom struct of type `AKMyApp` containing details about the current app.
     public let app: AKMyApp
 

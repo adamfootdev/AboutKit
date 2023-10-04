@@ -3,7 +3,7 @@
 ![Feature Graphic](https://github.com/adamfootdev/AboutKit/blob/main/Assets/feature-graphic.png?raw=true)
 ![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2015.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2015.0%2B%20%7C%20watchOS%208.0%2B-blue)
 
-AboutKit provides developers with the ability to add an About screen to their apps. This built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
+AboutKit provides developers for Apple platforms with the ability to add an About screen to their apps. This built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
 
 This has been localised into multiple languages and the buttons will automatically adapt to your appʼs accent color.
 
@@ -21,6 +21,9 @@ For users who previously used AboutKit for showing the features list, please use
     - [AKPersonAcknowledgement](#akpersonacknowledgement)
     - [AKFrameworkAcknowledgement](#akframeworkacknowledgement)
     - [AboutAppView](#aboutappview)
+4. [Other Packages](#other-packages)
+    - [FeaturesKit](https://github.com/adamfootdev/FeaturesKit)
+    - [HelpKit](https://github.com/adamfootdev/HelpKit)
 
 ## Requirements
 
@@ -166,3 +169,13 @@ Create an instance of the view using the following:
 ```swift
 AboutAppView(configuration: configuration)
 ```
+
+## Other Packages
+
+### [FeaturesKit](https://github.com/adamfootdev/FeaturesKit)
+
+Add a features list screen to your app.
+
+### [HelpKit](https://github.com/adamfootdev/HelpKit)
+
+Add a help screen to your app.

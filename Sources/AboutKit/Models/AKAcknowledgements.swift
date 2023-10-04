@@ -9,7 +9,7 @@ import Foundation
 
 /// A custom struct containing details about the acknowledgements for the app.
 public struct AKAcknowledgements {
-
+    
     /// An `Optional` array of `AKPersonAcknowledgement` that contains details about the people to acknowledge in developing the app.
     public let people: [AKPersonAcknowledgement]?
 

@@ -13,7 +13,7 @@ import UIKit
 #endif
 
 struct AboutKit {
-
+    
     private init() {}
 
     #if os(iOS)

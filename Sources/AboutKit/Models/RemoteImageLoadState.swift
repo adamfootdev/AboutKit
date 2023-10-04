@@ -11,4 +11,4 @@ enum RemoteImageLoadState {
     case loading
     case error
     case loaded(image: PlatformImage)
-    }
+}
