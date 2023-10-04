@@ -124,7 +124,7 @@ public struct AboutAppView: View {
                 }
             }
         }
-        .navigationTitle(LocalizedStrings.about)
+        .navigationTitle(LocalizedStrings.aboutApp)
     }
 }
 

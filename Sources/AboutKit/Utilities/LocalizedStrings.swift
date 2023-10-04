@@ -33,7 +33,7 @@ enum LocalizedStrings {
     static let viewAllApps = String(localized: "View all Apps", bundle: .module)
     static let viewMac = String(localized: "View…", bundle: .module)
 
-    static let about = String(localized: "About", bundle: .module)
+    static let aboutApp = String(localized: "About App", bundle: .module)
     static let done = String(localized: "Done", bundle: .module)
 
     static let people = String(localized: "People", bundle: .module)

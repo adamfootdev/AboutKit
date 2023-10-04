@@ -188,7 +188,7 @@ public struct AboutAppView: View {
                 }
             }
         }
-        .navigationTitle(LocalizedStrings.about)
+        .navigationTitle(LocalizedStrings.aboutApp)
         .sheet(isPresented: $showingMailSheet) {
             MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
                 .edgesIgnoringSafeArea(.all)
