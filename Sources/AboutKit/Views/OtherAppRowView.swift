@@ -47,6 +47,7 @@ struct OtherAppRowView: View {
 
             } else if let appIconURL = appIconURL {
                 RemoteImageView(url: appIconURL)
+                    .scaledToFit()
             }
         }
         .frame(width: 60, height: 60)

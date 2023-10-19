@@ -56,6 +56,7 @@ struct HeaderView: View {
 
             } else if let appIconURL = appIconURL {
                 RemoteImageView(url: appIconURL)
+                    .scaledToFit()
             }
         }
         .frame(width: appIconWidth, height: appIconHeight)
