@@ -111,7 +111,7 @@ public struct AboutAppView: View {
             }
 
             if configuration.otherApps.isEmpty == false {
-                Section(header: Text(LocalizedStrings.otherApps)) {
+                Section {
                     ForEach(
                         configuration.otherApps,
                         content: OtherAppRowView.init
@@ -121,6 +121,12 @@ public struct AboutAppView: View {
                         LocalizedStrings.viewAllApps,
                         destination: configuration.app.developer.appStoreURL
                     )
+                } header: {
+                    #if os(tvOS)
+                    SectionHeaderLabel(LocalizedStrings.otherApps)
+                    #else
+                    Text(LocalizedStrings.otherApps)
+                    #endif
                 }
             }
         }
