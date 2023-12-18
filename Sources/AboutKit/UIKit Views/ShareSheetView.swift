@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SwiftUI
 
 /// A `UIViewControllerRepresentable` that shows the default iOS share sheet

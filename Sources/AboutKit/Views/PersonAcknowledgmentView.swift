@@ -22,8 +22,10 @@ struct PersonAcknowledgementView: View {
                profiles.isEmpty == false {
                 Section {
                     ForEach(Array(profiles.enumerated()), id: \.0) { _, profile in
-                        #if os(iOS)
-                        Link(destination: profile.url) {
+                        #if os(iOS) || os(visionOS)
+                        Button {
+                            openURL(profile.url)
+                        } label: {
                             ItemLabel(
                                 profile.title,
                                 image: profile.platform.imageName
@@ -50,7 +52,7 @@ struct PersonAcknowledgementView: View {
             Section {
                 Text(acknowledgment.details)
                     .lineLimit(nil)
-                    #if os(iOS)
+                    #if os(iOS) || os(visionOS)
                     .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .listRowInsets(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
@@ -69,7 +71,7 @@ struct PersonAcknowledgementView: View {
         .formStyle(.grouped)
         #endif
         .navigationTitle(acknowledgment.name)
-        #if os(iOS) || os(watchOS)
+        #if os(iOS) || os(visionOS) || os(watchOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
     }
@@ -77,6 +79,9 @@ struct PersonAcknowledgementView: View {
 
 struct PersonAcknowledgementView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonAcknowledgementView(.example)
+        NavigationView {
+            PersonAcknowledgementView(.example)
+        }
+        .navigationViewStyle(.stack)
     }
 }

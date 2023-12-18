@@ -39,7 +39,7 @@ struct HeaderView: View {
         ZStack {
             #if os(iOS)
             Color(.secondarySystemGroupedBackground)
-            #elseif os(watchOS) || os(tvOS)
+            #elseif os(watchOS) || os(tvOS) || os(visionOS)
             Color.white.opacity(0.2)
             #endif
 
@@ -64,7 +64,7 @@ struct HeaderView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         #elseif os(macOS)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-        #elseif os(watchOS)
+        #elseif os(visionOS) || os(watchOS)
         .clipShape(Circle())
         #endif
         .accessibilityHidden(true)

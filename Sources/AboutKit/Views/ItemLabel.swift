@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 08/09/2021.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SwiftUI
 
 struct ItemLabel: View {

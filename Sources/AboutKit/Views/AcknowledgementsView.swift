@@ -37,10 +37,9 @@ struct AcknowledgementsView: View {
                 Section {
                     ForEach(Array(people.enumerated()), id: \.0) { index, person in
                         NavigationLink {
-                            Text(person.name)
                             PersonAcknowledgementView(person)
                         } label: {
-                            #if os(iOS)
+                            #if os(iOS) || os(visionOS)
                             Label(person.name, systemImage: "person")
                             #else
                             Text(person.name)
@@ -60,7 +59,7 @@ struct AcknowledgementsView: View {
                         NavigationLink {
                             FrameworkAcknowledgementView(acknowledgment)
                         } label: {
-                            #if os(iOS)
+                            #if os(iOS) || os(visionOS)
                             Label(acknowledgment.name, systemImage: "square.stack.3d.up")
                             #else
                             Text(acknowledgment.name)
@@ -78,7 +77,7 @@ struct AcknowledgementsView: View {
         .formStyle(.grouped)
         #endif
         .navigationTitle(LocalizedStrings.acknowledgements)
-        #if os(iOS) || os(watchOS)
+        #if os(iOS) || os(visionOS) || os(watchOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
     }

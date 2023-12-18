@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SwiftUI
 import MessageUI
 
@@ -44,7 +44,9 @@ public struct AboutAppView: View {
                     }
                     
                     if let websiteURL = configuration.app.websiteURL {
-                        Link(destination: websiteURL) {
+                        Button {
+                            openURL(websiteURL)
+                        } label: {
                             ItemLabel(
                                 LocalizedStrings.website,
                                 systemImage: "safari"
@@ -116,7 +118,9 @@ public struct AboutAppView: View {
                     }
 
                     if configuration.showWriteReview.isVisible {
-                        Link(destination: configuration.app.appStoreReviewURL) {
+                        Button {
+                            openURL(configuration.app.appStoreReviewURL)
+                        } label: {
                             ItemLabel(
                                 LocalizedStrings.writeReview,
                                 systemImage: "star"
@@ -129,7 +133,9 @@ public struct AboutAppView: View {
             if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
-                        Link(destination: privacyPolicyURL) {
+                        Button {
+                            openURL(privacyPolicyURL)
+                        } label: {
                             ItemLabel(
                                 LocalizedStrings.privacyPolicy,
                                 systemImage: "lock.shield"
@@ -138,7 +144,9 @@ public struct AboutAppView: View {
                     }
 
                     if let termsOfUseURL = configuration.app.termsOfUseURL {
-                        Link(destination: termsOfUseURL) {
+                        Button {
+                            openURL(termsOfUseURL)
+                        } label: {
                             ItemLabel(
                                 LocalizedStrings.termsOfUse,
                                 systemImage: "checkmark.seal"
@@ -150,7 +158,9 @@ public struct AboutAppView: View {
 
             if let testFlightURL = configuration.app.testFlightURL {
                 Section {
-                    Link(destination: testFlightURL) {
+                    Button {
+                        openURL(testFlightURL)
+                    } label: {
                         ItemLabel(
                             LocalizedStrings.testFlight,
                             systemImage: "fan"
@@ -178,10 +188,11 @@ public struct AboutAppView: View {
                 Section {
                     ForEach(configuration.otherApps, content: OtherAppRowView.init)
 
-                    Link(
-                        LocalizedStrings.viewAllApps,
-                        destination: configuration.app.developer.appStoreURL
-                    )
+                    Button {
+                        openURL(configuration.app.developer.appStoreURL)
+                    } label: {
+                        Text(LocalizedStrings.viewAllApps)
+                    }
                     
                 } header: {
                     Text(LocalizedStrings.otherApps)
@@ -225,6 +236,7 @@ struct AboutAppView_Previews: PreviewProvider {
         NavigationView {
             AboutAppView(configuration: .example)
         }
+        .navigationViewStyle(.stack)
     }
 }
 #endif

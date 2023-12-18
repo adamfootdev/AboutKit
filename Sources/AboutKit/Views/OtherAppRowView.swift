@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 23/02/2021.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SwiftUI
 
 struct OtherAppRowView: View {
@@ -51,7 +51,11 @@ struct OtherAppRowView: View {
             }
         }
         .frame(width: 60, height: 60)
+        #if os(visionOS)
+        .clipShape(Circle())
+        #else
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        #endif
         .accessibilityHidden(true)
     }
 

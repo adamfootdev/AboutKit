@@ -16,7 +16,7 @@ struct AboutKit {
     
     private init() {}
 
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     /// A `String` containing debug details about the current app.
     static var debugDetails: String {
         let versionNumber = Bundle.main.versionNumber

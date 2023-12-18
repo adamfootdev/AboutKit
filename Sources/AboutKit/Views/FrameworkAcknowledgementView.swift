@@ -22,8 +22,10 @@ struct FrameworkAcknowledgementView: View {
                links.isEmpty == false {
                 Section {
                     ForEach(Array(links.enumerated()), id: \.0) { _, link in
-                        #if os(iOS)
-                        Link(destination: link.url) {
+                        #if os(iOS) || os(visionOS)
+                        Button {
+                            openURL(link.url)
+                        } label: {
                             ItemLabel(
                                 link.title,
                                 systemImage: link.systemImage
@@ -50,7 +52,7 @@ struct FrameworkAcknowledgementView: View {
             Section {
                 Text(acknowledgment.details)
                     .lineLimit(nil)
-                    #if os(iOS)
+                    #if os(iOS) || os(visionOS)
                     .font(.system(.subheadline, design: .monospaced))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .listRowInsets(.init(top: 12, leading: 12, bottom: 12, trailing: 12))

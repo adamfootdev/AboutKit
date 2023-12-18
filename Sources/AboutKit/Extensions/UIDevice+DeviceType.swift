@@ -5,7 +5,7 @@
 //  Created by Adam Foot on 02/08/2023.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 
 extension UIDevice {
