@@ -82,6 +82,8 @@ struct PersonAcknowledgementView_Previews: PreviewProvider {
         NavigationView {
             PersonAcknowledgementView(.example)
         }
+        #if os(iOS)
         .navigationViewStyle(.stack)
+        #endif
     }
 }
