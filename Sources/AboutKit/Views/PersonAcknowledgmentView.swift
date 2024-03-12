@@ -49,22 +49,24 @@ struct PersonAcknowledgementView: View {
                 }
             }
 
-            Section {
-                Text(acknowledgment.details)
-                    .lineLimit(nil)
-                    #if os(iOS) || os(visionOS)
-                    .font(.subheadline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .listRowInsets(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
-                    #elseif os(macOS)
-                    .font(.subheadline)
-                    #elseif os(tvOS) || os(watchOS)
-                    .font(.caption2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .listRowBackground(Color.clear)
-                    #endif
-            } header: {
-                Text(LocalizedStrings.details)
+            if let details = acknowledgment.details {
+                Section {
+                    Text(details)
+                        .lineLimit(nil)
+                        #if os(iOS) || os(visionOS)
+                        .font(.subheadline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .listRowInsets(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
+                        #elseif os(macOS)
+                        .font(.subheadline)
+                        #elseif os(tvOS) || os(watchOS)
+                        .font(.caption2)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .listRowBackground(Color.clear)
+                        #endif
+                } header: {
+                    Text(LocalizedStrings.details)
+                }
             }
         }
         #if os(macOS)

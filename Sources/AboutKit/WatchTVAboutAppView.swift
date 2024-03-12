@@ -73,7 +73,7 @@ public struct AboutAppView: View {
                 }
             }
             
-            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil {
+            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
                         ItemLabel(
@@ -88,6 +88,14 @@ public struct AboutAppView: View {
                             details: termsOfUseURL.absoluteString
                         )
                     }
+
+                    if let acknowledgements = configuration.app.acknowledgements {
+                        if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
+                            NavigationLink(LocalizedStrings.acknowledgements) {
+                                AcknowledgementsView(acknowledgements)
+                            }
+                        }
+                    }
                 }
             }
 
@@ -97,16 +105,6 @@ public struct AboutAppView: View {
                         LocalizedStrings.testFlight,
                         details: testFlightURL.absoluteString
                     )
-                }
-            }
-
-            if let acknowledgements = configuration.app.acknowledgements {
-                if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
-                    Section {
-                        NavigationLink(LocalizedStrings.acknowledgements) {
-                            AcknowledgementsView(acknowledgements)
-                        }
-                    }
                 }
             }
 

@@ -130,7 +130,7 @@ public struct AboutAppView: View {
                 }
             }
 
-            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil {
+            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
                         Button {
@@ -153,6 +153,19 @@ public struct AboutAppView: View {
                             )
                         }
                     }
+
+                    if let acknowledgements = configuration.app.acknowledgements {
+                        if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
+                            NavigationLink {
+                                AcknowledgementsView(acknowledgements)
+                            } label: {
+                                ItemLabel(
+                                    LocalizedStrings.acknowledgements,
+                                    systemImage: "list.star"
+                                )
+                            }
+                        }
+                    }
                 }
             }
 
@@ -165,21 +178,6 @@ public struct AboutAppView: View {
                             LocalizedStrings.testFlight,
                             systemImage: "fan"
                         )
-                    }
-                }
-            }
-
-            if let acknowledgements = configuration.app.acknowledgements {
-                if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
-                    Section {
-                        NavigationLink {
-                            AcknowledgementsView(acknowledgements)
-                        } label: {
-                            ItemLabel(
-                                LocalizedStrings.acknowledgements,
-                                systemImage: "list.star"
-                            )
-                        }
                     }
                 }
             }

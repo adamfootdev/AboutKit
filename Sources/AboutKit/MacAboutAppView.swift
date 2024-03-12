@@ -109,7 +109,7 @@ public struct AboutAppView: View {
                 }
             }
 
-            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil {
+            if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
                         ItemLabel(
@@ -128,6 +128,17 @@ public struct AboutAppView: View {
                             openURL(termsOfUseURL)
                         }
                     }
+
+                    if let acknowledgements = configuration.app.acknowledgements {
+                        if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
+                            ItemLabel(
+                                LocalizedStrings.acknowledgements,
+                                actionTitle: LocalizedStrings.viewAcknowledgements
+                            ) {
+                                showingAcknowledgements.toggle()
+                            }
+                        }
+                    }
                 }
             }
 
@@ -138,19 +149,6 @@ public struct AboutAppView: View {
                         actionTitle: LocalizedStrings.openTestFlight
                     ) {
                         openURL(testFlightURL)
-                    }
-                }
-            }
-
-            if let acknowledgements = configuration.app.acknowledgements {
-                if acknowledgements.frameworks?.isEmpty == false || acknowledgements.people?.isEmpty == false {
-                    Section {
-                        ItemLabel(
-                            LocalizedStrings.acknowledgements,
-                            actionTitle: LocalizedStrings.viewAcknowledgements
-                        ) {
-                            showingAcknowledgements.toggle()
-                        }
                     }
                 }
             }

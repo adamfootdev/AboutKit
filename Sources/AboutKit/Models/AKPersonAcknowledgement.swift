@@ -13,8 +13,8 @@ public struct AKPersonAcknowledgement {
     /// A `String` containing the personʼs name.
     public let name: String
 
-    /// A `String` containing details about how they influenced the app.
-    public let details: String
+    /// An `Optional<String>` containing details about how they influenced the app.
+    public let details: String?
 
     /// An `Optional` array of `AKProfile` containing their social media profiles.
     public let profiles: [AKProfile]?
@@ -22,11 +22,11 @@ public struct AKPersonAcknowledgement {
     /// Initializes a custom struct containing details about the people to acknowledge in developing the app.
     /// - Parameters:
     ///   - name: A `String` containing the personʼs name.
-    ///   - details: A `String` containing details about how they influenced the app.
+    ///   - details: An `Optional<String>` containing details about how they influenced the app.
     ///   - profiles: An `Optional` array of `AKProfile` containing their social media profiles.
     public init(
         _ name: String,
-        details: String,
+        details: String?,
         profiles: [AKProfile]?
     ) {
         self.name = name

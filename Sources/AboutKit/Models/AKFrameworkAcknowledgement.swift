@@ -13,8 +13,8 @@ public struct AKFrameworkAcknowledgement {
     /// A `String` containing the frameworkʼs name.
     public let name: String
 
-    /// A `String` containing details about the framework such as licence information.
-    public let details: String
+    /// An `Optional<String>` containing details about the framework such as licence information.
+    public let details: String?
 
     /// An `Optional` array of `AKFrameworkAcknowledgementLink` containing links related to the framework.
     public let links: [AKFrameworkAcknowledgementLink]?
@@ -22,11 +22,11 @@ public struct AKFrameworkAcknowledgement {
     /// Initializes a custom struct containing details about the frameworks used in the app.
     /// - Parameters:
     ///   - name: A `String` containing the frameworkʼs name.
-    ///   - details: A `String` containing details about the framework such as licence information.
+    ///   - details: An `Optional<String>` containing details about the framework such as licence information.
     ///   - links: An `Optional` array of `AKFrameworkAcknowledgementLink` containing links related to the framework.
     public init(
         _ name: String,
-        details: String,
+        details: String?,
         links: [AKFrameworkAcknowledgementLink]?
     ) {
         self.name = name
