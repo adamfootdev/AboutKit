@@ -11,7 +11,8 @@ import Foundation
 /// looks up an app based on its app ID to get the URL of its app icon.
 /// The app icon URL is then cached for quickly accessing with future
 /// requests to save making another network call.
-final class AppIconNetworkManager {
+@MainActor
+final class AppIconNetworkManager: Sendable {
     /// Creates the singleton object.
     static let shared = AppIconNetworkManager()
 
@@ -23,7 +24,7 @@ final class AppIconNetworkManager {
     /// Fetches the app icon URL string for a given app.
     /// - Parameter app: The app to retrieve the app icon for.
     /// - Returns: The string containing the URL of the app's icon.
-    func fetchURL(for app: AKApp) async -> String? {
+    func fetchURL(for app: any AKApp) async -> String? {
         let urlString = "https://itunes.apple.com/lookup?id=\(app.id)"
         let cacheKey = NSString(string: urlString)
 
@@ -36,7 +37,7 @@ final class AppIconNetworkManager {
 
         } else {
             do {
-                let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
+                let (data, _) = try await URLSession.shared.getData(for: URLRequest(url: url))
 
                 guard let decodedResponse = try? JSONDecoder().decode(AppResponse.self, from: data),
                    let appIconURL = decodedResponse.results.first?.appIcon else {

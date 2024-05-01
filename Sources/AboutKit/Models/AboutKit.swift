@@ -12,13 +12,14 @@ import IOKit
 import UIKit
 #endif
 
-struct AboutKit {
-    
+@MainActor
+struct AboutKit: Sendable {
+
     private init() {}
 
     #if os(iOS) || os(visionOS)
     /// A `String` containing debug details about the current app.
-    static var debugDetails: String {
+    static let debugDetails: String = {
         let versionNumber = Bundle.main.versionNumber
         let buildNumber = Bundle.main.buildNumber
         let versionDetails = "App Version: \(versionNumber)(\(buildNumber))"
@@ -28,12 +29,12 @@ struct AboutKit {
         let environmentDetails = "Environment: \(Bundle.main.userType.title)"
 
         return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
-    }
+    }()
 
     #elseif os(macOS)
 
     /// Returns a `String` containing the identifier of the current device, e.g. MacBook Pro 13,1
-    private static var deviceType: String {
+    private static let deviceType: String = {
         let service = IOServiceGetMatchingService(
             kIOMainPortDefault,
             IOServiceMatching("IOPlatformExpertDevice")
@@ -48,10 +49,10 @@ struct AboutKit {
         IOObjectRelease(service)
 
         return modelIdentifier ?? "Unknown"
-    }
+    }()
 
     /// A `String` containing debug details about the current app.
-    static var debugDetails: String {
+    static let debugDetails: String = {
         let versionNumber = Bundle.main.versionNumber
         let buildNumber = Bundle.main.buildNumber
         let versionDetails = "App Version: \(versionNumber)(\(buildNumber))"
@@ -61,6 +62,6 @@ struct AboutKit {
         let environmentDetails = "Environment: \(Bundle.main.userType.title)"
 
         return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
-    }
+    }()
     #endif
 }

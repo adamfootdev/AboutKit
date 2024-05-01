@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom struct containing details about the frameworks used in the app.
-public struct AKFrameworkAcknowledgement {
+public struct AKFrameworkAcknowledgement: Sendable {
 
     /// A `String` containing the frameworkʼs name.
     public let name: String

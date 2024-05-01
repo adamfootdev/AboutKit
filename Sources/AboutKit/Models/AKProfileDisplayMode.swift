@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom enum that is used to determine how much data to show for a social platform.
-public enum AKProfileDisplayMode: Hashable {
+public enum AKProfileDisplayMode: Hashable, Sendable {
     case combined
     case platformOnly
     case usernameOnly

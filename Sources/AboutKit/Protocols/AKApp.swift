@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol AKApp {
+public protocol AKApp: Identifiable, Sendable {
     var id: String { get }
     var name: String { get }
     var appIcon: PlatformImage? { get }

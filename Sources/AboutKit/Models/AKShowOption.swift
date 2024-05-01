@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom enum used to indicate whether a feature should be shown or hidden.
-public enum AKShowOption {
+public enum AKShowOption: Sendable {
     case always, testFlightOnly, appStoreOnly, never
 
     var isVisible: Bool {

@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom struct containing details about a social media platform profile.
-public struct AKProfile: Identifiable, Hashable {
+public struct AKProfile: Identifiable, Hashable, Sendable {
 
     /// A `String` containing the username for the profile.
     public let username: String

@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom enum used for a social profile platform.
-public enum AKProfilePlatform: Hashable {
+public enum AKProfilePlatform: Hashable, Sendable {
     case facebook
     case instagram
     case linkedIn(profileType: LinkedInProfileType)

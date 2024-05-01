@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom enum used for framework links.
-public enum AKFrameworkAcknowledgementLink {
+public enum AKFrameworkAcknowledgementLink: Sendable {
     case productPage(_ url: URL)
     case repository(_ url: URL)
     case compliance(_ url: URL)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct HeaderView: View {
     private let app: AKMyApp
 

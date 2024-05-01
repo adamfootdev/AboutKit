@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom enum related to the type of profile a LinkedIn account is.
-public enum LinkedInProfileType {
+public enum LinkedInProfileType: Sendable {
     case company, user
 
     /// A `String` to be used in the LinkedIn profile URL.

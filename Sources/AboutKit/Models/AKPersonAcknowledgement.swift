@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom struct containing details about the people to acknowledge in developing the app.
-public struct AKPersonAcknowledgement {
+public struct AKPersonAcknowledgement: Sendable {
 
     /// A `String` containing the personʼs name.
     public let name: String

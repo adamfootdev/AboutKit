@@ -10,6 +10,7 @@ import SwiftUI
 import MessageUI
 
 /// A SwiftUI `View` which displays attributes and links relating to an app.
+@MainActor
 public struct AboutAppView: View {
     @Environment(\.openURL) var openURL
 

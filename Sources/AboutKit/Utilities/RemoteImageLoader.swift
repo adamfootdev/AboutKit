@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class RemoteImageLoader: ObservableObject {
     @Published var loadState = RemoteImageLoadState.loading
 
@@ -18,7 +19,7 @@ final class RemoteImageLoader: ObservableObject {
         }
     }
 
-    @MainActor private func loadAppIcon(
+    private func loadAppIcon(
         for urlString: String
     ) async {
         loadState = .loading
@@ -34,7 +35,7 @@ final class RemoteImageLoader: ObservableObject {
             loadState = .loaded(image: cachedImage)
         } else {
             do {
-                let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
+                let (data, _) = try await URLSession.shared.getData(for: URLRequest(url: url))
 
                 guard let image = PlatformImage(data: data) else {
                     loadState = .error

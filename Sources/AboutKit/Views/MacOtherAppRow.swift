@@ -8,6 +8,7 @@
 #if os(macOS)
 import SwiftUI
 
+@MainActor
 struct OtherAppRowView: View {
     @Environment(\.openURL) private var openURL
 

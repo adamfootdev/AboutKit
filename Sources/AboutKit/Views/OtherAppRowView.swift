@@ -8,6 +8,7 @@
 #if os(iOS) || os(visionOS)
 import SwiftUI
 
+@MainActor
 struct OtherAppRowView: View {
     private let otherApp: AKOtherApp
 

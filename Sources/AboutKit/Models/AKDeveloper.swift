@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom struct containing details about the developer.
-public struct AKDeveloper {
+public struct AKDeveloper: Sendable {
     
     /// The developer ID `String` for the given app. This can be found by locating the App Store URL
     /// for the developer. This should be in the format 123456789.
