@@ -8,7 +8,6 @@
 #if os(tvOS)
 import SwiftUI
 
-@MainActor
 struct OtherAppRowView: View {
     private let otherApp: AKOtherApp
 

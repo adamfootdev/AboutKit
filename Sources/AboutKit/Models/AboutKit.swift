@@ -12,7 +12,6 @@ import IOKit
 import UIKit
 #endif
 
-@MainActor
 struct AboutKit: Sendable {
 
     private init() {}
