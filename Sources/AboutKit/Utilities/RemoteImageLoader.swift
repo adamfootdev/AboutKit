@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class RemoteImageLoader: ObservableObject {
     @Published var loadState = RemoteImageLoadState.loading
 
