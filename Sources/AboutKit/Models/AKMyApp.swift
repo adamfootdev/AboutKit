@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A custom struct of containing details about the developerʼs app.
-public struct AKMyApp: AKApp {
+public struct AKMyApp: AKApp, Sendable {
 
     /// The app ID `String` for the given app. This can be found in App Store Connect or the URL of the App Store
     /// listing for the app. This should be in the format 123456789.

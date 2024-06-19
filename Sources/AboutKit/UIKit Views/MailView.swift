@@ -30,13 +30,14 @@ struct MailView: UIViewControllerRepresentable {
         self.debugDetails = debugDetails
     }
     
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+    class Coordinator: NSObject, @preconcurrency MFMailComposeViewControllerDelegate {
         private var dismiss: DismissAction
         
         init(dismiss: DismissAction) {
             self.dismiss = dismiss
         }
         
+        @MainActor
         func mailComposeController(
             _ controller: MFMailComposeViewController,
             didFinishWith result: MFMailComposeResult,

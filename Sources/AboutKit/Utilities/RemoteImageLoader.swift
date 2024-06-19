@@ -35,7 +35,7 @@ final class RemoteImageLoader: ObservableObject {
             loadState = .loaded(image: cachedImage)
         } else {
             do {
-                let (data, _) = try await URLSession.shared.getData(for: URLRequest(url: url))
+                let (data, _) = try await URLSession.shared.data(from: url)
 
                 guard let image = PlatformImage(data: data) else {
                     loadState = .error

@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A custom struct of data to create a promoted other app list item.
-public struct AKOtherApp: AKApp {
+public struct AKOtherApp: AKApp, Sendable {
 
     /// The app ID `String` for the given app. This can be found in App Store Connect or the URL of the App Store
     /// listing for the app. This should be in the format 123456789.

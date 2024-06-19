@@ -8,7 +8,7 @@
 import SwiftUI
 
 #if os(macOS)
-extension NSImage: @unchecked Sendable {}
+extension NSImage: @retroactive @unchecked Sendable {}
 public typealias PlatformImage = NSImage
 #else
 public typealias PlatformImage = UIImage

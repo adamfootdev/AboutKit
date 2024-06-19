@@ -17,7 +17,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "AboutKit",
-            targets: ["AboutKit"]),
+            targets: ["AboutKit"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,9 +30,14 @@ let package = Package(
         .target(
             name: "AboutKit",
             dependencies: [],
-            resources: [.process("Resources")]),
+            resources: [.process("Resources")],
+            swiftSettings: [
+                .swiftLanguageVersion(.v6)
+            ]
+        ),
         .testTarget(
             name: "AboutKitTests",
-            dependencies: ["AboutKit"]),
+            dependencies: ["AboutKit"]
+        ),
     ]
 )

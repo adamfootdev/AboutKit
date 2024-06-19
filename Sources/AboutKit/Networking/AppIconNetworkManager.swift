@@ -12,7 +12,7 @@ import Foundation
 /// The app icon URL is then cached for quickly accessing with future
 /// requests to save making another network call.
 @MainActor
-final class AppIconNetworkManager: Sendable {
+final class AppIconNetworkManager {
     /// Creates the singleton object.
     static let shared = AppIconNetworkManager()
 
@@ -37,7 +37,7 @@ final class AppIconNetworkManager: Sendable {
 
         } else {
             do {
-                let (data, _) = try await URLSession.shared.getData(for: URLRequest(url: url))
+                let (data, _) = try await URLSession.shared.data(from: url)
 
                 guard let decodedResponse = try? JSONDecoder().decode(AppResponse.self, from: data),
                    let appIconURL = decodedResponse.results.first?.appIcon else {
