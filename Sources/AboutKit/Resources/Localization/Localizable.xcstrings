@@ -3,9 +3,117 @@
   "strings" : {
     "%@ %@ (%@)" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@ (%3$@)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "%1$@ %2$@ (%3$@)"
           }
         }
@@ -120,6 +228,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "О приложении"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O aplikácii"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulama Hakkında"
           }
         },
         "vi" : {
@@ -247,6 +367,18 @@
             "value" : "Благодарности"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poďakovanie"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teşekkürler"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -369,6 +501,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Проверьте %@ в App Store!"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozrite si %@ v App Store!"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ uygulamasını App Store'da inceleyin!"
           }
         },
         "vi" : {
@@ -495,6 +639,18 @@
             "value" : "Согласие"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Súlad"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uyumluluk"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -617,6 +773,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Связаться с разработчиком…"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontaktovať vývojára…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geliştiriciyle İletişime Geçin…"
           }
         },
         "vi" : {
@@ -743,6 +911,18 @@
             "value" : "Подробности"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podrobnosti"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayrıntılar"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -865,6 +1045,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сделанный"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotovo"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitti"
           }
         },
         "vi" : {
@@ -992,6 +1184,18 @@
             "value" : "Электронное письмо"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-posta"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1114,6 +1318,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Фреймворки"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rámce"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çerçeveler"
           }
         },
         "vi" : {
@@ -1240,6 +1456,18 @@
             "value" : "Ссылки"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odkazy"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantılar"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1362,6 +1590,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Открыть TestFlight…"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otvoriť TestFlight…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight'ı açın…"
           }
         },
         "vi" : {
@@ -1488,6 +1728,18 @@
             "value" : "Открыть веб-сайт…"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otvoriť web…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Sitesini Aç…"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1610,6 +1862,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Другие приложения"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iné aplikácie"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diğer Uygulamalar"
           }
         },
         "vi" : {
@@ -1736,6 +2000,18 @@
             "value" : "Люди"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ľudia"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kişiler"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1858,6 +2134,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Политика конфиденциальности"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zásady ochrany osobných údajov"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gizlilik Politikası"
           }
         },
         "vi" : {
@@ -1984,6 +2272,18 @@
             "value" : "Страница продукта"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stránka produktu"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ürün Sayfası"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2106,6 +2406,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профили"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profily"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profiller"
           }
         },
         "vi" : {
@@ -2232,6 +2544,18 @@
             "value" : "Репозиторий"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úložisko"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depo"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2354,6 +2678,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Обзор…"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skontrolovať…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gözden geçirmek…"
           }
         },
         "vi" : {
@@ -2480,6 +2816,18 @@
             "value" : "Поделиться приложением"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdieľať aplikáciu"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamayı Paylaş"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2602,6 +2950,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Делиться…"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdieľať…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaş…"
           }
         },
         "vi" : {
@@ -2734,6 +3094,18 @@
             "value" : "Условия эксплуатации"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podmienky používania"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kullanım Şartları"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2749,7 +3121,116 @@
       }
     },
     "TestFlight" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight"
+          }
+        }
+      }
     },
     "Twitter (@%@)" : {
       "extractionState" : "manual",
@@ -2866,6 +3347,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twitter (@%@)"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X (@%@)"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X (@%@)"
           }
         },
         "vi" : {
@@ -2992,6 +3485,18 @@
             "value" : "Посмотреть"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görüntüle"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3114,6 +3619,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Посмотреть %@ в App Store"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozrite si %@ v App Store"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@'ı App Store'da görüntüle"
           }
         },
         "vi" : {
@@ -3240,6 +3757,18 @@
             "value" : "Просмотр благодарностей…"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť Poďakovanie…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teşekkürleri Görüntüle…"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3250,130 +3779,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "查看致谢…"
-          }
-        }
-      }
-    },
-    "View all Apps" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "عرض جميع التطبيقات"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zobrazit všechny Aplikace"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle anzeigen Apps"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "View all Apps"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "View all Apps"
-          }
-        },
-        "en-IN" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "View all Apps"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ver todas Aplicaciones"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voir toutes Apps"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "צפה בכל היישומים"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Visualizza tutte le App"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "すべてのアプリを表示"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모든 앱보기"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bekijk alle Apps"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wyświetl wszystkie Aplikacje"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ver todos os Aplicativos"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ver todos os Aplicativos"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vizualizați toate Aplicații"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Просмотреть все приложения"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Xem tất cả ứng dụng"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "查看所有应用"
           }
         }
       }
@@ -3486,6 +3891,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Посмотреть политику конфиденциальности…"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť Zásady ochrany osobných údajov…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gizlilik Politikasını Görüntüle…"
           }
         },
         "vi" : {
@@ -3612,6 +4029,18 @@
             "value" : "Просмотреть профиль…"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť profil…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profili Görüntüle…"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3736,6 +4165,18 @@
             "value" : "Посмотреть Условия использования…"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť podmienky používania…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kullanım Şartlarını Görüntüle…"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3746,6 +4187,142 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "查看使用条款…"
+          }
+        }
+      }
+    },
+    "View all Apps" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عرض جميع التطبيقات"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit všechny Aplikace"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle anzeigen Apps"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View all Apps"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View all Apps"
+          }
+        },
+        "en-IN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View all Apps"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todas Aplicaciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir toutes Apps"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "צפה בכל היישומים"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza tutte le App"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてのアプリを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 앱보기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bekijk alle Apps"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyświetl wszystkie Aplikacje"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todos os Aplicativos"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todos os Aplicativos"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vizualizați toate Aplicații"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть все приложения"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť všetky aplikácie"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm Uygulamaları Görüntüle"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem tất cả ứng dụng"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看所有应用"
           }
         }
       }
@@ -3858,6 +4435,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вид…"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobraziť…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görüş…"
           }
         },
         "vi" : {
@@ -3984,6 +4573,18 @@
             "value" : "Веб-сайт"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webstránka"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Sitesi"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4106,6 +4707,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Написать обзор"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napíšte recenziu"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorum Yaz"
           }
         },
         "vi" : {
