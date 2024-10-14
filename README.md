@@ -15,7 +15,7 @@ For users who previously used AboutKit for showing the features list, please use
     - [AKConfiguration](#akconfiguration)
     - [AKMyApp](#akmyapp)
     - [AKDeveloper](#akdeveloper)
-    - [AKFeatureItem](#akfeatureitem)
+    - [AKProfile](#akprofile)
     - [AKOtherApp](#akotherapp)
     - [AKAcknowledgements](#akacknowledgements)
     - [AKPersonAcknowledgement](#akpersonacknowledgement)
