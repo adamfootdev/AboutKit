@@ -22,7 +22,7 @@ struct AboutKit {
     static let debugDetails: String = {
         let versionNumber = Bundle.main.versionNumber
         let buildNumber = Bundle.main.buildNumber
-        let versionDetails = "App Version: \(versionNumber)(\(buildNumber))"
+        let versionDetails = "App Version: \(versionNumber) (\(buildNumber))"
 
         let osDetails = "OS Version: \(UIDevice.current.systemVersion)"
         let deviceDetails = "Device: \(UIDevice.current.deviceType)"
@@ -55,7 +55,7 @@ struct AboutKit {
     static let debugDetails: String = {
         let versionNumber = Bundle.main.versionNumber
         let buildNumber = Bundle.main.buildNumber
-        let versionDetails = "App Version: \(versionNumber)(\(buildNumber))"
+        let versionDetails = "App Version: \(versionNumber) (\(buildNumber))"
 
         let osDetails = "OS Version: \(ProcessInfo.processInfo.operatingSystemVersionString)"
         let deviceDetails = "Device: \(deviceType)"
