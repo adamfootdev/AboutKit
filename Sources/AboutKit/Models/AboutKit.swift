@@ -17,21 +17,7 @@ struct AboutKit {
 
     private init() {}
 
-    #if os(iOS) || os(visionOS)
-    /// A `String` containing debug details about the current app.
-    static let debugDetails: String = {
-        let versionNumber = Bundle.main.versionNumber
-        let buildNumber = Bundle.main.buildNumber
-        let versionDetails = "App Version: \(versionNumber) (\(buildNumber))"
-
-        let osDetails = "OS Version: \(UIDevice.current.systemVersion)"
-        let deviceDetails = "Device: \(UIDevice.current.deviceType)"
-        let environmentDetails = "Environment: \(Bundle.main.userType.title)"
-
-        return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
-    }()
-
-    #elseif os(macOS)
+    #if os(macOS) || targetEnvironment(macCatalyst)
 
     /// Returns a `String` containing the identifier of the current device, e.g. MacBook Pro 13,1
     private static let deviceType: String = {
@@ -63,5 +49,21 @@ struct AboutKit {
 
         return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
     }()
+
+    #elseif os(iOS) || os(visionOS)
+
+    /// A `String` containing debug details about the current app.
+    static let debugDetails: String = {
+        let versionNumber = Bundle.main.versionNumber
+        let buildNumber = Bundle.main.buildNumber
+        let versionDetails = "App Version: \(versionNumber) (\(buildNumber))"
+
+        let osDetails = "OS Version: \(ProcessInfo.processInfo.operatingSystemVersionString)"
+        let deviceDetails = "Device: \(ProcessInfo().isiOSAppOnMac ? "Mac" : UIDevice.current.deviceType)"
+        let environmentDetails = "Environment: \(Bundle.main.userType.title)"
+
+        return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
+    }()
+
     #endif
 }
