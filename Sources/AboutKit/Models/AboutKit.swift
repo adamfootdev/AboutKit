@@ -17,23 +17,9 @@ struct AboutKit {
 
     private init() {}
 
-    #if os(iOS) || os(visionOS)
-    /// A `String` containing debug details about the current app.
-    static let debugDetails: String = {
-        let versionNumber = Bundle.main.versionNumber
-        let buildNumber = Bundle.main.buildNumber
-        let versionDetails = "App Version: \(versionNumber) (\(buildNumber))"
+    #if os(macOS) || targetEnvironment(macCatalyst)
 
-        let osDetails = "OS Version: \(UIDevice.current.systemVersion)"
-        let deviceDetails = "Device: \(UIDevice.current.deviceType)"
-        let environmentDetails = "Environment: \(Bundle.main.userType.title)"
-
-        return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
-    }()
-
-    #elseif os(macOS)
-
-    /// Returns a `String` containing the identifier of the current device, e.g. MacBook Pro 13,1
+    /// Returns a `String` containing the identifier of the current device, e.g. MacBookPro13,1
     private static let deviceType: String = {
         let service = IOServiceGetMatchingService(
             kIOMainPortDefault,
@@ -63,5 +49,35 @@ struct AboutKit {
 
         return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
     }()
+
+    #elseif os(iOS) || os(visionOS)
+
+    /// Returns a `String` containing the identifier of the current device, e.g. iPhone17,1
+    private static let deviceType: String = {
+        if ProcessInfo().isiOSAppOnMac {
+            var size = 0
+            let key = "hw.model"
+            sysctlbyname(key, nil, &size, nil, 0)
+            var value = [CChar](repeating: 0,  count: size)
+            sysctlbyname(key, &value, &size, nil, 0)
+            return String(cString: value, encoding: .utf8) ?? "Mac"
+        } else {
+            return UIDevice.current.deviceType
+        }
+    }()
+
+    /// A `String` containing debug details about the current app.
+    static let debugDetails: String = {
+        let versionNumber = Bundle.main.versionNumber
+        let buildNumber = Bundle.main.buildNumber
+        let versionDetails = "App Version: \(versionNumber) (\(buildNumber))"
+
+        let osDetails = "OS Version: \(ProcessInfo.processInfo.operatingSystemVersionString)"
+        let deviceDetails = "Device: \(deviceType)"
+        let environmentDetails = "Environment: \(Bundle.main.userType.title)"
+
+        return "\n\n\nDEBUG DETAILS\n\n\(versionDetails)\n\(osDetails)\n\(deviceDetails)\n\(environmentDetails)"
+    }()
+
     #endif
 }
