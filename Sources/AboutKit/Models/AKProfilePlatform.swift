@@ -9,6 +9,7 @@ import Foundation
 
 /// A custom enum used for a social profile platform.
 public enum AKProfilePlatform: Hashable, Sendable {
+    case bluesky
     case facebook
     case instagram
     case linkedIn(profileType: LinkedInProfileType)
@@ -24,6 +25,8 @@ public enum AKProfilePlatform: Hashable, Sendable {
     /// A `String` containing the name of the platform.
     var name: String {
         switch self {
+        case .bluesky:
+            return "Bluesky"
         case .facebook:
             return "Facebook"
         case .instagram:
@@ -52,6 +55,8 @@ public enum AKProfilePlatform: Hashable, Sendable {
     /// A `String` containing the name of the image to use for the platform.
     var imageName: String {
         switch self {
+        case .bluesky:
+            return "bluesky"
         case .facebook:
             return "facebook"
         case .instagram:

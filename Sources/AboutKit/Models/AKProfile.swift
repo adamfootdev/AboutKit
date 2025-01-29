@@ -61,6 +61,8 @@ public struct AKProfile: Identifiable, Hashable, Sendable {
     /// The `URL` to open the profile on the platform.
     var url: URL {
         switch platform {
+        case .bluesky:
+            return URL(string: "https://bsky.app/profile/\(username)")!
         case .facebook:
             return URL(string: "https://facebook.com/\(username)")!
         case .instagram:
@@ -83,6 +85,7 @@ public struct AKProfile: Identifiable, Hashable, Sendable {
             return URL(string: "https://twitter.com/\(username)")!
         case .x:
             return URL(string: "https://x.com/\(username)")!
+            
         }
     }
 
