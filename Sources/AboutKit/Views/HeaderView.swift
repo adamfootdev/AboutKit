@@ -62,8 +62,6 @@ struct HeaderView: View {
         .frame(width: appIconWidth, height: appIconHeight)
         #if os(iOS) || os(tvOS)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        #elseif os(macOS)
-        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         #elseif os(visionOS) || os(watchOS)
         .clipShape(Circle())
         #endif
