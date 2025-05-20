@@ -24,6 +24,7 @@ For users who previously used AboutKit for showing the features list, please use
 4. [Other Packages](#other-packages)
     - [FeaturesKit](https://github.com/adamfootdev/FeaturesKit)
     - [HelpKit](https://github.com/adamfootdev/HelpKit)
+    - [HapticsKit](https://github.com/adamfootdev/HapticsKit)
 
 ## Requirements
 
