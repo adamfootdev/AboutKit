@@ -37,9 +37,7 @@ struct OtherAppRowView: View {
     }
 
     private var appIcon: some View {
-        ZStack {
-            Color(.controlBackgroundColor)
-
+        Group {
             if let appIcon = otherApp.appIcon {
                 Image(nsImage: appIcon)
                     .resizable()
@@ -51,7 +49,6 @@ struct OtherAppRowView: View {
             }
         }
         .frame(width: 32, height: 32)
-        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
         .accessibilityHidden(true)
     }
 
