@@ -54,7 +54,7 @@ public struct AboutAppView: View {
                 Section {
                     ForEach(
                         Array(configuration.app.developer.profiles.enumerated()),
-                        id: \.1
+                        id: \.0
                     ) { _, profile in
                         ItemLabel(
                             profile.title,
@@ -70,7 +70,7 @@ public struct AboutAppView: View {
                 Section {
                     ForEach(
                         Array(configuration.app.profiles.enumerated()),
-                        id: \.1
+                        id: \.0
                     ) { _, profile in
                         ItemLabel(
                             profile.title,

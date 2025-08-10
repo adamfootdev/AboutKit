@@ -19,9 +19,6 @@ public struct AboutAppView: View {
     /// A `Bool` indicating whether the Mail sheet is currently showing.
     @State private var showingMailSheet: Bool = false
 
-    /// A `Bool` indicating whether the share sheet is currently showing.
-    @State private var showingShareSheet: Bool = false
-
     /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
     /// - Parameter configuration: A custom struct of type `AKConfiguration` containing details for AboutKit.
     public init(configuration: AKConfiguration) {
@@ -95,25 +92,14 @@ public struct AboutAppView: View {
             if configuration.showShareApp.isVisible || configuration.showWriteReview.isVisible {
                 Section {
                     if configuration.showShareApp.isVisible {
-                        if #available(iOS 16.0, *) {
-                            ShareLink(
-                                item: configuration.app.appStoreShareURL,
-                                message: Text(String(localized: "Check out \(configuration.app.name) on the App Store!", bundle: .module))
-                            ) {
-                                ItemLabel(
-                                    LocalizedStrings.shareApp,
-                                    systemImage: "square.and.arrow.up"
-                                )
-                            }
-                        } else {
-                            Button {
-                                showingShareSheet = true
-                            } label: {
-                                ItemLabel(
-                                    LocalizedStrings.shareApp,
-                                    systemImage: "square.and.arrow.up"
-                                )
-                            }
+                        ShareLink(
+                            item: configuration.app.appStoreShareURL,
+                            message: Text(String(localized: "Check out \(configuration.app.name) on the App Store!", bundle: .module))
+                        ) {
+                            ItemLabel(
+                                LocalizedStrings.shareApp,
+                                systemImage: "square.and.arrow.up"
+                            )
                         }
                     }
 
@@ -200,10 +186,6 @@ public struct AboutAppView: View {
         .navigationTitle(LocalizedStrings.aboutApp)
         .sheet(isPresented: $showingMailSheet) {
             MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
-                .edgesIgnoringSafeArea(.all)
-        }
-        .sheet(isPresented: $showingShareSheet) {
-            ShareSheetView(app: configuration.app)
                 .edgesIgnoringSafeArea(.all)
         }
     }

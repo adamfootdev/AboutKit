@@ -37,12 +37,6 @@ struct HeaderView: View {
 
     private var appIcon: some View {
         ZStack {
-            #if os(iOS)
-            Color(.secondarySystemGroupedBackground)
-            #elseif os(watchOS) || os(tvOS) || os(visionOS)
-            Color.white.opacity(0.2)
-            #endif
-
             if let appIcon = app.appIcon {
                 #if os(macOS)
                 Image(nsImage: appIcon)
@@ -60,11 +54,6 @@ struct HeaderView: View {
             }
         }
         .frame(width: appIconWidth, height: appIconHeight)
-        #if os(iOS) || os(tvOS)
-        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        #elseif os(visionOS) || os(watchOS)
-        .clipShape(Circle())
-        #endif
         .accessibilityHidden(true)
     }
 
