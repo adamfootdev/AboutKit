@@ -32,12 +32,10 @@ struct ItemLabel: View {
     }
 }
 
-struct ItemLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        Form {
-            ItemLabel("Title", actionTitle: "Action") {}
-        }
-        .formStyle(.grouped)
+#Preview {
+    Form {
+        ItemLabel("Title", actionTitle: "Action") {}
     }
+    .formStyle(.grouped)
 }
 #endif

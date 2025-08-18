@@ -25,14 +25,12 @@ struct SectionHeaderLabel: View {
     }
 }
 
-struct SectionHeaderLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        Form {
-            Section {
-                Text("Content")
-            } header: {
-                SectionHeaderLabel("Title")
-            }
+#Preview {
+    Form {
+        Section {
+            Text("Content")
+        } header: {
+            SectionHeaderLabel("Title")
         }
     }
 }

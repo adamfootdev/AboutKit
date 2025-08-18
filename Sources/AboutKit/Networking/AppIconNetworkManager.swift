@@ -19,6 +19,9 @@ final class AppIconNetworkManager {
     /// Creates the cache object for storing the app icon URL.
     private let cache = NSCache<NSString, NSString>()
 
+    /// Creates the cache object for storing the app icon.
+    let iconCache = NSCache<NSString, PlatformImage>()
+
     private init() {}
 
     /// Fetches the app icon URL string for a given app.

@@ -91,8 +91,6 @@ struct AcknowledgementsView: View {
     }
 }
 
-struct AcknowledgementsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AcknowledgementsView(.example)
-    }
+#Preview {
+    AcknowledgementsView(.example)
 }

@@ -79,8 +79,6 @@ struct FrameworkAcknowledgementView: View {
     }
 }
 
-struct FrameworkAcknowledgementView_Previews: PreviewProvider {
-    static var previews: some View {
-        FrameworkAcknowledgementView(.example)
-    }
+#Preview {
+    FrameworkAcknowledgementView(.example)
 }

@@ -45,12 +45,10 @@ struct ItemLabel: View {
     }
 }
 
-struct ListButtonLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            ItemLabel("Email", systemImage: "envelope")
-            ItemLabel("Twitter", image: "twitter")
-        }
+#Preview {
+    VStack {
+        ItemLabel("Email", systemImage: "envelope")
+        ItemLabel("Twitter", image: "twitter")
     }
 }
 #endif

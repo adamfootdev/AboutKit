@@ -33,11 +33,9 @@ struct ItemLabel: View {
     }
 }
 
-struct ItemLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        Form {
-            ItemLabel("Title", details: "Details")
-        }
+#Preview {
+    Form {
+        ItemLabel("Title", details: "Details")
     }
 }
 #endif

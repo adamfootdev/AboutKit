@@ -11,15 +11,13 @@ import SwiftUI
 struct OtherAppRowView: View {
     private let otherApp: AKOtherApp
 
-    @State private var appIconURL: String?
-
     init(_ otherApp: AKOtherApp) {
         self.otherApp = otherApp
     }
 
     var body: some View {
         HStack(spacing: 16) {
-            appIcon
+            AppIconView(for: otherApp, at: .init(width: 60, height: 60))
 
             Text(otherApp.name)
                 .font(.headline)
@@ -31,25 +29,6 @@ struct OtherAppRowView: View {
         }
         .padding(.vertical, 8)
         .buttonStyle(.plain)
-        .task {
-            await loadAppIcon()
-        }
-    }
-
-    private var appIcon: some View {
-        Group {
-            if let appIcon = otherApp.appIcon {
-                Image(uiImage: appIcon)
-                    .resizable()
-                    .scaledToFit()
-
-            } else if let appIconURL = appIconURL {
-                RemoteImageView(url: appIconURL)
-                    .scaledToFit()
-            }
-        }
-        .frame(width: 60, height: 60)
-        .accessibilityHidden(true)
     }
 
     private var viewOnAppStoreButton: some View {
@@ -67,17 +46,9 @@ struct OtherAppRowView: View {
         .buttonBorderShape(.capsule)
         .controlSize(.small)
     }
-
-    private func loadAppIcon() async {
-        if otherApp.appIcon == nil {
-            appIconURL = await AppIconNetworkManager.shared.fetchURL(for: otherApp)
-        }
-    }
 }
 
-struct OtherAppRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        OtherAppRowView(AKOtherApp.example)
-    }
+#Preview {
+    OtherAppRowView(AKOtherApp.example)
 }
 #endif

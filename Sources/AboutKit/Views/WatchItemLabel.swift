@@ -30,9 +30,7 @@ struct ItemLabel: View {
     }
 }
 
-struct ItemLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemLabel("Title", details: "Details")
-    }
+#Preview {
+    ItemLabel("Title", details: "Details")
 }
 #endif

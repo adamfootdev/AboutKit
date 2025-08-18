@@ -79,13 +79,11 @@ struct PersonAcknowledgementView: View {
     }
 }
 
-struct PersonAcknowledgementView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            PersonAcknowledgementView(.example)
-        }
-        #if os(iOS)
-        .navigationViewStyle(.stack)
-        #endif
+#Preview {
+    NavigationView {
+        PersonAcknowledgementView(.example)
     }
+    #if os(iOS)
+    .navigationViewStyle(.stack)
+    #endif
 }

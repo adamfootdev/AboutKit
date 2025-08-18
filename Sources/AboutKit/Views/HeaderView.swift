@@ -10,15 +10,13 @@ import SwiftUI
 struct HeaderView: View {
     private let app: AKMyApp
 
-    @State private var appIconURL: String?
-
     init(app: AKMyApp) {
         self.app = app
     }
 
     var body: some View {
         VStack(spacing: 8) {
-            appIcon
+            AppIconView(for: app, at: appIconSize)
 
             Text("\(app.name) \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))")
                 .font(.headline)
@@ -30,65 +28,22 @@ struct HeaderView: View {
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
         .listRowBackground(Color.clear)
-        .task {
-            await loadAppIcon()
-        }
     }
 
-    private var appIcon: some View {
-        ZStack {
-            if let appIcon = app.appIcon {
-                #if os(macOS)
-                Image(nsImage: appIcon)
-                    .resizable()
-                    .scaledToFit()
-                #else
-                Image(uiImage: appIcon)
-                    .resizable()
-                    .scaledToFit()
-                #endif
-
-            } else if let appIconURL = appIconURL {
-                RemoteImageView(url: appIconURL)
-                    .scaledToFit()
-            }
-        }
-        .frame(width: appIconWidth, height: appIconHeight)
-        .accessibilityHidden(true)
-    }
-
-    private var appIconWidth: CGFloat {
+    private var appIconSize: CGSize {
         #if os(macOS) || os(watchOS)
-        return 64
+        return .init(width: 64, height: 64)
         #elseif os(tvOS)
-        return 300
+        return .init(width: 300, height: 180)
         #else
-        return 100
+        return .init(width: 100, height: 100)
         #endif
-    }
-
-    private var appIconHeight: CGFloat {
-        #if os(macOS) || os(watchOS)
-        return 64
-        #elseif os(tvOS)
-        return 180
-        #else
-        return 100
-        #endif
-    }
-
-    private func loadAppIcon() async {
-        if app.appIcon == nil {
-            appIconURL = await AppIconNetworkManager.shared.fetchURL(for: app)
-        }
     }
 }
 
-struct HeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            HeaderView(app: AKMyApp.example)
-                .listRowBackground(Color.clear)
-        }
+#Preview {
+    List {
+        HeaderView(app: AKMyApp.example)
+            .listRowBackground(Color.clear)
     }
 }
