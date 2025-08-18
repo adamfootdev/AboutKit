@@ -18,7 +18,7 @@ struct OtherAppRowView: View {
     var body: some View {
         Link(destination: otherApp.appStoreURL) {
             HStack(spacing: 28) {
-                AppIconView(for: otherApp, at: .init(width: 150, height: 90))
+                AppIconImageView(for: otherApp, at: .init(width: 150, height: 90))
 
                 ItemLabel(
                     otherApp.name,

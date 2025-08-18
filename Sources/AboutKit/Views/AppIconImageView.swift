@@ -1,5 +1,5 @@
 //
-//  AppIconView.swift
+//  AppIconImageView.swift
 //  AboutKit
 //
 //  Created by Adam Foot on 18/08/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppIconView: View {
+struct AppIconImageView: View {
     private let app: any AKApp
     private let size: CGSize
     @State private var appIcon: PlatformImage?
@@ -102,7 +102,7 @@ struct AppIconView: View {
 
 #Preview {
     List {
-        AppIconView(for: AKMyApp.example, at: .init(width: 64, height: 64))
+        AppIconImageView(for: AKMyApp.example, at: .init(width: 64, height: 64))
             .listRowBackground(Color.clear)
     }
 }

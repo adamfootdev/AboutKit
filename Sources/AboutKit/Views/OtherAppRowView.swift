@@ -17,7 +17,7 @@ struct OtherAppRowView: View {
 
     var body: some View {
         HStack(spacing: 16) {
-            AppIconView(for: otherApp, at: .init(width: 60, height: 60))
+            AppIconImageView(for: otherApp, at: .init(width: 60, height: 60))
 
             Text(otherApp.name)
                 .font(.headline)

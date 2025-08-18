@@ -16,7 +16,7 @@ struct HeaderView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            AppIconView(for: app, at: appIconSize)
+            AppIconImageView(for: app, at: appIconSize)
 
             Text("\(app.name) \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))")
                 .font(.headline)
