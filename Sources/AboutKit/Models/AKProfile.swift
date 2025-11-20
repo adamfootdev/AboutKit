@@ -29,7 +29,7 @@ public struct AKProfile: Identifiable, Hashable, Sendable {
         platform: AKProfilePlatform,
         displayMode: AKProfileDisplayMode = .combined
     ) {
-        self.username = username.replacingOccurrences(of: "@", with: "")
+        self.username = username.replacing("@", with: "")
         self.platform = platform
         self.displayMode = displayMode
     }
