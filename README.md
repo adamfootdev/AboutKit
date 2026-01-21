@@ -1,11 +1,11 @@
 # AboutKit
 
 ![Feature Graphic](https://github.com/adamfootdev/AboutKit/blob/main/Assets/feature-graphic.png?raw=true)
-![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2015.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2015.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%208.0%2B-blue)
+![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2016.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2016.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%209.0%2B-blue)
 
 AboutKit provides developers for Apple platforms with the ability to add an About screen to their apps. This is built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
 
-This has been localised into multiple languages and the buttons will automatically adapt to your appʼs accent color.
+This has been localized into multiple languages and the buttons will automatically adapt to your appʼs accent color.
 
 For users who previously used AboutKit for showing the features list, please use [FeaturesKit](https://github.com/adamfootdev/FeaturesKit).
 
@@ -25,15 +25,16 @@ For users who previously used AboutKit for showing the features list, please use
     - [FeaturesKit](https://github.com/adamfootdev/FeaturesKit)
     - [HelpKit](https://github.com/adamfootdev/HelpKit)
     - [HapticsKit](https://github.com/adamfootdev/HapticsKit)
+    - [InAppPurchaseKit](https://github.com/adamfootdev/InAppPurchaseKit)
 
 ## Requirements
 
-- iOS/iPadOS 15.0+
+- iOS/iPadOS 16.0+
 - macOS 13.0+
-- tvOS 15.0+
+- tvOS 16.0+
 - visionOS 1.0+
-- watchOS 8.0+
-- Xcode 15.0+
+- watchOS 9.0+
+- Xcode 16.0+
 
 ## Integration
 
@@ -43,7 +44,7 @@ AboutKit can be added to your app via Swift Package Manager in Xcode. Add to you
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/adamfootdev/AboutKit.git", from: "3.0.0")
+    .package(url: "https://github.com/adamfootdev/AboutKit.git", from: "4.0.0")
 ]
 ```
 
@@ -185,3 +186,7 @@ Add a help screen to your app.
 ### [HapticsKit](https://github.com/adamfootdev/HapticsKit)
 
 Add haptic feedback to your app.
+
+### [InAppPurchaseKit](https://github.com/adamfootdev/InAppPurchaseKit)
+
+Add a subscription screen to your app.
