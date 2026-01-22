@@ -6,9 +6,6 @@
     <img src="https://img.shields.io/badge/platforms-iOS%2FiPadOS%2016.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2016.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%209.0%2B-blue" alt="Platform" />
 </p>
 
-
-
-
 # AboutKit
 
 AboutKit provides developers for Apple platforms with the ability to add an About screen to their apps. This is built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
