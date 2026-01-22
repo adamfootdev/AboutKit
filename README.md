@@ -1,9 +1,21 @@
+<p align="center">
+    <img src="Assets/icon.png" alt="Project Icon" width="250" />
+</p>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/platforms-iOS%2FiPadOS%2016.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2016.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%209.0%2B-blue" alt="Platform" />
+</p>
+
+
+
+
 # AboutKit
 
-![Feature Graphic](https://github.com/adamfootdev/AboutKit/blob/main/Assets/feature-graphic.png?raw=true)
-![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2016.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2016.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%209.0%2B-blue)
-
 AboutKit provides developers for Apple platforms with the ability to add an About screen to their apps. This is built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app.
+
+<p align="center">
+    <img src ="Assets/feature-graphic.png" />
+</p>
 
 This has been localized into multiple languages and the buttons will automatically adapt to your appʼs accent color.
 
