@@ -85,24 +85,42 @@ final class AppIconNetworkManager {
     }
 
     private func appIconURL(from html: String, appID: String, platform: StorePlatform) -> String? {
-        let escapedAppID = NSRegularExpression.escapedPattern(for: appID)
-        let escapedPlatformContext = NSRegularExpression.escapedPattern(for: platform.platformContext)
-
-        let pattern = "\"lockup\":\\{\"\\$kind\":\"Lockup\",\"adamId\":\"\(escapedAppID)\".*?\"template\":\"([^\"]+)\".*?\"targetId\":\"\(escapedAppID)\".*?\"platformContext\":\"\(escapedPlatformContext)\""
-
-        guard let regularExpression = try? NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators]),
-              let match = regularExpression.firstMatch(in: html, range: NSRange(html.startIndex..., in: html)),
-              let templateRange = Range(match.range(at: 1), in: html) else {
+        guard let jsonData = serializedServerData(in: html),
+              let rootObject = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
+              let data = rootObject["data"] as? [[String: Any]],
+              let firstEntry = data.first,
+              let intent = firstEntry["intent"] as? [String: Any],
+              let intentAppID = intent["id"] as? String,
+              intentAppID == appID,
+              let intentPlatform = intent["platform"] as? String,
+              intentPlatform == platform.intentPlatform,
+              let pageData = firstEntry["data"] as? [String: Any],
+              let lockup = pageData["lockup"] as? [String: Any],
+              let lockupAppID = lockup["adamId"] as? String,
+              lockupAppID == appID,
+              let icon = lockup["icon"] as? [String: Any],
+              let template = icon["template"] as? String else {
             return nil
         }
-
-        let template = String(html[templateRange])
 
         return template
             .replacing("{w}", with: "512")
             .replacing("{h}", with: "512")
             .replacing("{c}", with: "bb")
             .replacing("{f}", with: "jpg")
+    }
+
+    private func serializedServerData(in html: String) -> Data? {
+        let startTag = "<script type=\"application/json\" id=\"serialized-server-data\">"
+        let endTag = "</script>"
+
+        guard let startRange = html.range(of: startTag),
+              let endRange = html.range(of: endTag, range: startRange.upperBound..<html.endIndex) else {
+            return nil
+        }
+
+        let serializedServerData = html[startRange.upperBound..<endRange.lowerBound].trimmingCharacters(in: .whitespacesAndNewlines)
+        return Data(serializedServerData.utf8)
     }
 
     private func fetchLookupURL(for app: any AKApp) async -> String? {
@@ -144,7 +162,7 @@ final class AppIconNetworkManager {
             }
         }
 
-        var platformContext: String {
+        var intentPlatform: String {
             switch self {
             case .generic:
                 "iphone"
