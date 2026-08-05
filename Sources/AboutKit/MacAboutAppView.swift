@@ -195,9 +195,7 @@ public struct AboutAppView: View {
     }
 }
 
-struct AboutAppView_Previews: PreviewProvider {
-    static var previews: some View {
-        AboutAppView(configuration: .example)
-    }
+#Preview {
+    AboutAppView(configuration: .example)
 }
 #endif

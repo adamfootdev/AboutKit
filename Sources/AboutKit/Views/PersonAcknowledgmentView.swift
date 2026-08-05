@@ -80,10 +80,7 @@ struct PersonAcknowledgementView: View {
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         PersonAcknowledgementView(.example)
     }
-    #if os(iOS)
-    .navigationViewStyle(.stack)
-    #endif
 }

@@ -132,11 +132,9 @@ public struct AboutAppView: View {
     }
 }
 
-struct AboutAppView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            AboutAppView(configuration: .example)
-        }
+#Preview {
+    NavigationStack {
+        AboutAppView(configuration: .example)
     }
 }
 #endif
