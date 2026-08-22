@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom struct containing details for AboutKit.
-public struct AKConfiguration: Sendable {
+public struct AKConfiguration {
     
     /// A custom struct of type `AKMyApp` containing details about the current app.
     public let app: AKMyApp
@@ -42,6 +42,7 @@ public struct AKConfiguration: Sendable {
     }
 
     /// An example `AKConfiguration` to be used in SwiftUI previews.
+    @MainActor
     static let example = AKConfiguration(
         app: .example,
         otherApps: [.example],
