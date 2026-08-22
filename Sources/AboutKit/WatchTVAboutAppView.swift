@@ -155,7 +155,7 @@ public struct AboutAppView: View {
             if entries.isEmpty == false {
                 Section {
                     ForEach(Array(entries.enumerated()), id: \.offset) { _, entry in
-                        AKEntryRow(entry)
+                        entry
                     }
                 } header: {
                     if let title {

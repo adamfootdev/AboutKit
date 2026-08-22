@@ -6,7 +6,7 @@
 import SwiftUI
 
 /// A custom row that presents a SwiftUI view from an AboutKit section.
-public enum AKEntry {
+public enum AKEntry: View {
     /// A row that pushes its destination onto the current navigation stack.
     case navigation(
         title: String,
@@ -47,5 +47,72 @@ public enum AKEntry {
             systemImage: systemImage,
             destination: AnyView(destination())
         )
+    }
+
+    @ViewBuilder
+    public var body: some View {
+        switch self {
+        case .navigation(let title, let systemImage, let destination):
+            NavigationLink {
+                destination
+            } label: {
+                AKEntryLabel(title: title, systemImage: systemImage)
+            }
+
+        case .sheet(let title, let systemImage, let destination):
+            AKSheetEntry(
+                title: title,
+                systemImage: systemImage,
+                destination: destination
+            )
+        }
+    }
+}
+
+private struct AKSheetEntry: View {
+    let title: String
+    let systemImage: String
+    let destination: AnyView
+
+    @State private var isPresented = false
+
+    var body: some View {
+        Button {
+            isPresented = true
+        } label: {
+            AKEntryLabel(title: title, systemImage: systemImage)
+        }
+        .sheet(isPresented: $isPresented) {
+            destination
+        }
+    }
+}
+
+private struct AKEntryLabel: View {
+    let title: String
+    let systemImage: String
+
+    var body: some View {
+        #if os(iOS) || os(visionOS)
+        ItemLabel(title, systemImage: systemImage)
+        #else
+        Label(title, systemImage: systemImage)
+        #endif
+    }
+}
+
+#Preview {
+    NavigationStack {
+        Form {
+            Section("Custom") {
+                AKEntry.navigation("Navigation", systemImage: "arrow.right") {
+                    Text("Navigation destination")
+                }
+
+                AKEntry.sheet("Sheet", systemImage: "rectangle.portrait") {
+                    Text("Sheet destination")
+                }
+            }
+        }
     }
 }
