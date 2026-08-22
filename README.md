@@ -109,7 +109,7 @@ Pass the order to `AKConfiguration` using its `sections` parameter.
 
 ### AKEntry
 
-`AKEntry` creates a row with a title and SF Symbol that presents any SwiftUI destination using a navigation push or sheet:
+`AKEntry` creates a row with a title and SF Symbol that presents any SwiftUI destination using a navigation push or sheet. Both are available on iOS, watchOS, tvOS and visionOS; see [Platform differences](#platform-differences) for macOS:
 
 ```swift
 let purchaseEntry = AKEntry.navigation(
@@ -128,6 +128,33 @@ let tipJarEntry = AKEntry.sheet(
 ```
 
 Sheet destinations are responsible for providing any navigation container or dismissal controls they require.
+
+#### Platform differences
+
+On macOS the form has no navigation stack to push onto, so `.navigation` and `.sheet` behave identically: both present their destination in a sheet. Rows also match the surrounding macOS style, showing the title alongside a trailing action button rather than an SF Symbol, so `systemImage` is ignored there.
+
+This means every destination needs its own dismissal control on macOS, including those created with `.navigation`. Sheets are given a minimum size of 400×300, matching the built-in acknowledgements sheet; a destination that sets its own frame overrides this.
+
+```swift
+struct PurchaseOptionsView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        #if os(macOS)
+        NavigationStack {
+            content
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Done") { dismiss() }
+                    }
+                }
+        }
+        #else
+        content
+        #endif
+    }
+}
+```
 
 ### AKMyApp
 
