@@ -26,11 +26,32 @@ public struct AboutAppView: View {
 
     public var body: some View {
         Form {
+            ForEach(Array(configuration.sections.enumerated()), id: \.offset) { _, section in
+                content(for: section)
+            }
+        }
+        .formStyle(.grouped)
+        .navigationTitle(LocalizedStrings.aboutApp)
+        .sheet(isPresented: $showingAcknowledgements) {
+            if let acknowledgements = configuration.app.acknowledgements {
+                AcknowledgementsView(acknowledgements)
+            }
+        }
+    }
+
+
+    // MARK: - Sections
+
+    @ViewBuilder
+    private func content(for section: AKSection) -> some View {
+        switch section {
+        case .header:
             Section {
                 HeaderView(app: configuration.app)
                     .padding(.vertical, 8)
             }
 
+        case .contact:
             if configuration.app.email != nil || configuration.app.websiteURL != nil {
                 Section {
                     ItemLabel(
@@ -38,7 +59,7 @@ public struct AboutAppView: View {
                         actionTitle: LocalizedStrings.contactDeveloper,
                         action: sendMail
                     )
-                    
+
                     if let websiteURL = configuration.app.websiteURL {
                         ItemLabel(
                             LocalizedStrings.website,
@@ -50,6 +71,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .developerProfiles:
             if configuration.app.developer.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -66,6 +88,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .appProfiles:
             if configuration.app.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -82,6 +105,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .sharingAndReview:
             if configuration.showShareApp.isVisible || configuration.showWriteReview.isVisible {
                 Section {
                     if configuration.showShareApp.isVisible {
@@ -109,6 +133,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .legalAndAcknowledgements:
             if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
@@ -142,6 +167,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .testFlight:
             if let testFlightURL = configuration.app.testFlightURL {
                 Section {
                     ItemLabel(
@@ -153,6 +179,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .otherApps:
             if configuration.otherApps.isEmpty == false {
                 Section {
                     ForEach(configuration.otherApps, content: OtherAppRowView.init)
@@ -168,12 +195,18 @@ public struct AboutAppView: View {
                     Text(LocalizedStrings.otherApps)
                 }
             }
-        }
-        .formStyle(.grouped)
-        .navigationTitle(LocalizedStrings.aboutApp)
-        .sheet(isPresented: $showingAcknowledgements) {
-            if let acknowledgements = configuration.app.acknowledgements {
-                AcknowledgementsView(acknowledgements)
+
+        case .custom(let title, let entries):
+            if entries.isEmpty == false {
+                Section {
+                    ForEach(Array(entries.enumerated()), id: \.offset) { _, entry in
+                        AKEntryRow(entry)
+                    }
+                } header: {
+                    if let title {
+                        Text(title)
+                    }
+                }
             }
         }
     }

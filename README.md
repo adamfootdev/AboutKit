@@ -22,6 +22,8 @@ For users who previously used AboutKit for showing the features list, please use
 2. [Integration](#integration)
 3. [Usage](#usage)
     - [AKConfiguration](#akconfiguration)
+    - [AKSection](#aksection)
+    - [AKEntry](#akentry)
     - [AKMyApp](#akmyapp)
     - [AKDeveloper](#akdeveloper)
     - [AKProfile](#akprofile)
@@ -77,6 +79,53 @@ let configuration = AKConfiguration(
     showWriteReview: .always
 )
 ```
+
+The default section order matches the standard AboutKit layout. Supply a custom `sections` array to reorder built-in sections or insert your own sections.
+
+### AKSection
+
+`AKSection` controls the sections and their order in the AboutKit form. The standard order is available as `AKSection.defaultOrder`. A custom section can contain one or more `AKEntry` values:
+
+```swift
+let sections: [AKSection] = [
+    .header,
+    .contact,
+    .custom(
+        title: "Purchases",
+        entries: [purchaseEntry, tipJarEntry]
+    ),
+    .developerProfiles,
+    .appProfiles,
+    .sharingAndReview,
+    .legalAndAcknowledgements,
+    .testFlight,
+    .otherApps
+]
+```
+
+Pass the order to `AKConfiguration` using its `sections` parameter.
+
+### AKEntry
+
+`AKEntry` creates a row with a title and SF Symbol that presents any SwiftUI destination using a navigation push or sheet:
+
+```swift
+let purchaseEntry = AKEntry.navigation(
+    "Purchase Options",
+    systemImage: "cart"
+) {
+    PurchaseOptionsView()
+}
+
+let tipJarEntry = AKEntry.sheet(
+    "Tip Jar",
+    systemImage: "heart"
+) {
+    TipJarView()
+}
+```
+
+Sheet destinations are responsible for providing any navigation container or dismissal controls they require.
 
 ### AKMyApp
 

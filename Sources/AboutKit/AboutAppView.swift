@@ -27,10 +27,29 @@ public struct AboutAppView: View {
     
     public var body: some View {
         Form {
+            ForEach(Array(configuration.sections.enumerated()), id: \.offset) { _, section in
+                content(for: section)
+            }
+        }
+        .navigationTitle(LocalizedStrings.aboutApp)
+        .sheet(isPresented: $showingMailSheet) {
+            MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
+                .edgesIgnoringSafeArea(.all)
+        }
+    }
+
+
+    // MARK: - Sections
+
+    @ViewBuilder
+    private func content(for section: AKSection) -> some View {
+        switch section {
+        case .header:
             Section {
                 HeaderView(app: configuration.app)
             }
 
+        case .contact:
             if configuration.app.email != nil || configuration.app.websiteURL != nil {
                 Section {
                     Button(action: sendMail) {
@@ -39,7 +58,7 @@ public struct AboutAppView: View {
                             systemImage: "envelope"
                         )
                     }
-                    
+
                     if let websiteURL = configuration.app.websiteURL {
                         Button {
                             openURL(websiteURL)
@@ -53,6 +72,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .developerProfiles:
             if configuration.app.developer.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -71,6 +91,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .appProfiles:
             if configuration.app.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -88,7 +109,8 @@ public struct AboutAppView: View {
                     }
                 }
             }
-            
+
+        case .sharingAndReview:
             if configuration.showShareApp.isVisible || configuration.showWriteReview.isVisible {
                 Section {
                     if configuration.showShareApp.isVisible {
@@ -116,6 +138,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .legalAndAcknowledgements:
             if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
@@ -155,6 +178,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .testFlight:
             if let testFlightURL = configuration.app.testFlightURL {
                 Section {
                     Button {
@@ -168,6 +192,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .otherApps:
             if configuration.otherApps.isEmpty == false {
                 Section {
                     ForEach(configuration.otherApps, content: OtherAppRowView.init)
@@ -177,16 +202,24 @@ public struct AboutAppView: View {
                     } label: {
                         Text(LocalizedStrings.viewAllApps)
                     }
-                    
+
                 } header: {
                     Text(LocalizedStrings.otherApps)
                 }
             }
-        }
-        .navigationTitle(LocalizedStrings.aboutApp)
-        .sheet(isPresented: $showingMailSheet) {
-            MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
-                .edgesIgnoringSafeArea(.all)
+
+        case .custom(let title, let entries):
+            if entries.isEmpty == false {
+                Section {
+                    ForEach(Array(entries.enumerated()), id: \.offset) { _, entry in
+                        AKEntryRow(entry)
+                    }
+                } header: {
+                    if let title {
+                        Text(title)
+                    }
+                }
+            }
         }
     }
 
