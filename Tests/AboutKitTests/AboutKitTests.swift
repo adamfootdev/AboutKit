@@ -65,19 +65,13 @@ final class AboutKitTests: XCTestCase {
             XCTAssertEqual(title, "Support")
             XCTAssertEqual(entries.count, 2)
 
-            guard case .navigation(let title, let systemImage, _) = entries[0] else {
-                return XCTFail("Expected a navigation entry")
-            }
+            XCTAssertEqual(entries[0].presentation, .navigation)
+            XCTAssertEqual(entries[0].title, "Purchases")
+            XCTAssertEqual(entries[0].systemImage, "cart")
 
-            XCTAssertEqual(title, "Purchases")
-            XCTAssertEqual(systemImage, "cart")
-
-            guard case .sheet(let title, let systemImage, _) = entries[1] else {
-                return XCTFail("Expected a sheet entry")
-            }
-
-            XCTAssertEqual(title, "Tip Jar")
-            XCTAssertEqual(systemImage, "heart")
+            XCTAssertEqual(entries[1].presentation, .sheet)
+            XCTAssertEqual(entries[1].title, "Tip Jar")
+            XCTAssertEqual(entries[1].systemImage, "heart")
 
             let untitledSection = AKSection.custom([navigationEntry])
 
