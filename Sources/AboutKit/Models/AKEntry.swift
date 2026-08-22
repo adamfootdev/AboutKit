@@ -119,7 +119,16 @@ private struct AKSheetEntry: View {
     var body: some View {
         row
             .sheet(isPresented: $isPresented) {
+                #if os(macOS)
+                // A macOS sheet is sized by its content, which leaves flexible
+                // destinations such as forms and lists too small. The floor
+                // matches the built-in acknowledgements sheet, and a
+                // destination setting its own frame still wins.
                 destination
+                    .frame(minWidth: 400, minHeight: 300)
+                #else
+                destination
+                #endif
             }
     }
 
