@@ -55,7 +55,7 @@ final class AboutKitTests: XCTestCase {
 
             let section = AKSection.custom(
                 title: "Support",
-                entries: [navigationEntry, sheetEntry]
+                [navigationEntry, sheetEntry]
             )
 
             guard case .custom(let title, let entries) = section else {
@@ -78,6 +78,15 @@ final class AboutKitTests: XCTestCase {
 
             XCTAssertEqual(title, "Tip Jar")
             XCTAssertEqual(systemImage, "heart")
+
+            let untitledSection = AKSection.custom([navigationEntry])
+
+            guard case .custom(let title, let entries) = untitledSection else {
+                return XCTFail("Expected an untitled custom section")
+            }
+
+            XCTAssertNil(title)
+            XCTAssertEqual(entries.count, 1)
         }
     }
 

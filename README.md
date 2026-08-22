@@ -92,7 +92,7 @@ let sections: [AKSection] = [
     .contact,
     .custom(
         title: "Purchases",
-        entries: [purchaseEntry, tipJarEntry]
+        [purchaseEntry, tipJarEntry]
     ),
     .developerProfiles,
     .appProfiles,
@@ -102,6 +102,8 @@ let sections: [AKSection] = [
     .otherApps
 ]
 ```
+
+Omit `title` for an untitled custom section: `.custom([purchaseEntry])`.
 
 Pass the order to `AKConfiguration` using its `sections` parameter.
 

@@ -13,7 +13,7 @@ public enum AKSection {
     case legalAndAcknowledgements
     case testFlight
     case otherApps
-    case custom(title: String?, entries: [AKEntry])
+    case custom(title: String? = nil, _ entries: [AKEntry])
 
     /// The section order used when no custom order is supplied.
     public static var defaultOrder: [AKSection] {
