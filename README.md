@@ -109,7 +109,7 @@ Pass the order to `AKConfiguration` using its `sections` parameter.
 
 ### AKEntry
 
-`AKEntry` creates a row with a title and SF Symbol that presents any SwiftUI destination using a navigation push or sheet. Both are available on iOS, watchOS, tvOS and visionOS; see [Platform differences](#platform-differences) for macOS:
+`AKEntry` can display custom SwiftUI content inline, or create a row with a title and SF Symbol that presents a destination using a navigation push or sheet. Both are available on iOS, watchOS, tvOS and visionOS; see [Platform differences](#platform-differences) for macOS:
 
 ```swift
 let purchaseEntry = AKEntry.navigation(
@@ -127,13 +127,25 @@ let tipJarEntry = AKEntry.sheet(
 }
 ```
 
+Use `.inline` to embed a view directly inside a custom section, without a button or presentation wrapper:
+
+```swift
+.custom(title: "Configuration", [
+    .inline {
+        Toggle("Is on?", isOn: $isOn)
+    }
+])
+```
+
+Here, `isOn` is state owned by the enclosing view. Inline content works on every platform and can be mixed with navigation and sheet entries in the same section.
+
 Sheet destinations are responsible for providing any navigation container or dismissal controls they require.
 
 #### Platform differences
 
 On macOS the form has no navigation stack to push onto, so `.navigation` and `.sheet` behave identically: both present their destination in a sheet. Rows also match the surrounding macOS style, showing the title alongside a trailing action button rather than an SF Symbol, so `systemImage` is ignored there.
 
-This means every destination needs its own dismissal control on macOS, including those created with `.navigation`. Sheets are given a minimum size of 400×300, matching the built-in acknowledgements sheet; a destination that sets its own frame overrides this.
+Inline entries remain embedded in the section on macOS. Every presented destination needs its own dismissal control on macOS, including those created with `.navigation`. Sheets are given a minimum size of 400×300, matching the built-in acknowledgements sheet; a destination that sets its own frame overrides this.
 
 ```swift
 struct PurchaseOptionsView: View {

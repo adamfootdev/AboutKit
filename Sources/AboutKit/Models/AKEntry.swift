@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-/// A custom row that presents a SwiftUI view from an AboutKit section.
+/// Custom SwiftUI content displayed inline or presented from an AboutKit section.
 public struct AKEntry: View {
 
     /// The way an entry presents its destination.
@@ -15,6 +15,9 @@ public struct AKEntry: View {
 
         /// Presents the destination in a sheet.
         case sheet
+
+        /// Displays the content directly inside the section.
+        case inline
     }
 
     /// The way this entry presents its destination.
@@ -79,24 +82,42 @@ public struct AKEntry: View {
         )
     }
 
+    /// Displays custom content directly inside the section on every platform.
+    /// - Parameter content: A view builder producing the inline content.
+    @MainActor
+    public static func inline<Content: View>(
+        @ViewBuilder content: () -> Content
+    ) -> AKEntry {
+        AKEntry(
+            presentation: .inline,
+            title: "",
+            systemImage: "",
+            destination: AnyView(content())
+        )
+    }
+
     @ViewBuilder
     public var body: some View {
-        #if os(macOS)
-        // The macOS form has no navigation stack to push onto, so every entry
-        // presents its destination in a sheet regardless of its presentation.
-        AKSheetEntry(
-            title: title,
-            systemImage: systemImage,
-            destination: destination
-        )
-        #else
         switch presentation {
+        case .inline:
+            destination
+
         case .navigation:
+            #if os(macOS)
+            // The macOS form has no navigation stack, so navigation entries
+            // present their destination in a sheet.
+            AKSheetEntry(
+                title: title,
+                systemImage: systemImage,
+                destination: destination
+            )
+            #else
             NavigationLink {
                 destination
             } label: {
                 AKEntryLabel(title: title, systemImage: systemImage)
             }
+            #endif
 
         case .sheet:
             AKSheetEntry(
@@ -105,8 +126,8 @@ public struct AKEntry: View {
                 destination: destination
             )
         }
-        #endif
     }
+
 }
 
 private struct AKSheetEntry: View {
