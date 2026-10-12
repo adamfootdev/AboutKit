@@ -31,7 +31,7 @@ public struct AboutAppView: View {
             }
         }
         .formStyle(.grouped)
-        .navigationTitle(LocalizedStrings.aboutApp)
+        .navigationTitle(LocalizedStrings.aboutApp(configuration.app.name))
         .sheet(isPresented: $showingAcknowledgements) {
             if let acknowledgements = configuration.app.acknowledgements {
                 AcknowledgementsView(acknowledgements)

@@ -26,7 +26,7 @@ public struct AboutAppView: View {
                 content(for: section)
             }
         }
-        .navigationTitle(LocalizedStrings.aboutApp)
+        .navigationTitle(LocalizedStrings.aboutApp(configuration.app.name))
     }
 
 

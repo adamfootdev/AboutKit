@@ -272,6 +272,9 @@ Create an instance of the view using the following:
 AboutAppView(configuration: configuration)
 ```
 
+The view title is localized as "About App Name" using `configuration.app.name`.
+The header shows the app icon followed by the version and build number.
+
 ## Other Packages
 
 ### [FeaturesKit](https://github.com/adamfootdev/FeaturesKit)

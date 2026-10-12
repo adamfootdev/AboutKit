@@ -31,7 +31,7 @@ public struct AboutAppView: View {
                 content(for: section)
             }
         }
-        .navigationTitle(LocalizedStrings.aboutApp)
+        .navigationTitle(LocalizedStrings.aboutApp(configuration.app.name))
         .sheet(isPresented: $showingMailSheet) {
             MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
                 .edgesIgnoringSafeArea(.all)
