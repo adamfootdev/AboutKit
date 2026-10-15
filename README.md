@@ -22,6 +22,8 @@ For users who previously used AboutKit for showing the features list, please use
 2. [Integration](#integration)
 3. [Usage](#usage)
     - [AKConfiguration](#akconfiguration)
+    - [AKSection](#aksection)
+    - [AKEntry](#akentry)
     - [AKMyApp](#akmyapp)
     - [AKDeveloper](#akdeveloper)
     - [AKProfile](#akprofile)
@@ -74,8 +76,122 @@ let configuration = AKConfiguration(
     app: app, 
     otherApps: otherApps, 
     showShareApp: .always, 
-    showWriteReview: .always
+    showWriteReview: .always,
+    emailAttachments: {
+        [
+            .text("Current diagnostics", fileName: "diagnostics.txt")
+        ]
+    }
 )
+```
+
+The default section order matches the standard AboutKit layout. Supply a custom `sections` array to reorder built-in sections or insert your own sections.
+
+`emailAttachments` is called immediately before the support-email composer is
+opened, so it can generate current content asynchronously. It supports multiple
+mixed attachments:
+
+```swift
+emailAttachments: {
+    [
+        .file(exportURL),
+        .text(status, fileName: "status.txt"),
+        .image(screenshot, fileName: "screenshot.png"),
+        .binary(data, mimeType: "application/json", fileName: "export.json")
+    ]
+}
+```
+
+Return `nil` or an empty array to open the composer without attachments. AboutKit
+silently skips inaccessible files, invalid values, image filenames without a
+`.png` extension, and later attachments with a duplicate filename. The callback
+is used by the native composer on iOS, iPadOS, and visionOS. The `mailto:` fallback
+and the current macOS contact action cannot carry attachments.
+
+### AKSection
+
+`AKSection` controls the sections and their order in the AboutKit form. The standard order is available as `AKSection.defaultOrder`. A custom section can contain one or more `AKEntry` values:
+
+```swift
+let sections: [AKSection] = [
+    .header,
+    .contact,
+    .custom(
+        title: "Purchases",
+        [purchaseEntry, tipJarEntry]
+    ),
+    .developerProfiles,
+    .appProfiles,
+    .sharingAndReview,
+    .legalAndAcknowledgements,
+    .testFlight,
+    .otherApps
+]
+```
+
+Omit `title` for an untitled custom section: `.custom([purchaseEntry])`.
+
+Pass the order to `AKConfiguration` using its `sections` parameter.
+
+### AKEntry
+
+`AKEntry` can display custom SwiftUI content inline, or create a row with a title and SF Symbol that presents a destination using a navigation push or sheet. Both are available on iOS, watchOS, tvOS and visionOS; see [Platform differences](#platform-differences) for macOS:
+
+```swift
+let purchaseEntry = AKEntry.navigation(
+    "Purchase Options",
+    systemImage: "cart"
+) {
+    PurchaseOptionsView()
+}
+
+let tipJarEntry = AKEntry.sheet(
+    "Tip Jar",
+    systemImage: "heart"
+) {
+    TipJarView()
+}
+```
+
+Use `.inline` to embed a view directly inside a custom section, without a button or presentation wrapper:
+
+```swift
+.custom(title: "Configuration", [
+    .inline {
+        Toggle("Is on?", isOn: $isOn)
+    }
+])
+```
+
+Here, `isOn` is state owned by the enclosing view. Inline content works on every platform and can be mixed with navigation and sheet entries in the same section.
+
+Sheet destinations are responsible for providing any navigation container or dismissal controls they require.
+
+#### Platform differences
+
+On macOS the form has no navigation stack to push onto, so `.navigation` and `.sheet` behave identically: both present their destination in a sheet. Rows also match the surrounding macOS style, showing the title alongside a trailing action button rather than an SF Symbol, so `systemImage` is ignored there.
+
+Inline entries remain embedded in the section on macOS. Every presented destination needs its own dismissal control on macOS, including those created with `.navigation`. Sheets are given a minimum size of 400×300, matching the built-in acknowledgements sheet; a destination that sets its own frame overrides this.
+
+```swift
+struct PurchaseOptionsView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        #if os(macOS)
+        NavigationStack {
+            content
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Done") { dismiss() }
+                    }
+                }
+        }
+        #else
+        content
+        #endif
+    }
+}
 ```
 
 ### AKMyApp
@@ -181,6 +297,9 @@ Create an instance of the view using the following:
 ```swift
 AboutAppView(configuration: configuration)
 ```
+
+The view title is localized as "About App Name" using `configuration.app.name`.
+The header shows the app icon followed by the version and build number.
 
 ## Other Packages
 

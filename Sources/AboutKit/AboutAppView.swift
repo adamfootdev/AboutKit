@@ -16,8 +16,14 @@ public struct AboutAppView: View {
     /// A custom struct of type `AKConfiguration` containing details for AboutKit.
     private let configuration: AKConfiguration
 
-    /// A `Bool` indicating whether the Mail sheet is currently showing.
-    @State private var showingMailSheet: Bool = false
+    /// The prepared email currently shown in the Mail sheet.
+    @State private var preparedMail: PreparedMail?
+
+    /// The current attachment preparation task.
+    @State private var mailPreparationTask: Task<Void, Never>?
+
+    /// Indicates whether dynamic attachments are being prepared.
+    @State private var isPreparingMail = false
 
     /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
     /// - Parameter configuration: A custom struct of type `AKConfiguration` containing details for AboutKit.
@@ -27,19 +33,55 @@ public struct AboutAppView: View {
     
     public var body: some View {
         Form {
+            ForEach(Array(configuration.sections.enumerated()), id: \.offset) { _, section in
+                content(for: section)
+            }
+        }
+        .navigationTitle(LocalizedStrings.aboutApp(configuration.app.name))
+        .sheet(item: $preparedMail) { mail in
+            MailView(
+                app: configuration.app,
+                debugDetails: AboutKit.debugDetails,
+                attachments: mail.attachments
+            )
+                .edgesIgnoringSafeArea(.all)
+        }
+        .onDisappear(perform: cancelMailPreparation)
+    }
+
+
+    // MARK: - Sections
+
+    @ViewBuilder
+    private func content(for section: AKSection) -> some View {
+        switch section {
+        case .header:
             Section {
                 HeaderView(app: configuration.app)
             }
 
+        case .contact:
             if configuration.app.email != nil || configuration.app.websiteURL != nil {
                 Section {
-                    Button(action: sendMail) {
-                        ItemLabel(
-                            LocalizedStrings.email,
-                            systemImage: "envelope"
-                        )
+                    if configuration.app.email != nil {
+                        Button(action: sendMail) {
+                            HStack {
+                                ItemLabel(
+                                    LocalizedStrings.email,
+                                    systemImage: "envelope"
+                                )
+
+                                if isPreparingMail {
+                                    Spacer()
+                                    ProgressView()
+                                        .controlSize(.small)
+                                        .accessibilityLabel(LocalizedStrings.email)
+                                }
+                            }
+                        }
+                        .disabled(isPreparingMail)
                     }
-                    
+
                     if let websiteURL = configuration.app.websiteURL {
                         Button {
                             openURL(websiteURL)
@@ -53,6 +95,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .developerProfiles:
             if configuration.app.developer.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -71,6 +114,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .appProfiles:
             if configuration.app.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -88,7 +132,8 @@ public struct AboutAppView: View {
                     }
                 }
             }
-            
+
+        case .sharingAndReview:
             if configuration.showShareApp.isVisible || configuration.showWriteReview.isVisible {
                 Section {
                     if configuration.showShareApp.isVisible {
@@ -116,6 +161,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .legalAndAcknowledgements:
             if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
@@ -155,6 +201,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .testFlight:
             if let testFlightURL = configuration.app.testFlightURL {
                 Section {
                     Button {
@@ -168,6 +215,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .otherApps:
             if configuration.otherApps.isEmpty == false {
                 Section {
                     ForEach(configuration.otherApps, content: OtherAppRowView.init)
@@ -177,16 +225,24 @@ public struct AboutAppView: View {
                     } label: {
                         Text(LocalizedStrings.viewAllApps)
                     }
-                    
+
                 } header: {
                     Text(LocalizedStrings.otherApps)
                 }
             }
-        }
-        .navigationTitle(LocalizedStrings.aboutApp)
-        .sheet(isPresented: $showingMailSheet) {
-            MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
-                .edgesIgnoringSafeArea(.all)
+
+        case .custom(let title, let entries):
+            if entries.isEmpty == false {
+                Section {
+                    ForEach(Array(entries.enumerated()), id: \.offset) { _, entry in
+                        entry
+                    }
+                } header: {
+                    if let title {
+                        Text(title)
+                    }
+                }
+            }
         }
     }
 
@@ -195,7 +251,25 @@ public struct AboutAppView: View {
 
     private func sendMail() {
         if MFMailComposeViewController.canSendMail() {
-            showingMailSheet = true
+            guard mailPreparationTask == nil else { return }
+
+            isPreparingMail = true
+            mailPreparationTask = Task { @MainActor in
+                let attachments = await configuration.emailAttachments?() ?? []
+                guard Task.isCancelled == false else {
+                    finishMailPreparation()
+                    return
+                }
+
+                let preparedAttachments = await attachments.preparedForEmail()
+                guard Task.isCancelled == false else {
+                    finishMailPreparation()
+                    return
+                }
+
+                preparedMail = PreparedMail(attachments: preparedAttachments)
+                finishMailPreparation()
+            }
         } else {
             guard let subject = configuration.app.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let body = AboutKit.debugDetails.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
@@ -209,6 +283,21 @@ public struct AboutAppView: View {
             }
         }
     }
+
+    private func cancelMailPreparation() {
+        mailPreparationTask?.cancel()
+        finishMailPreparation()
+    }
+
+    private func finishMailPreparation() {
+        mailPreparationTask = nil
+        isPreparingMail = false
+    }
+}
+
+private struct PreparedMail: Identifiable {
+    let id = UUID()
+    let attachments: [AKPreparedEmailAttachment]
 }
 
 #Preview {

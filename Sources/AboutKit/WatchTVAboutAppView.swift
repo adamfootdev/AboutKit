@@ -22,11 +22,26 @@ public struct AboutAppView: View {
 
     public var body: some View {
         Form {
+            ForEach(Array(configuration.sections.enumerated()), id: \.offset) { _, section in
+                content(for: section)
+            }
+        }
+        .navigationTitle(LocalizedStrings.aboutApp(configuration.app.name))
+    }
+
+
+    // MARK: - Sections
+
+    @ViewBuilder
+    private func content(for section: AKSection) -> some View {
+        switch section {
+        case .header:
             Section {
                 HeaderView(app: configuration.app)
                     .focusable()
             }
 
+        case .contact:
             if configuration.app.email != nil || configuration.app.websiteURL != nil {
                 Section {
                     if let email = configuration.app.email {
@@ -45,6 +60,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .developerProfiles:
             if configuration.app.developer.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -59,6 +75,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .appProfiles:
             if configuration.app.profiles.isEmpty == false {
                 Section {
                     ForEach(
@@ -72,7 +89,11 @@ public struct AboutAppView: View {
                     }
                 }
             }
-            
+
+        case .sharingAndReview:
+            EmptyView()
+
+        case .legalAndAcknowledgements:
             if configuration.app.privacyPolicyURL != nil || configuration.app.termsOfUseURL != nil || configuration.app.acknowledgements?.frameworks?.isEmpty == false || configuration.app.acknowledgements?.people?.isEmpty == false {
                 Section {
                     if let privacyPolicyURL = configuration.app.privacyPolicyURL {
@@ -99,6 +120,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .testFlight:
             if let testFlightURL = configuration.app.testFlightURL {
                 Section {
                     ItemLabel(
@@ -108,6 +130,7 @@ public struct AboutAppView: View {
                 }
             }
 
+        case .otherApps:
             if configuration.otherApps.isEmpty == false {
                 Section {
                     ForEach(
@@ -127,8 +150,24 @@ public struct AboutAppView: View {
                     #endif
                 }
             }
+
+        case .custom(let title, let entries):
+            if entries.isEmpty == false {
+                Section {
+                    ForEach(Array(entries.enumerated()), id: \.offset) { _, entry in
+                        entry
+                    }
+                } header: {
+                    if let title {
+                        #if os(tvOS)
+                        SectionHeaderLabel(title)
+                        #else
+                        Text(title)
+                        #endif
+                    }
+                }
+            }
         }
-        .navigationTitle(LocalizedStrings.aboutApp)
     }
 }
 

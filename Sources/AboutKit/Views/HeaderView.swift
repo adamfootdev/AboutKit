@@ -15,19 +15,23 @@ struct HeaderView: View {
     }
 
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 6) {
             AppIconImageView(for: app, at: appIconSize)
 
-            Text("\(app.name) \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))")
+            Text("\(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))")
                 .font(.headline)
-                .padding(.top)
 
             Text(app.developer.name)
                 .foregroundStyle(.secondary)
         }
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
+        .listRowInsets(headerInsets)
         .listRowBackground(Color.clear)
+    }
+
+    private var headerInsets: EdgeInsets {
+        EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
     }
 
     private var appIconSize: CGSize {
