@@ -25,6 +25,10 @@ public struct AKConfiguration {
     /// The ordered sections displayed in the AboutKit form.
     public let sections: [AKSection]
 
+    /// Creates attachments immediately before AboutKit opens the support-email composer.
+    /// Return `nil` when no attachments are available. Invalid attachments are ignored.
+    public let emailAttachments: (@MainActor () async -> [AKEmailAttachment]?)?
+
     /// Initializes a new `AKConfiguration` struct which contains details about the
     /// current app and other apps.
     /// - Parameters:
@@ -33,18 +37,21 @@ public struct AKConfiguration {
     ///   - showShareApp: Indicates whether to show the Share App option. Defaults to `.always`.
     ///   - showWriteReview: Indicates whether to show the Write Review option. Defaults to `.always`.
     ///   - sections: The ordered sections displayed in the AboutKit form. Defaults to `AKSection.defaultOrder`.
+    ///   - emailAttachments: An optional asynchronous closure that creates support-email attachments.
     public init(
         app: AKMyApp,
         otherApps: [AKOtherApp],
         showShareApp: AKShowOption = .always,
         showWriteReview: AKShowOption = .always,
-        sections: [AKSection] = AKSection.defaultOrder
+        sections: [AKSection] = AKSection.defaultOrder,
+        emailAttachments: (@MainActor () async -> [AKEmailAttachment]?)? = nil
     ) {
         self.app = app
         self.otherApps = otherApps
         self.showShareApp = showShareApp
         self.showWriteReview = showWriteReview
         self.sections = sections
+        self.emailAttachments = emailAttachments
     }
 
     /// An example `AKConfiguration` to be used in SwiftUI previews.

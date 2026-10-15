@@ -16,8 +16,14 @@ public struct AboutAppView: View {
     /// A custom struct of type `AKConfiguration` containing details for AboutKit.
     private let configuration: AKConfiguration
 
-    /// A `Bool` indicating whether the Mail sheet is currently showing.
-    @State private var showingMailSheet: Bool = false
+    /// The prepared email currently shown in the Mail sheet.
+    @State private var preparedMail: PreparedMail?
+
+    /// The current attachment preparation task.
+    @State private var mailPreparationTask: Task<Void, Never>?
+
+    /// Indicates whether dynamic attachments are being prepared.
+    @State private var isPreparingMail = false
 
     /// Initializes a new SwiftUI `View` which displays attributes and links relating to an app.
     /// - Parameter configuration: A custom struct of type `AKConfiguration` containing details for AboutKit.
@@ -32,10 +38,15 @@ public struct AboutAppView: View {
             }
         }
         .navigationTitle(LocalizedStrings.aboutApp(configuration.app.name))
-        .sheet(isPresented: $showingMailSheet) {
-            MailView(app: configuration.app, debugDetails: AboutKit.debugDetails)
+        .sheet(item: $preparedMail) { mail in
+            MailView(
+                app: configuration.app,
+                debugDetails: AboutKit.debugDetails,
+                attachments: mail.attachments
+            )
                 .edgesIgnoringSafeArea(.all)
         }
+        .onDisappear(perform: cancelMailPreparation)
     }
 
 
@@ -52,11 +63,23 @@ public struct AboutAppView: View {
         case .contact:
             if configuration.app.email != nil || configuration.app.websiteURL != nil {
                 Section {
-                    Button(action: sendMail) {
-                        ItemLabel(
-                            LocalizedStrings.email,
-                            systemImage: "envelope"
-                        )
+                    if configuration.app.email != nil {
+                        Button(action: sendMail) {
+                            HStack {
+                                ItemLabel(
+                                    LocalizedStrings.email,
+                                    systemImage: "envelope"
+                                )
+
+                                if isPreparingMail {
+                                    Spacer()
+                                    ProgressView()
+                                        .controlSize(.small)
+                                        .accessibilityLabel(LocalizedStrings.email)
+                                }
+                            }
+                        }
+                        .disabled(isPreparingMail)
                     }
 
                     if let websiteURL = configuration.app.websiteURL {
@@ -228,7 +251,25 @@ public struct AboutAppView: View {
 
     private func sendMail() {
         if MFMailComposeViewController.canSendMail() {
-            showingMailSheet = true
+            guard mailPreparationTask == nil else { return }
+
+            isPreparingMail = true
+            mailPreparationTask = Task { @MainActor in
+                let attachments = await configuration.emailAttachments?() ?? []
+                guard Task.isCancelled == false else {
+                    finishMailPreparation()
+                    return
+                }
+
+                let preparedAttachments = await attachments.preparedForEmail()
+                guard Task.isCancelled == false else {
+                    finishMailPreparation()
+                    return
+                }
+
+                preparedMail = PreparedMail(attachments: preparedAttachments)
+                finishMailPreparation()
+            }
         } else {
             guard let subject = configuration.app.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let body = AboutKit.debugDetails.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
@@ -242,6 +283,21 @@ public struct AboutAppView: View {
             }
         }
     }
+
+    private func cancelMailPreparation() {
+        mailPreparationTask?.cancel()
+        finishMailPreparation()
+    }
+
+    private func finishMailPreparation() {
+        mailPreparationTask = nil
+        isPreparingMail = false
+    }
+}
+
+private struct PreparedMail: Identifiable {
+    let id = UUID()
+    let attachments: [AKPreparedEmailAttachment]
 }
 
 #Preview {

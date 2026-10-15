@@ -84,6 +84,24 @@ final class AboutKitTests: XCTestCase {
         }
     }
 
+    @MainActor
+    func testEmailAttachmentPreparationSkipsInvalidAndDuplicateItems() async {
+        let attachments: [AKEmailAttachment] = [
+            .text("Current status", fileName: "status.txt"),
+            .binary(Data([0x01]), mimeType: "application/octet-stream", fileName: "status.txt"),
+            .binary(Data([0x02]), mimeType: "invalid", fileName: "invalid.bin"),
+            .file(URL(string: "https://example.com/log.txt")!),
+            .binary(Data([0x03]), mimeType: "application/octet-stream", fileName: "export.bin")
+        ]
+
+        let prepared = await attachments.preparedForEmail()
+
+        XCTAssertEqual(prepared.map(\.fileName), ["status.txt", "export.bin"])
+        XCTAssertEqual(prepared.map(\.mimeType), ["text/plain", "application/octet-stream"])
+        XCTAssertEqual(prepared[0].data, Data("Current status".utf8))
+        XCTAssertEqual(prepared[1].data, Data([0x03]))
+    }
+
     static let allTests = [
         ("testDefaultSectionOrder", testDefaultSectionOrder),
         ("testCustomSectionEntries", testCustomSectionEntries),

@@ -20,14 +20,23 @@ struct MailView: UIViewControllerRepresentable {
     /// A `String` containing some debug information that will be sent to the developer.
     private let debugDetails: String
 
+    /// Attachments prepared before the Mail sheet is shown.
+    private let attachments: [AKPreparedEmailAttachment]
+
     /// Initializes a `UIViewControllerRepresentable` that shows the default iOS mail sheet
     /// with some pre-configured fields based on the current app.
     /// - Parameters:
     ///   - app: The `AKMyApp` to use for providing data to show in the Mail sheet.
     ///   - debugDetails: A `String` containing some debug information that will be sent to the developer.
-    init(app: AKMyApp, debugDetails: String) {
+    ///   - attachments: Attachments to add before presenting the Mail sheet.
+    init(
+        app: AKMyApp,
+        debugDetails: String,
+        attachments: [AKPreparedEmailAttachment]
+    ) {
         self.app = app
         self.debugDetails = debugDetails
+        self.attachments = attachments
     }
     
     class Coordinator: NSObject, @preconcurrency MFMailComposeViewControllerDelegate {
@@ -61,6 +70,14 @@ struct MailView: UIViewControllerRepresentable {
 
         mailComposerViewController.setSubject("\(app.name) - Support")
         mailComposerViewController.setMessageBody(debugDetails, isHTML: false)
+
+        for attachment in attachments {
+            mailComposerViewController.addAttachmentData(
+                attachment.data,
+                mimeType: attachment.mimeType,
+                fileName: attachment.fileName
+            )
+        }
         
         return mailComposerViewController
     }

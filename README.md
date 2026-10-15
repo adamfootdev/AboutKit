@@ -76,11 +76,37 @@ let configuration = AKConfiguration(
     app: app, 
     otherApps: otherApps, 
     showShareApp: .always, 
-    showWriteReview: .always
+    showWriteReview: .always,
+    emailAttachments: {
+        [
+            .text("Current diagnostics", fileName: "diagnostics.txt")
+        ]
+    }
 )
 ```
 
 The default section order matches the standard AboutKit layout. Supply a custom `sections` array to reorder built-in sections or insert your own sections.
+
+`emailAttachments` is called immediately before the support-email composer is
+opened, so it can generate current content asynchronously. It supports multiple
+mixed attachments:
+
+```swift
+emailAttachments: {
+    [
+        .file(exportURL),
+        .text(status, fileName: "status.txt"),
+        .image(screenshot, fileName: "screenshot.png"),
+        .binary(data, mimeType: "application/json", fileName: "export.json")
+    ]
+}
+```
+
+Return `nil` or an empty array to open the composer without attachments. AboutKit
+silently skips inaccessible files, invalid values, image filenames without a
+`.png` extension, and later attachments with a duplicate filename. The callback
+is used by the native composer on iOS, iPadOS, and visionOS. The `mailto:` fallback
+and the current macOS contact action cannot carry attachments.
 
 ### AKSection
 
